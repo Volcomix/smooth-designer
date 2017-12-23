@@ -9,6 +9,6 @@ it('renders without crashing', () => {
     <MuiThemeProvider>
       <App />
     </MuiThemeProvider>,
-    div
+    div,
   )
 })
