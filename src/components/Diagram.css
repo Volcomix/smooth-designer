@@ -1,0 +1,9 @@
+.Diagram {
+  flex: 1;
+}
+
+.Diagram-add {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+}
