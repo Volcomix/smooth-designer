@@ -6,7 +6,7 @@ export type Block = {
   +name: string,
 }
 
-type BlockState = Block[]
+export type BlockState = Block[]
 
 const initialState: BlockState = []
 
