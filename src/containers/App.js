@@ -1,11 +1,11 @@
 //@flow
 import React from 'react'
 import './App.css'
-import Diagram from '../components/Diagram'
+import DiagramContainer from './DiagramContainer'
 
 const App = () => (
   <div className="App">
-    <Diagram />
+    <DiagramContainer />
   </div>
 )
 
