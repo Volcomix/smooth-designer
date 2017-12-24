@@ -1,12 +1,8 @@
 //@flow
-import type { Block } from '../reducers/blocks'
 import { ADD_BLOCK } from '../constants/actionTypes'
 
-type AddBlockAction = { type: typeof ADD_BLOCK, block: Block }
+type AddBlockAction = { type: typeof ADD_BLOCK }
 
 export type BlockAction = AddBlockAction
 
-export const addBlock = (block: Block): AddBlockAction => ({
-  type: ADD_BLOCK,
-  block,
-})
+export const addBlock = (): AddBlockAction => ({ type: ADD_BLOCK })

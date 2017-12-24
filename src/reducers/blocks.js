@@ -2,7 +2,7 @@
 import type { BlockAction } from '../actions/blockActions'
 import { ADD_BLOCK } from '../constants/actionTypes'
 
-export type Block = {
+type Block = {
   +name: string,
 }
 
@@ -16,7 +16,7 @@ const blocks = (
 ): BlockState => {
   switch (action.type) {
     case ADD_BLOCK:
-      return [...state, action.block]
+      return [...state, { name: '' }]
     default:
       return state
   }

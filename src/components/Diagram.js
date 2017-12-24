@@ -4,9 +4,17 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import './Diagram.css'
 
-const Diagram = () => (
+type Props = {
+  onAddClick: () => void,
+}
+
+const Diagram = ({ onAddClick }: Props) => (
   <div className="Diagram">
-    <FloatingActionButton className="Diagram-add" secondary={true}>
+    <FloatingActionButton
+      className="Diagram-add"
+      secondary={true}
+      onClick={onAddClick}
+    >
       <ContentAdd />
     </FloatingActionButton>
   </div>

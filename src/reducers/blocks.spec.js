@@ -6,13 +6,9 @@ it('returns the initial state', () => {
 })
 
 it('adds blocks', () => {
-  expect(blocks([], { type: ADD_BLOCK, block: { name: 'New block' } })).toEqual(
-    [{ name: 'New block' }],
-  )
-  expect(
-    blocks([{ name: 'Block' }], {
-      type: ADD_BLOCK,
-      block: { name: 'New block' },
-    }),
-  ).toEqual([{ name: 'Block' }, { name: 'New block' }])
+  expect(blocks([], { type: ADD_BLOCK })).toEqual([{ name: '' }])
+  expect(blocks([{ name: 'Block' }], { type: ADD_BLOCK })).toEqual([
+    { name: 'Block' },
+    { name: '' },
+  ])
 })
