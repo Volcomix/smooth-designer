@@ -1,7 +1,6 @@
 //@flow
 import { combineReducers } from 'redux'
-import type { BlockState } from './blocks'
-import blocks from './blocks'
+import blocks, { type BlockState } from './blocks'
 
 export type State = {
   +blocks: BlockState,

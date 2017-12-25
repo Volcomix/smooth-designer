@@ -1,10 +1,7 @@
 //@flow
+import type { Block } from '../types'
 import type { BlockAction } from '../actions/blockActions'
 import { ADD_BLOCK } from '../constants/actionTypes'
-
-type Block = {
-  +name: string,
-}
 
 export type BlockState = Block[]
 
