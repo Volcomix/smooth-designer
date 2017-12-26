@@ -1,8 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<div>
-  Name: 
-  Block
-</div>
+<Card
+  className="BlockDetail"
+  expandable={false}
+  expanded={null}
+  initiallyExpanded={false}
+>
+  <CardTitle
+    title={
+      <TextField
+        disabled={false}
+        floatingLabelFixed={false}
+        fullWidth={false}
+        hintText="Name"
+        multiLine={false}
+        rows={1}
+        type="text"
+        underlineShow={true}
+        value="Block"
+      />
+    }
+  />
+</Card>
 `;
