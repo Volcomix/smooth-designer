@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with blocks renders the blocks 1`] = `
+<div
+  className="Diagram"
+>
+  <BlockDetail
+    key="0"
+    name="Block 1"
+  />
+  <BlockDetail
+    key="1"
+    name="Block 2"
+  />
+  <FloatingActionButton
+    className="Diagram-add"
+    disabled={false}
+    mini={false}
+    onClick={[Function]}
+    secondary={true}
+    zDepth={2}
+  >
+    <ContentAdd />
+  </FloatingActionButton>
+</div>
+`;
+
+exports[`without blocks renders without crashing 1`] = `
+<div
+  className="Diagram"
+>
+  <FloatingActionButton
+    className="Diagram-add"
+    disabled={false}
+    mini={false}
+    onClick={[Function]}
+    secondary={true}
+    zDepth={2}
+  >
+    <ContentAdd />
+  </FloatingActionButton>
+</div>
+`;

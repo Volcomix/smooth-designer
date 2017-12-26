@@ -2,8 +2,35 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Diagram from './Diagram'
 
-it('renders without crashing', () => {
-  shallow(<Diagram blocks={[]} />)
-  shallow(<Diagram blocks={[{ name: 'Block' }]} />)
-  shallow(<Diagram blocks={[{ name: 'Block 1' }, { name: 'Block 2' }]} />)
+const setup = setupProps => {
+  const defaultProps = {
+    blocks: [],
+    onAddClick: jest.fn(),
+  }
+  const props = { ...defaultProps, ...setupProps }
+  const wrapper = shallow(<Diagram {...props} />)
+  return { props, wrapper }
+}
+
+describe('without blocks', () => {
+  const { wrapper, props } = setup()
+
+  it('renders without crashing', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('calls onAddClick when Add button clicked', () => {
+    wrapper.find('.Diagram-add').simulate('click')
+    expect(props.onAddClick).toHaveBeenCalled()
+  })
+})
+
+describe('with blocks', () => {
+  const { wrapper } = setup({
+    blocks: [{ name: 'Block 1' }, { name: 'Block 2' }],
+  })
+
+  it('renders the blocks', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
 })
