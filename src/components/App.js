@@ -1,7 +1,7 @@
 //@flow
 import React from 'react'
 import './App.css'
-import DiagramContainer from './DiagramContainer'
+import DiagramContainer from '../containers/DiagramContainer'
 
 const App = () => (
   <div className="App">
