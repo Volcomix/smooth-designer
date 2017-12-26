@@ -9,7 +9,7 @@ const setup = setupProps => {
   }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
-  return { props, wrapper }
+  return { wrapper, props }
 }
 
 describe('without blocks', () => {
