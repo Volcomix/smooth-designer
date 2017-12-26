@@ -1,3 +1,4 @@
+//@flow
 import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
@@ -10,7 +11,7 @@ import { addBlock } from '../actions/blockActions'
 const mockStore = configureStore()
 
 const setup = () => {
-  const store = mockStore()
+  const store = mockStore({ blocks: 'Blocks' })
   const wrapper = shallow(<DiagramContainer store={store} />)
   return { wrapper, store }
 }
@@ -21,9 +22,9 @@ it('renders without crashing', () => {
 })
 
 it('maps state to Diagram props', () => {
-  expect(mapStateToProps({ blocks: 'Blocks', other: 'Not used' })).toEqual({
-    blocks: 'Blocks',
-  })
+  expect(
+    mapStateToProps({ blocks: [{ name: 'Block' }], other: 'Not used' }),
+  ).toEqual({ blocks: [{ name: 'Block' }] })
 })
 
 it('maps actions to Diagram props', () => {

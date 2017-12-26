@@ -1,8 +1,9 @@
+//@flow
 import { ADD_BLOCK } from '../constants/actionTypes'
 import blocks from './blocks'
 
 it('returns the initial state', () => {
-  expect(blocks(undefined, {})).toEqual([])
+  expect(blocks(undefined, { type: '@@INIT' })).toEqual([])
 })
 
 it('adds blocks', () => {

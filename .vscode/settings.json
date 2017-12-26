@@ -2,5 +2,6 @@
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "javascript.validate.enable": false,
-  "flow.useNPMPackagedFlow": true
+  "flow.useNPMPackagedFlow": true,
+  "jest.enableSnapshotUpdateMessages": false
 }

@@ -1,8 +1,9 @@
+//@flow
 import React from 'react'
 import { shallow } from 'enzyme'
-import BlockDetail from './BlockDetail'
+import BlockDetail, { type Props } from './BlockDetail'
 
-const setup = setupProps => {
+const setup = (setupProps?: Props) => {
   const defaultProps = {
     name: 'Block',
   }

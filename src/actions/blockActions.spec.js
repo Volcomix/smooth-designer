@@ -1,3 +1,4 @@
+//@flow
 import { ADD_BLOCK } from '../constants/actionTypes'
 import { addBlock } from '../actions/blockActions'
 

@@ -4,7 +4,6 @@ import type { BlockAction } from '../actions/blockActions'
 import { ADD_BLOCK } from '../constants/actionTypes'
 
 export type BlockState = Block[]
-
 const initialState: BlockState = []
 
 const blocks = (

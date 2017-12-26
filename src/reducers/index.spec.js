@@ -1,3 +1,4 @@
+//@flow
 import reducer from '.'
 
 it('combines all reducers', () => {
