@@ -2,16 +2,15 @@
 import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
-import DiagramContainer, {
-  mapStateToProps,
-  mapDispatchToProps,
-} from './DiagramContainer'
+import DiagramContainer from './DiagramContainer'
+import type { State } from '../reducers'
 import { addBlock } from '../actions/blockActions'
 
 const mockStore = configureStore()
 
 const setup = () => {
-  const store = mockStore({ blocks: 'Blocks' })
+  const state: State = { blocks: [{ name: 'Block' }] }
+  const store = mockStore(state)
   const wrapper = shallow(<DiagramContainer store={store} />)
   return { wrapper, store }
 }
@@ -21,15 +20,8 @@ it('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot()
 })
 
-it('maps state to Diagram props', () => {
-  expect(
-    mapStateToProps({ blocks: [{ name: 'Block' }], other: 'Not used' }),
-  ).toEqual({ blocks: [{ name: 'Block' }] })
-})
-
-it('maps actions to Diagram props', () => {
-  const dispatch = jest.fn()
-  const props = mapDispatchToProps(dispatch)
-  props.onAddClick()
-  expect(dispatch).toHaveBeenCalledWith(addBlock())
+it('Add a block when the Add button is clicked', () => {
+  const { wrapper, store } = setup()
+  wrapper.find('Diagram').simulate('addClick')
+  expect(store.getActions()).toEqual([addBlock()])
 })

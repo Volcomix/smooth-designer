@@ -2,7 +2,13 @@
 
 exports[`renders without crashing 1`] = `
 <Diagram
-  blocks="Blocks"
+  blocks={
+    Array [
+      Object {
+        "name": "Block",
+      },
+    ]
+  }
   onAddClick={[Function]}
   store={
     Object {

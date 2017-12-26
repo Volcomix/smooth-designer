@@ -6,11 +6,11 @@ import type { Action } from '../actions'
 import { addBlock } from '../actions/blockActions'
 import Diagram from '../components/Diagram'
 
-export const mapStateToProps = (state: State) => ({
+const mapStateToProps = (state: State) => ({
   blocks: state.blocks,
 })
 
-export const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
   onAddClick: () => dispatch(addBlock()),
 })
 

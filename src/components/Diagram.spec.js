@@ -20,7 +20,7 @@ describe('without blocks', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
-  it('calls onAddClick when Add button clicked', () => {
+  it('calls onAddClick when the Add button is clicked', () => {
     wrapper.find('.Diagram-add').simulate('click')
     expect(props.onAddClick).toHaveBeenCalled()
   })
