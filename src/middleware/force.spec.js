@@ -1,6 +1,7 @@
 //@flow
 import type { Action } from '../actions'
 import { ADD_BLOCK } from '../constants/actionTypes'
+import { addBlock } from '../actions/blockActions'
 
 jest.useFakeTimers()
 ;(Math: any).random = jest.fn(() => 0.3087575784346488)
@@ -31,7 +32,7 @@ describe('without blocks', () => {
   })
 
   it('does not update position when a block is added', () => {
-    invoke({ type: ADD_BLOCK })
+    invoke(addBlock())
     jest.runOnlyPendingTimers()
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({ blocks: [{ name: 'New block', x: 1, y: 0 }] })
@@ -43,7 +44,7 @@ describe('with blocks', () => {
   const { dispatch, getState } = store
 
   it('updates positions when a block is added', () => {
-    invoke({ type: ADD_BLOCK })
+    invoke(addBlock())
     jest.runOnlyPendingTimers()
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({

@@ -3,8 +3,6 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Diagram from './Diagram'
 
-const origin = { x: 0, y: 0 }
-
 const setup = setupProps => {
   const defaultProps = {
     blocks: [],
@@ -30,7 +28,7 @@ describe('without blocks', () => {
 
 describe('with blocks', () => {
   const { wrapper } = setup({
-    blocks: [{ name: 'Block 1', ...origin }, { name: 'Block 2', ...origin }],
+    blocks: [{ name: 'Block 1', x: 0, y: 0 }, { name: 'Block 2', x: 0, y: 0 }],
   })
 
   it('renders the blocks', () => {
