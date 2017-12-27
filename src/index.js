@@ -12,7 +12,7 @@ import registerServiceWorker from './registerServiceWorker'
 const store = createStore(reducer)
 const root = document.getElementById('root')
 if (!root) {
-  throw new Error("couldn't find root element")
+  throw new Error("Couldn't find root element.")
 }
 ReactDOM.render(
   <Provider store={store}>

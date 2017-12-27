@@ -20,7 +20,7 @@ it('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot()
 })
 
-it('Add a block when the Add button is clicked', () => {
+it('adds a block when the Add button is clicked', () => {
   const { wrapper, store } = setup()
   wrapper.find('Diagram').simulate('addClick')
   expect(store.getActions()).toEqual([addBlock()])

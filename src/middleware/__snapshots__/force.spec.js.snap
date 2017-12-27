@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`updates blocks positions after a block has been added 1`] = `
+Array [
+  Array [
+    Object {
+      "blocks": Array [
+        Object {
+          "index": 0,
+          "name": "",
+          "vx": 0,
+          "vy": 0,
+          "x": 0,
+          "y": 0,
+        },
+      ],
+      "type": "UPDATE_FORCE",
+    },
+  ],
+]
+`;
+
+exports[`updates blocks positions after a block has been added 2`] = `
+Array [
+  Array [
+    Object {
+      "blocks": Array [
+        Object {
+          "index": 0,
+          "name": "",
+          "vx": 0,
+          "vy": 0,
+          "x": 0,
+          "y": 0,
+        },
+        Object {
+          "index": 1,
+          "name": "",
+          "vx": 0,
+          "vy": 0,
+          "x": -7.373688780783198,
+          "y": 6.754902942615239,
+        },
+      ],
+      "type": "UPDATE_FORCE",
+    },
+  ],
+]
+`;

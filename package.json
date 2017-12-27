@@ -16,6 +16,7 @@
     ]
   },
   "dependencies": {
+    "d3-force": "^1.1.0",
     "material-ui": "^0.20.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
