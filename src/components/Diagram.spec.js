@@ -4,10 +4,7 @@ import { shallow } from 'enzyme'
 import Diagram from './Diagram'
 
 const setup = setupProps => {
-  const defaultProps = {
-    blocks: [],
-    onAddClick: jest.fn(),
-  }
+  const defaultProps = { blocks: [], onAddClick: jest.fn() }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
   return { wrapper, props }

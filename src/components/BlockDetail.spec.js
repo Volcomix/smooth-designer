@@ -4,9 +4,7 @@ import { shallow } from 'enzyme'
 import BlockDetail, { type Props } from './BlockDetail'
 
 const setup = (setupProps?: Props) => {
-  const defaultProps = {
-    name: 'Block',
-  }
+  const defaultProps: Props = { name: 'Block', x: 0, y: 0 }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<BlockDetail {...props} />)
   return { wrapper, props }

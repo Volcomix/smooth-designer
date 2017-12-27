@@ -1,15 +1,15 @@
 //@flow
-import { forceSimulation, forceManyBody } from 'd3-force'
+import { forceSimulation, forceManyBody, forceX, forceY } from 'd3-force'
 import type { Middleware } from 'redux'
 import type { State } from '../reducers'
 import type { Action } from '../actions'
 import { ADD_BLOCK } from '../constants/actionTypes'
 import { updateForce } from '../actions/forceActions'
 
-const simulation = forceSimulation().force(
-  'charge',
-  forceManyBody().strength(-1000),
-)
+const simulation = forceSimulation()
+  .force('charge', forceManyBody().strength(-1000))
+  .force('x', forceX())
+  .force('y', forceY())
 
 const force: Middleware<State, Action> = ({
   dispatch,

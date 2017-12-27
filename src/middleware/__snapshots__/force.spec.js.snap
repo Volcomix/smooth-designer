@@ -8,17 +8,17 @@ Array [
         Object {
           "index": 0,
           "name": "Block",
-          "vx": -293.1711662867405,
+          "vx": -293.1125320534832,
           "vy": 0.000028033381886907253,
-          "x": -294.1711662867405,
+          "x": -294.1125320534832,
           "y": 0.000028033381886907253,
         },
         Object {
           "index": 1,
           "name": "New block",
-          "vx": 293.1711662867405,
+          "vx": 293.1125320534832,
           "vy": 0.000028033381886907253,
-          "x": 294.1711662867405,
+          "x": 294.1125320534832,
           "y": 0.000028033381886907253,
         },
       ],
@@ -28,7 +28,7 @@ Array [
 ]
 `;
 
-exports[`without blocks does not update position when a block is added 1`] = `
+exports[`without blocks updates position when a block is added 1`] = `
 Array [
   Array [
     Object {
@@ -36,9 +36,9 @@ Array [
         Object {
           "index": 0,
           "name": "New block",
-          "vx": 0,
+          "vx": -0.058634233257348636,
           "vy": 0,
-          "x": 1,
+          "x": 0.9413657667426514,
           "y": 0,
         },
       ],

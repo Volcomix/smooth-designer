@@ -4,14 +4,22 @@ exports[`with blocks renders the blocks 1`] = `
 <div
   className="Diagram"
 >
-  <BlockDetail
-    key="0"
-    name="Block 1"
-  />
-  <BlockDetail
-    key="1"
-    name="Block 2"
-  />
+  <div
+    className="Diagram-blocks"
+  >
+    <BlockDetail
+      key="0"
+      name="Block 1"
+      x={0}
+      y={0}
+    />
+    <BlockDetail
+      key="1"
+      name="Block 2"
+      x={0}
+      y={0}
+    />
+  </div>
   <FloatingActionButton
     className="Diagram-add"
     disabled={false}
@@ -29,6 +37,9 @@ exports[`without blocks renders without crashing 1`] = `
 <div
   className="Diagram"
 >
+  <div
+    className="Diagram-blocks"
+  />
   <FloatingActionButton
     className="Diagram-add"
     disabled={false}

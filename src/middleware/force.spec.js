@@ -31,7 +31,7 @@ describe('without blocks', () => {
     expect(dispatch).not.toHaveBeenCalled()
   })
 
-  it('does not update position when a block is added', () => {
+  it('updates position when a block is added', () => {
     invoke(addBlock())
     jest.runOnlyPendingTimers()
     expect(dispatch.mock.calls).toMatchSnapshot()

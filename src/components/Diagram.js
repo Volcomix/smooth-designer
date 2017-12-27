@@ -13,7 +13,9 @@ type Props = {
 
 const Diagram = ({ blocks, onAddClick }: Props) => (
   <div className="Diagram">
-    {blocks.map(({ name }, index) => <BlockDetail key={index} name={name} />)}
+    <div className="Diagram-blocks">
+      {blocks.map((block, index) => <BlockDetail key={index} {...block} />)}
+    </div>
     <FloatingActionButton
       className="Diagram-add"
       secondary={true}

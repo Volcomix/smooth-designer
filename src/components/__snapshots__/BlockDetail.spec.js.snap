@@ -6,6 +6,12 @@ exports[`renders without crashing 1`] = `
   expandable={false}
   expanded={null}
   initiallyExpanded={false}
+  style={
+    Object {
+      "left": 0,
+      "top": 0,
+    }
+  }
 >
   <CardTitle
     title={
