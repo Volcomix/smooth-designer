@@ -1,17 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`updates blocks positions after a block has been added 1`] = `
+exports[`with blocks updates positions when a block is added 1`] = `
 Array [
   Array [
     Object {
       "blocks": Array [
         Object {
           "index": 0,
-          "name": "",
-          "vx": 0,
-          "vy": 0,
-          "x": 0,
-          "y": 0,
+          "name": "Block",
+          "vx": -293.1711662867405,
+          "vy": 0.000028033381886907253,
+          "x": -294.1711662867405,
+          "y": 0.000028033381886907253,
+        },
+        Object {
+          "index": 1,
+          "name": "New block",
+          "vx": 293.1711662867405,
+          "vy": 0.000028033381886907253,
+          "x": 294.1711662867405,
+          "y": 0.000028033381886907253,
         },
       ],
       "type": "UPDATE_FORCE",
@@ -20,26 +28,18 @@ Array [
 ]
 `;
 
-exports[`updates blocks positions after a block has been added 2`] = `
+exports[`without blocks does not update position when a block is added 1`] = `
 Array [
   Array [
     Object {
       "blocks": Array [
         Object {
           "index": 0,
-          "name": "",
+          "name": "New block",
           "vx": 0,
           "vy": 0,
-          "x": 0,
+          "x": 1,
           "y": 0,
-        },
-        Object {
-          "index": 1,
-          "name": "",
-          "vx": 0,
-          "vy": 0,
-          "x": -7.373688780783198,
-          "y": 6.754902942615239,
         },
       ],
       "type": "UPDATE_FORCE",

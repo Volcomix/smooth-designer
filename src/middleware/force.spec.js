@@ -1,43 +1,56 @@
 //@flow
-import { ADD_BLOCK } from '../constants/actionTypes'
 import type { Action } from '../actions'
-import { addBlock } from '../actions/blockActions'
+import { ADD_BLOCK } from '../constants/actionTypes'
 
 jest.useFakeTimers()
+;(Math: any).random = jest.fn(() => 0.3087575784346488)
 const force = require('./force').default
 
-const create = () => {
-  let state = { blocks: [] }
+const create = state => {
   const store = {
     getState: jest.fn(() => state),
     dispatch: jest.fn(),
   }
   const next: any = jest.fn((action: Action) => {
     if (action.type === ADD_BLOCK) {
-      state.blocks.push({ name: '' })
+      state.blocks.push({ name: 'New block', x: 1, y: 0 })
     }
   })
   const invoke = action => force(store)(next)(action)
   return { store, next, invoke }
 }
 
-it('does not update blocks positions if not needed', () => {
-  const { store, invoke } = create()
-  invoke({ type: 'DO_NOTHING' })
-  jest.runOnlyPendingTimers()
-  expect(store.dispatch).not.toHaveBeenCalled()
+describe('without blocks', () => {
+  const { store, invoke } = create({ blocks: [] })
+  const { dispatch, getState } = store
+
+  it('does not simulate force if not needed', () => {
+    invoke({ type: 'DO_NOTHING' })
+    jest.runOnlyPendingTimers()
+    expect(dispatch).not.toHaveBeenCalled()
+  })
+
+  it('does not update position when a block is added', () => {
+    invoke({ type: ADD_BLOCK })
+    jest.runOnlyPendingTimers()
+    expect(dispatch.mock.calls).toMatchSnapshot()
+    expect(getState()).toEqual({ blocks: [{ name: 'New block', x: 1, y: 0 }] })
+  })
 })
 
-it('updates blocks positions after a block has been added', () => {
-  const { store, invoke } = create()
+describe('with blocks', () => {
+  const { store, invoke } = create({ blocks: [{ name: 'Block', x: -1, y: 0 }] })
   const { dispatch, getState } = store
-  invoke(addBlock())
-  jest.runOnlyPendingTimers()
-  expect(dispatch.mock.calls).toMatchSnapshot()
-  expect(getState()).toEqual({ blocks: [{ name: '' }] })
-  dispatch.mockClear()
-  invoke(addBlock())
-  jest.runOnlyPendingTimers()
-  expect(dispatch.mock.calls).toMatchSnapshot()
-  expect(getState()).toEqual({ blocks: [{ name: '' }, { name: '' }] })
+
+  it('updates positions when a block is added', () => {
+    invoke({ type: ADD_BLOCK })
+    jest.runOnlyPendingTimers()
+    expect(dispatch.mock.calls).toMatchSnapshot()
+    expect(getState()).toEqual({
+      blocks: [
+        { name: 'Block', x: -1, y: 0 },
+        { name: 'New block', x: 1, y: 0 },
+      ],
+    })
+  })
 })

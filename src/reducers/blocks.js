@@ -12,7 +12,7 @@ const blocks = (
 ): BlockState => {
   switch (action.type) {
     case ADD_BLOCK:
-      return [...state, { name: '' }]
+      return [...state, { name: '', x: 0, y: 0 }]
     default:
       return state
   }

@@ -6,6 +6,8 @@ exports[`renders without crashing 1`] = `
     Array [
       Object {
         "name": "Block",
+        "x": 0,
+        "y": 0,
       },
     ]
   }
