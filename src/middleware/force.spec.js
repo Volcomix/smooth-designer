@@ -1,11 +1,11 @@
 //@flow
+import force from './force'
 import type { Action } from '../actions'
 import { ADD_BLOCK } from '../constants/actionTypes'
 import { addBlock } from '../actions/blockActions'
 
-jest.useFakeTimers()
-;(Math: any).random = jest.fn(() => 0.3087575784346488)
-const force = require('./force').default
+const mathMock: any = Math
+mathMock.random = jest.fn(() => 0.3087575784346488)
 
 const create = state => {
   const store = {
@@ -27,13 +27,11 @@ describe('without blocks', () => {
 
   it('does not simulate force if not needed', () => {
     invoke({ type: 'DO_NOTHING' })
-    jest.runOnlyPendingTimers()
     expect(dispatch).not.toHaveBeenCalled()
   })
 
   it('updates position when a block is added', () => {
     invoke(addBlock())
-    jest.runOnlyPendingTimers()
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({ blocks: [{ name: 'New block', x: 1, y: 0 }] })
   })
@@ -45,7 +43,6 @@ describe('with blocks', () => {
 
   it('updates positions when a block is added', () => {
     invoke(addBlock())
-    jest.runOnlyPendingTimers()
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({
       blocks: [

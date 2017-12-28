@@ -10,6 +10,20 @@ const simulation = forceSimulation()
   .force('collision', forceCollide(Math.sqrt(288 * 288 + 88 * 88) / 2))
   .force('x', forceX().strength(0.09))
   .force('y', forceY().strength(0.16))
+  .stop()
+
+const computeStaticLayout = () => {
+  for (
+    let i = 0,
+      n = Math.ceil(
+        Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay()),
+      );
+    i < n;
+    ++i
+  ) {
+    simulation.tick()
+  }
+}
 
 const force: Middleware<State, Action> = ({
   dispatch,
@@ -18,11 +32,9 @@ const force: Middleware<State, Action> = ({
   const result = next(action)
   if (action.type === ADD_BLOCK) {
     const blocks = getState().blocks.map(block => ({ ...block }))
-    simulation.on('tick', () => dispatch(updateForce(blocks)))
-    simulation
-      .nodes(blocks)
-      .alpha(1)
-      .restart()
+    simulation.nodes(blocks).alpha(1)
+    computeStaticLayout()
+    dispatch(updateForce(blocks))
   }
   return result
 }
