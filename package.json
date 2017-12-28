@@ -11,8 +11,21 @@
     "eject": "react-scripts eject"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "coverageReporters": ["html", "text", "cobertura"]
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}",
+      "!src/index.js",
+      "!src/registerServiceWorker.js"
+    ],
+    "coverageReporters": ["html", "text", "cobertura"],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   },
   "dependencies": {
     "d3-force": "^1.1.0",
