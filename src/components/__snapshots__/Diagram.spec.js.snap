@@ -26,7 +26,7 @@ exports[`with blocks renders the blocks 1`] = `
     mini={false}
     onClick={[Function]}
     secondary={true}
-    zDepth={2}
+    zDepth={3}
   >
     <ContentAdd />
   </FloatingActionButton>
@@ -46,7 +46,7 @@ exports[`without blocks renders without crashing 1`] = `
     mini={false}
     onClick={[Function]}
     secondary={true}
-    zDepth={2}
+    zDepth={3}
   >
     <ContentAdd />
   </FloatingActionButton>

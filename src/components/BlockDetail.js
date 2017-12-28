@@ -8,7 +8,7 @@ import type { Block } from '../types'
 export type Props = Block
 
 const BlockDetail = ({ name, x, y }: Props) => (
-  <Card className="BlockDetail" style={{ left: x, top: y }}>
+  <Card className="BlockDetail" style={{ left: x, top: y }} zDepth={2}>
     <CardTitle title={<TextField hintText="Name" value={name} />} />
   </Card>
 )

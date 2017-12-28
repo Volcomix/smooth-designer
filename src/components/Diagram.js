@@ -19,6 +19,7 @@ const Diagram = ({ blocks, onAddClick }: Props) => (
     <FloatingActionButton
       className="Diagram-add"
       secondary={true}
+      zDepth={3}
       onClick={onAddClick}
     >
       <ContentAdd />

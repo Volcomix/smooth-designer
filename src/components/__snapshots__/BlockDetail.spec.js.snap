@@ -12,6 +12,7 @@ exports[`renders without crashing 1`] = `
       "top": 0,
     }
   }
+  zDepth={2}
 >
   <CardTitle
     title={
