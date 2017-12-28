@@ -12,7 +12,7 @@
   },
   "jest": {
     "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "coverageReporters": ["lcov", "text", "cobertura"]
+    "coverageReporters": ["html", "text", "cobertura"]
   },
   "dependencies": {
     "d3-force": "^1.1.0",
