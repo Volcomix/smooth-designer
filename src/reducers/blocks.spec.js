@@ -41,8 +41,8 @@ describe('blocks reducer', () => {
           '999': { id: '999', name: 'Block 2', x: 2, y: 2 },
         },
         updateForce([
-          { id: '0', index: 0, name: 'Block 1', x: 3, y: 3 },
-          { id: '999', index: 999, name: 'Block 2', x: 4, y: 4 },
+          { id: '0', name: 'Block 1', x: 3, y: 3 },
+          { id: '999', name: 'Block 2', x: 4, y: 4 },
         ]),
       ),
     ).toEqual({
