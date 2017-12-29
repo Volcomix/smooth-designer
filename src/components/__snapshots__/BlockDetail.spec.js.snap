@@ -1,33 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<Card
+<Sized
   className="BlockDetail"
-  expandable={false}
-  expanded={null}
-  initiallyExpanded={false}
+  onSized={[Function]}
   style={
     Object {
       "left": 0,
       "top": 0,
     }
   }
-  zDepth={2}
 >
-  <CardTitle
-    title={
-      <TextField
-        disabled={false}
-        floatingLabelFixed={false}
-        fullWidth={false}
-        hintText="Name"
-        multiLine={false}
-        rows={1}
-        type="text"
-        underlineShow={true}
-        value="Block"
-      />
-    }
-  />
-</Card>
+  <Card
+    expandable={false}
+    expanded={null}
+    initiallyExpanded={false}
+    zDepth={2}
+  >
+    <CardTitle
+      title={
+        <TextField
+          disabled={false}
+          floatingLabelFixed={false}
+          fullWidth={false}
+          hintText="Name"
+          multiLine={false}
+          rows={1}
+          type="text"
+          underlineShow={true}
+          value="Block"
+        />
+      }
+    />
+  </Card>
+</Sized>
 `;

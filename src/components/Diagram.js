@@ -9,12 +9,15 @@ import BlockDetail from './BlockDetail'
 type Props = {
   blocks: Block[],
   onAddClick: () => void,
+  onSizeChange: (id: string, width: number, height: number) => void,
 }
 
-const Diagram = ({ blocks, onAddClick }: Props) => (
+const Diagram = ({ blocks, onAddClick, onSizeChange }: Props) => (
   <div className="Diagram">
     <div className="Diagram-blocks">
-      {blocks.map(block => <BlockDetail key={block.id} {...block} />)}
+      {blocks.map(block => (
+        <BlockDetail key={block.id} {...block} onSizeChange={onSizeChange} />
+      ))}
     </div>
     <FloatingActionButton
       className="Diagram-add"

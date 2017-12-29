@@ -4,7 +4,11 @@ import { shallow } from 'enzyme'
 import Diagram from './Diagram'
 
 const setup = setupProps => {
-  const defaultProps = { blocks: [], onAddClick: jest.fn() }
+  const defaultProps = {
+    blocks: [],
+    onAddClick: jest.fn(),
+    onSizeChange: jest.fn(),
+  }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
   return { wrapper, props }
@@ -24,7 +28,7 @@ describe('without blocks', () => {
 })
 
 describe('with blocks', () => {
-  const { wrapper } = setup({
+  const { wrapper, props } = setup({
     blocks: [
       { id: '0', name: 'Block 1', x: 0, y: 0 },
       { id: '1', name: 'Block 2', x: 0, y: 0 },
@@ -33,5 +37,13 @@ describe('with blocks', () => {
 
   it('renders the blocks', () => {
     expect(wrapper).toMatchSnapshot()
+  })
+
+  it('calls onSizeChange when a block size changed', () => {
+    wrapper
+      .find('BlockDetail')
+      .first()
+      .simulate('sizeChange', '0', 10, 20)
+    expect(props.onSizeChange).toHaveBeenCalledWith('0', 10, 20)
   })
 })

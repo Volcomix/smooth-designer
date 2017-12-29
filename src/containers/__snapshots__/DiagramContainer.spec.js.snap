@@ -13,6 +13,7 @@ exports[`renders without crashing 1`] = `
     ]
   }
   onAddClick={[Function]}
+  onSizeChange={[Function]}
   store={
     Object {
       "clearActions": [Function],
