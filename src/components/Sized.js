@@ -9,12 +9,10 @@ type Props = {
 }
 
 class Sized extends React.Component<Props> {
-  container: ?HTMLDivElement
+  container: HTMLDivElement
 
   componentDidMount() {
-    if (this.container) {
-      this.props.onSized(this.container.getBoundingClientRect())
-    }
+    this.props.onSized(this.container.getBoundingClientRect())
   }
 
   render() {
@@ -23,7 +21,7 @@ class Sized extends React.Component<Props> {
       <div
         className={className}
         style={style}
-        ref={container => (this.container = container)}
+        ref={container => container && (this.container = container)}
       >
         {this.props.children}
       </div>
