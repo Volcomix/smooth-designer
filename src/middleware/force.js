@@ -4,6 +4,7 @@ import type { Middleware } from 'redux'
 import type { State } from '../reducers'
 import type { Action } from '../actions'
 import { ADD_BLOCK } from '../constants/actionTypes'
+import { cloneBlocks } from '../reducers/blocks'
 import { updateForce } from '../actions/forceActions'
 
 const simulation = forceSimulation()
@@ -31,7 +32,7 @@ const force: Middleware<State, Action> = ({
 }) => next => action => {
   const result = next(action)
   if (action.type === ADD_BLOCK) {
-    const blocks = getState().blocks.map(block => ({ ...block }))
+    const blocks = cloneBlocks(getState().blocks)
     simulation.nodes(blocks).alpha(1)
     computeStaticLayout()
     dispatch(updateForce(blocks))

@@ -14,7 +14,7 @@ const create = state => {
   }
   const next: any = jest.fn((action: Action) => {
     if (action.type === ADD_BLOCK) {
-      state.blocks.push({ name: 'New block', x: 1, y: 0 })
+      state.blocks[999] = { id: '999', name: 'New block', x: 1, y: 0 }
     }
   })
   const invoke = action => force(store)(next)(action)
@@ -22,7 +22,7 @@ const create = state => {
 }
 
 describe('without blocks', () => {
-  const { store, invoke } = create({ blocks: [] })
+  const { store, invoke } = create({ blocks: {} })
   const { dispatch, getState } = store
 
   it('does not simulate force if not needed', () => {
@@ -33,22 +33,26 @@ describe('without blocks', () => {
   it('updates position when a block is added', () => {
     invoke(addBlock())
     expect(dispatch.mock.calls).toMatchSnapshot()
-    expect(getState()).toEqual({ blocks: [{ name: 'New block', x: 1, y: 0 }] })
+    expect(getState()).toEqual({
+      blocks: { '999': { id: '999', name: 'New block', x: 1, y: 0 } },
+    })
   })
 })
 
 describe('with blocks', () => {
-  const { store, invoke } = create({ blocks: [{ name: 'Block', x: -1, y: 0 }] })
+  const { store, invoke } = create({
+    blocks: { '0': { id: '0', name: 'Block', x: -1, y: 0 } },
+  })
   const { dispatch, getState } = store
 
   it('updates positions when a block is added', () => {
     invoke(addBlock())
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({
-      blocks: [
-        { name: 'Block', x: -1, y: 0 },
-        { name: 'New block', x: 1, y: 0 },
-      ],
+      blocks: {
+        '0': { id: '0', name: 'Block', x: -1, y: 0 },
+        '999': { id: '999', name: 'New block', x: 1, y: 0 },
+      },
     })
   })
 })

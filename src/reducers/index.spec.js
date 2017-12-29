@@ -2,5 +2,5 @@
 import reducer from '.'
 
 it('combines all reducers', () => {
-  expect(reducer(undefined, {})).toEqual({ blocks: [] })
+  expect(reducer(undefined, {})).toEqual({ blocks: {} })
 })

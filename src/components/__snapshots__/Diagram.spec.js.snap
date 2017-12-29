@@ -8,12 +8,14 @@ exports[`with blocks renders the blocks 1`] = `
     className="Diagram-blocks"
   >
     <BlockDetail
+      id="0"
       key="0"
       name="Block 1"
       x={0}
       y={0}
     />
     <BlockDetail
+      id="1"
       key="1"
       name="Block 2"
       x={0}

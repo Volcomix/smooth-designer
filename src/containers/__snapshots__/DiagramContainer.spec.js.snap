@@ -5,6 +5,7 @@ exports[`renders without crashing 1`] = `
   blocks={
     Array [
       Object {
+        "id": "0",
         "name": "Block",
         "x": 0,
         "y": 0,

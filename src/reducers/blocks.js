@@ -3,16 +3,23 @@ import type { Block } from '../types'
 import type { Action } from '../actions'
 import { ADD_BLOCK, UPDATE_FORCE } from '../constants/actionTypes'
 
-export type BlockState = Block[]
-const initialState: BlockState = []
+export type BlockState = { [id: string]: Block }
+const initialState: BlockState = {}
 
-const addTodo = (state, action) => [...state, { name: '', x: 0, y: 0 }]
+const addTodo = (state, action) => {
+  const ids: number[] = Object.keys(state).map(id => parseInt(id, 10))
+  let id = 0
+  if (ids.length > 0) {
+    id = Math.max(...ids) + 1
+  }
+  return { ...state, [id]: { id: `${id}`, name: '', x: 0, y: 0 } }
+}
 
 const updateBlocksPositions = (state, action) =>
-  state.map((block, index) => {
-    const position = action.blocks[index]
-    return { ...block, x: position.x, y: position.y }
-  })
+  action.blocks.reduce((nextState, { id, x, y }) => {
+    nextState[id] = { ...state[id], x, y }
+    return nextState
+  }, {})
 
 const blocks = (
   state: BlockState = initialState,
@@ -27,5 +34,11 @@ const blocks = (
       return state
   }
 }
+
+export const getBlocks = (state: BlockState): Block[] =>
+  (Object.values(state): any)
+
+export const cloneBlocks = (state: BlockState): Block[] =>
+  getBlocks(state).map(block => ({ ...block }))
 
 export default blocks

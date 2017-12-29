@@ -25,7 +25,10 @@ describe('without blocks', () => {
 
 describe('with blocks', () => {
   const { wrapper } = setup({
-    blocks: [{ name: 'Block 1', x: 0, y: 0 }, { name: 'Block 2', x: 0, y: 0 }],
+    blocks: [
+      { id: '0', name: 'Block 1', x: 0, y: 0 },
+      { id: '1', name: 'Block 2', x: 0, y: 0 },
+    ],
   })
 
   it('renders the blocks', () => {
