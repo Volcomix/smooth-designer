@@ -18,7 +18,7 @@ Array [
         },
         Object {
           "height": 0,
-          "id": "999",
+          "id": "5",
           "index": 1,
           "name": "New block",
           "vx": 0.000320572368372346,
@@ -41,7 +41,7 @@ Array [
       "blocks": Array [
         Object {
           "height": 0,
-          "id": "999",
+          "id": "5",
           "index": 0,
           "name": "New block",
           "vx": -1.27321588949404e-7,

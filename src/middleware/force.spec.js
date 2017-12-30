@@ -14,8 +14,8 @@ const create = state => {
   }
   const next: any = jest.fn((action: Action) => {
     if (action.type === ADD_BLOCK) {
-      state.blocks[999] = {
-        id: '999',
+      state.blocks[5] = {
+        id: '5',
         name: 'New block',
         x: 1,
         y: 0,
@@ -42,14 +42,7 @@ describe('without blocks', () => {
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({
       blocks: {
-        '999': {
-          id: '999',
-          name: 'New block',
-          x: 1,
-          y: 0,
-          width: 0,
-          height: 0,
-        },
+        '5': { id: '5', name: 'New block', x: 1, y: 0, width: 0, height: 0 },
       },
     })
   })
@@ -68,22 +61,8 @@ describe('with blocks', () => {
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({
       blocks: {
-        '0': {
-          id: '0',
-          name: 'Block',
-          x: -1,
-          y: 0,
-          width: 0,
-          height: 0,
-        },
-        '999': {
-          id: '999',
-          name: 'New block',
-          x: 1,
-          y: 0,
-          width: 0,
-          height: 0,
-        },
+        '0': { id: '0', name: 'Block', x: -1, y: 0, width: 0, height: 0 },
+        '5': { id: '5', name: 'New block', x: 1, y: 0, width: 0, height: 0 },
       },
     })
   })
