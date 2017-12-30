@@ -3,7 +3,7 @@ import { forceSimulation, forceCollide, forceX, forceY } from 'd3-force'
 import type { Middleware } from 'redux'
 import type { State } from '../reducers'
 import type { Action } from '../actions'
-import { ADD_BLOCK } from '../constants/actionTypes'
+import { UPDATE_BLOCK_SIZE } from '../constants/actionTypes'
 import { cloneBlocks } from '../reducers/blocks'
 import { updateForce } from '../actions/forceActions'
 
@@ -31,7 +31,7 @@ const force: Middleware<State, Action> = ({
   getState,
 }) => next => action => {
   const result = next(action)
-  if (action.type === ADD_BLOCK) {
+  if (action.type === UPDATE_BLOCK_SIZE) {
     const blocks = cloneBlocks(getState().blocks)
     simulation.nodes(blocks).alpha(1)
     computeStaticLayout()

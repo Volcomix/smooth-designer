@@ -1,54 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`with blocks updates positions when a block is added 1`] = `
+exports[`updates positions when a block is sized 1`] = `
 Array [
   Array [
     Object {
       "blocks": Array [
         Object {
-          "height": 0,
+          "height": 20,
           "id": "0",
           "index": 0,
-          "name": "Block",
-          "vx": -0.000320572368372346,
-          "vy": 6.015067608080946e-12,
-          "width": 0,
-          "x": -150.55847784868254,
-          "y": -5.636344839385168e-8,
+          "name": "Block 1",
+          "vx": -0.00032102250406660857,
+          "vy": 0.0000839702304985904,
+          "width": 10,
+          "x": -150.55642139523,
+          "y": -0.786854947003283,
         },
         Object {
-          "height": 0,
+          "height": 40,
           "id": "5",
           "index": 1,
-          "name": "New block",
-          "vx": 0.000320572368372346,
-          "vy": -6.015067608080946e-12,
-          "width": 0,
-          "x": 150.55847784868254,
-          "y": 5.636344839385168e-8,
-        },
-      ],
-      "type": "UPDATE_FORCE",
-    },
-  ],
-]
-`;
-
-exports[`without blocks updates position when a block is added 1`] = `
-Array [
-  Array [
-    Object {
-      "blocks": Array [
-        Object {
-          "height": 0,
-          "id": "5",
-          "index": 0,
-          "name": "New block",
-          "vx": -1.27321588949404e-7,
-          "vy": 0,
-          "width": 0,
-          "x": 0.0009098280429729471,
-          "y": 0,
+          "name": "Block 2",
+          "vx": 0.00032102250406660857,
+          "vy": -0.0000839702304985904,
+          "width": 30,
+          "x": 150.55642139523,
+          "y": 0.786854947003283,
         },
       ],
       "type": "UPDATE_FORCE",

@@ -40,18 +40,6 @@ describe('blocks reducer', () => {
     expect(
       blocks(
         {
-          '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
-          '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 10, height: 20 },
-        },
-        updateBlockSize('0', 30, 40),
-      ),
-    ).toEqual({
-      '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 30, height: 40 },
-      '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 10, height: 20 },
-    })
-    expect(
-      blocks(
-        {
           '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 10, height: 20 },
           '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
         },

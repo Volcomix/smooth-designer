@@ -1,8 +1,8 @@
 //@flow
 import force from './force'
 import type { Action } from '../actions'
-import { ADD_BLOCK } from '../constants/actionTypes'
-import { addBlock } from '../actions/blockActions'
+import { UPDATE_BLOCK_SIZE } from '../constants/actionTypes'
+import { updateBlockSize } from '../actions/blockActions'
 
 const mathMock: any = Math
 mathMock.random = jest.fn(() => 0.3087575784346488)
@@ -13,57 +13,35 @@ const create = state => {
     dispatch: jest.fn(),
   }
   const next: any = jest.fn((action: Action) => {
-    if (action.type === ADD_BLOCK) {
-      state.blocks[5] = {
-        id: '5',
-        name: 'New block',
-        x: 1,
-        y: 0,
-        width: 0,
-        height: 0,
-      }
+    if (action.type === UPDATE_BLOCK_SIZE) {
+      state.blocks[action.id].width = action.width
+      state.blocks[action.id].height = action.height
     }
   })
   const invoke = action => force(store)(next)(action)
   return { store, next, invoke }
 }
 
-describe('without blocks', () => {
+it('does not simulate force if not needed', () => {
   const { store, invoke } = create({ blocks: {} })
-  const { dispatch, getState } = store
-
-  it('does not simulate force if not needed', () => {
-    invoke({ type: 'DO_NOTHING' })
-    expect(dispatch).not.toHaveBeenCalled()
-  })
-
-  it('updates position when a block is added', () => {
-    invoke(addBlock())
-    expect(dispatch.mock.calls).toMatchSnapshot()
-    expect(getState()).toEqual({
-      blocks: {
-        '5': { id: '5', name: 'New block', x: 1, y: 0, width: 0, height: 0 },
-      },
-    })
-  })
+  invoke({ type: 'DO_NOTHING' })
+  expect(store.dispatch).not.toHaveBeenCalled()
 })
 
-describe('with blocks', () => {
+it('updates positions when a block is sized', () => {
   const { store, invoke } = create({
     blocks: {
-      '0': { id: '0', name: 'Block', x: -1, y: 0, width: 0, height: 0 },
+      '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 10, height: 20 },
+      '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
     },
   })
   const { dispatch, getState } = store
-
-  it('updates positions when a block is added', () => {
-    invoke(addBlock())
-    expect(dispatch.mock.calls).toMatchSnapshot()
-    expect(getState()).toEqual({
-      blocks: {
-        '0': { id: '0', name: 'Block', x: -1, y: 0, width: 0, height: 0 },
-        '5': { id: '5', name: 'New block', x: 1, y: 0, width: 0, height: 0 },
-      },
-    })
+  invoke(updateBlockSize('5', 30, 40))
+  expect(dispatch.mock.calls).toMatchSnapshot()
+  expect(getState()).toEqual({
+    blocks: {
+      '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 10, height: 20 },
+      '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 30, height: 40 },
+    },
   })
 })
