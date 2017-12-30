@@ -1,12 +1,16 @@
 //@flow
 import type { Block } from '../types'
 import type { Action } from '../actions'
-import { ADD_BLOCK, UPDATE_FORCE } from '../constants/actionTypes'
+import {
+  ADD_BLOCK,
+  UPDATE_BLOCK_SIZE,
+  UPDATE_FORCE,
+} from '../constants/actionTypes'
 
 export type BlockState = { [id: string]: Block }
 const initialState: BlockState = {}
 
-const addTodo = (state, action) => {
+const addBlock = (state, action) => {
   const ids: number[] = Object.keys(state).map(id => parseInt(id, 10))
   let id = 0
   if (ids.length > 0) {
@@ -17,6 +21,11 @@ const addTodo = (state, action) => {
     [id]: { id: `${id}`, name: '', x: 0, y: 0, width: 0, height: 0 },
   }
 }
+
+const updateBlockSize = (state, { id, width, height }) => ({
+  ...state,
+  [id]: { ...state[id], width, height },
+})
 
 const updateBlocksPositions = (state, action) =>
   action.blocks.reduce((nextState, { id, x, y }) => {
@@ -30,7 +39,9 @@ const blocks = (
 ): BlockState => {
   switch (action.type) {
     case ADD_BLOCK:
-      return addTodo(state, action)
+      return addBlock(state, action)
+    case UPDATE_BLOCK_SIZE:
+      return updateBlockSize(state, action)
     case UPDATE_FORCE:
       return updateBlocksPositions(state, action)
     default:
