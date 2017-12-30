@@ -1,16 +1,16 @@
 //@flow
 import {
   ADD_BLOCK,
-  UPDATE_BLOCK_TITLE,
+  UPDATE_BLOCK_NAME,
   UPDATE_BLOCK_SIZE,
 } from '../constants/actionTypes'
 
 type AddBlockAction = { type: typeof ADD_BLOCK }
 
-type UpdateBlockAction = {
-  type: typeof UPDATE_BLOCK_TITLE,
+type UpdateBlockNameAction = {
+  type: typeof UPDATE_BLOCK_NAME,
   id: string,
-  title: string,
+  name: string,
 }
 
 type UpdateBlockSizeAction = {
@@ -22,16 +22,15 @@ type UpdateBlockSizeAction = {
 
 export type BlockAction =
   | AddBlockAction
-  | UpdateBlockAction
+  | UpdateBlockNameAction
   | UpdateBlockSizeAction
 
 export const addBlock = (): AddBlockAction => ({ type: ADD_BLOCK })
 
-export const updateBlockTitle = (id: string, title: string) => ({
-  type: UPDATE_BLOCK_TITLE,
-  id,
-  title,
-})
+export const updateBlockName = (
+  id: string,
+  name: string,
+): UpdateBlockNameAction => ({ type: UPDATE_BLOCK_NAME, id, name })
 
 export const updateBlockSize = (
   id: string,

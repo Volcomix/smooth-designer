@@ -1,6 +1,10 @@
 //@flow
 import blocks, { getBlocks, cloneBlocks } from './blocks'
-import { addBlock, updateBlockSize } from '../actions/blockActions'
+import {
+  addBlock,
+  updateBlockName,
+  updateBlockSize,
+} from '../actions/blockActions'
 import { updateForce } from '../actions/forceActions'
 
 describe('blocks reducer', () => {
@@ -8,7 +12,7 @@ describe('blocks reducer', () => {
     expect(blocks(undefined, { type: '@@INIT' })).toEqual({})
   })
 
-  it('adds blocks', () => {
+  it('adds a block', () => {
     expect(blocks({}, addBlock())).toEqual({
       '0': { id: '0', name: '', x: 0, y: 0, width: 0, height: 0 },
     })
@@ -36,7 +40,22 @@ describe('blocks reducer', () => {
     })
   })
 
-  it('updates blocks sizes', () => {
+  it('updates a block name', () => {
+    expect(
+      blocks(
+        {
+          '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+          '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+        },
+        updateBlockName('5', 'New name'),
+      ),
+    ).toEqual({
+      '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+      '5': { id: '5', name: 'New name', x: 0, y: 0, width: 0, height: 0 },
+    })
+  })
+
+  it('updates a block size', () => {
     expect(
       blocks(
         {

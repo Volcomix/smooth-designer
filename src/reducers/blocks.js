@@ -3,6 +3,7 @@ import type { Block } from '../types'
 import type { Action } from '../actions'
 import {
   ADD_BLOCK,
+  UPDATE_BLOCK_NAME,
   UPDATE_BLOCK_SIZE,
   UPDATE_FORCE,
 } from '../constants/actionTypes'
@@ -22,6 +23,11 @@ const addBlock = (state, action) => {
   }
 }
 
+const updateBlockName = (state, { id, name }) => ({
+  ...state,
+  [id]: { ...state[id], name },
+})
+
 const updateBlockSize = (state, { id, width, height }) => ({
   ...state,
   [id]: { ...state[id], width, height },
@@ -40,6 +46,8 @@ const blocks = (
   switch (action.type) {
     case ADD_BLOCK:
       return addBlock(state, action)
+    case UPDATE_BLOCK_NAME:
+      return updateBlockName(state, action)
     case UPDATE_BLOCK_SIZE:
       return updateBlockSize(state, action)
     case UPDATE_FORCE:
