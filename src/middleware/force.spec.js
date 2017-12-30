@@ -22,7 +22,7 @@ const create = state => {
   return { store, next, invoke }
 }
 
-it('computes block radius', () => {
+it('computes a block radius', () => {
   expect(
     radius({
       id: '0',

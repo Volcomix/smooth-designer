@@ -15,6 +15,7 @@ exports[`renders without crashing 1`] = `
     ]
   }
   onAddClick={[Function]}
+  onNameChange={[Function]}
   onSizeChange={[Function]}
   store={
     Object {

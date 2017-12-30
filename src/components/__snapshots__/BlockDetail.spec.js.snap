@@ -25,6 +25,7 @@ exports[`renders without crashing 1`] = `
           fullWidth={false}
           hintText="Name"
           multiLine={false}
+          onChange={[Function]}
           rows={1}
           type="text"
           underlineShow={true}

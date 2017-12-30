@@ -9,6 +9,7 @@ const setup = (setupProps?: Props) => {
     name: 'Block',
     x: 0,
     y: 0,
+    onNameChange: jest.fn(),
     onSizeChange: jest.fn(),
   }
   const props = { ...defaultProps, ...setupProps }
@@ -19,6 +20,14 @@ const setup = (setupProps?: Props) => {
 it('renders without crashing', () => {
   const { wrapper } = setup()
   expect(wrapper).toMatchSnapshot()
+})
+
+it('calls onNameChange when the block name change', () => {
+  const { wrapper, props } = setup()
+  shallow(<div>{wrapper.find('CardTitle').props().title}</div>)
+    .find('TextField')
+    .simulate('change', {}, 'New name')
+  expect(props.onNameChange).toHaveBeenCalledWith('0', 'New name')
 })
 
 it('calls onSizeChange when the block has been sized', () => {

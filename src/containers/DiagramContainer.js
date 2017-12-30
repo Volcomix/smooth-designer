@@ -4,7 +4,11 @@ import { connect } from 'react-redux'
 import type { State } from '../reducers'
 import { getBlocks } from '../reducers/blocks'
 import type { Action } from '../actions'
-import { addBlock, updateBlockSize } from '../actions/blockActions'
+import {
+  addBlock,
+  updateBlockName,
+  updateBlockSize,
+} from '../actions/blockActions'
 import Diagram from '../components/Diagram'
 
 const mapStateToProps = (state: State) => ({
@@ -13,6 +17,8 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
   onAddClick: () => dispatch(addBlock()),
+  onNameChange: (id: string, name: string) =>
+    dispatch(updateBlockName(id, name)),
   onSizeChange: (id: string, width: number, height: number) =>
     dispatch(updateBlockSize(id, width, height)),
 })
