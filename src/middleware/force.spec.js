@@ -14,7 +14,14 @@ const create = state => {
   }
   const next: any = jest.fn((action: Action) => {
     if (action.type === ADD_BLOCK) {
-      state.blocks[999] = { id: '999', name: 'New block', x: 1, y: 0 }
+      state.blocks[999] = {
+        id: '999',
+        name: 'New block',
+        x: 1,
+        y: 0,
+        width: 0,
+        height: 0,
+      }
     }
   })
   const invoke = action => force(store)(next)(action)
@@ -34,14 +41,25 @@ describe('without blocks', () => {
     invoke(addBlock())
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({
-      blocks: { '999': { id: '999', name: 'New block', x: 1, y: 0 } },
+      blocks: {
+        '999': {
+          id: '999',
+          name: 'New block',
+          x: 1,
+          y: 0,
+          width: 0,
+          height: 0,
+        },
+      },
     })
   })
 })
 
 describe('with blocks', () => {
   const { store, invoke } = create({
-    blocks: { '0': { id: '0', name: 'Block', x: -1, y: 0 } },
+    blocks: {
+      '0': { id: '0', name: 'Block', x: -1, y: 0, width: 0, height: 0 },
+    },
   })
   const { dispatch, getState } = store
 
@@ -50,8 +68,22 @@ describe('with blocks', () => {
     expect(dispatch.mock.calls).toMatchSnapshot()
     expect(getState()).toEqual({
       blocks: {
-        '0': { id: '0', name: 'Block', x: -1, y: 0 },
-        '999': { id: '999', name: 'New block', x: 1, y: 0 },
+        '0': {
+          id: '0',
+          name: 'Block',
+          x: -1,
+          y: 0,
+          width: 0,
+          height: 0,
+        },
+        '999': {
+          id: '999',
+          name: 'New block',
+          x: 1,
+          y: 0,
+          width: 0,
+          height: 0,
+        },
       },
     })
   })

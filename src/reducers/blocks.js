@@ -12,7 +12,10 @@ const addTodo = (state, action) => {
   if (ids.length > 0) {
     id = Math.max(...ids) + 1
   }
-  return { ...state, [id]: { id: `${id}`, name: '', x: 0, y: 0 } }
+  return {
+    ...state,
+    [id]: { id: `${id}`, name: '', x: 0, y: 0, width: 0, height: 0 },
+  }
 }
 
 const updateBlocksPositions = (state, action) =>

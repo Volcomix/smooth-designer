@@ -5,8 +5,10 @@ exports[`renders without crashing 1`] = `
   blocks={
     Array [
       Object {
+        "height": 0,
         "id": "0",
         "name": "Block",
+        "width": 0,
         "x": 0,
         "y": 0,
       },

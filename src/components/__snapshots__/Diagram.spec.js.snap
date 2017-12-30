@@ -8,18 +8,22 @@ exports[`with blocks renders the blocks 1`] = `
     className="Diagram-blocks"
   >
     <BlockDetail
+      height={0}
       id="0"
       key="0"
       name="Block 1"
       onSizeChange={[Function]}
+      width={0}
       x={0}
       y={0}
     />
     <BlockDetail
+      height={0}
       id="1"
       key="1"
       name="Block 2"
       onSizeChange={[Function]}
+      width={0}
       x={0}
       y={0}
     />
