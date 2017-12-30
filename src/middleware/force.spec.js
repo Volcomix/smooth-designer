@@ -1,5 +1,5 @@
 //@flow
-import force from './force'
+import force, { radius } from './force'
 import type { Action } from '../actions'
 import { UPDATE_BLOCK_SIZE } from '../constants/actionTypes'
 import { updateBlockSize } from '../actions/blockActions'
@@ -21,6 +21,19 @@ const create = state => {
   const invoke = action => force(store)(next)(action)
   return { store, next, invoke }
 }
+
+it('computes block radius', () => {
+  expect(
+    radius({
+      id: '0',
+      name: 'Block',
+      x: 0,
+      y: 0,
+      width: 10 * Math.cos(Math.PI / 3),
+      height: 10 * Math.sin(Math.PI / 3),
+    }),
+  ).toEqual(5)
+})
 
 it('does not simulate force if not needed', () => {
   const { store, invoke } = create({ blocks: {} })
