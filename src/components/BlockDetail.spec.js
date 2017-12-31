@@ -1,17 +1,21 @@
 //@flow
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import BlockDetail, { type Props } from './BlockDetail'
 
+const defaultProps: Props = {
+  id: '0',
+  name: 'Block',
+  x: 0,
+  y: 0,
+  width: 0,
+  height: 0,
+  onNameChange: jest.fn(),
+  onSizeChange: jest.fn(),
+}
+
 const setup = (setupProps?: Props) => {
-  const defaultProps = {
-    id: '0',
-    name: 'Block',
-    x: 0,
-    y: 0,
-    onNameChange: jest.fn(),
-    onSizeChange: jest.fn(),
-  }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<BlockDetail {...props} />)
   return { wrapper, props }
@@ -22,10 +26,22 @@ it('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot()
 })
 
+it('focus name field when the block is added', () => {
+  const wrapper = mount(
+    <MuiThemeProvider>
+      <BlockDetail {...defaultProps} />
+    </MuiThemeProvider>,
+  )
+  expect(document.activeElement).toBe(
+    wrapper.find('.BlockDetail-name input[type="text"]').instance(),
+  )
+})
+
 it('calls onNameChange when the block name change', () => {
   const { wrapper, props } = setup()
-  shallow(<div>{wrapper.find('CardTitle').props().title}</div>)
-    .find('TextField')
+  const cardTitleProps: { title: Object } = wrapper.find('CardTitle').props()
+  shallow(<div>{cardTitleProps.title}</div>)
+    .find('.BlockDetail-name')
     .simulate('change', {}, 'New name')
   expect(props.onNameChange).toHaveBeenCalledWith('0', 'New name')
 })

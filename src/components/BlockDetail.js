@@ -21,8 +21,12 @@ const BlockDetail = ({ id, name, x, y, onNameChange, onSizeChange }: Props) => (
       <CardTitle
         title={
           <TextField
+            className="BlockDetail-name"
             hintText="Name"
             value={name}
+            ref={(nameField: ?HTMLInputElement) =>
+              nameField && nameField.focus()
+            }
             onChange={(event: {}, newName: string) => onNameChange(id, newName)}
           />
         }

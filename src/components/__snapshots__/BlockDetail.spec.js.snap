@@ -20,6 +20,7 @@ exports[`renders without crashing 1`] = `
     <CardTitle
       title={
         <TextField
+          className="BlockDetail-name"
           disabled={false}
           floatingLabelFixed={false}
           fullWidth={false}
