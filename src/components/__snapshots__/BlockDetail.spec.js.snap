@@ -19,19 +19,28 @@ exports[`renders without crashing 1`] = `
   >
     <CardTitle
       title={
-        <TextField
+        <div
           className="BlockDetail-name"
-          disabled={false}
-          floatingLabelFixed={false}
-          fullWidth={false}
-          hintText="Name"
-          multiLine={false}
-          onChange={[Function]}
-          rows={1}
-          type="text"
-          underlineShow={true}
-          value="Block"
-        />
+        >
+          <TextField
+            className="BlockDetail-nameInput"
+            disabled={false}
+            floatingLabelFixed={false}
+            fullWidth={true}
+            hintText="Name"
+            multiLine={false}
+            onChange={[Function]}
+            rows={1}
+            type="text"
+            underlineShow={true}
+            value="Block"
+          />
+          <div
+            className="BlockDetail-nameSize"
+          >
+            Block
+          </div>
+        </div>
       }
     />
   </Card>

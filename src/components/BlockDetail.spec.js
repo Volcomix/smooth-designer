@@ -32,16 +32,17 @@ it('focus name field when the block is added', () => {
       <BlockDetail {...defaultProps} />
     </MuiThemeProvider>,
   )
-  expect(document.activeElement).toBe(
-    wrapper.find('.BlockDetail-name input[type="text"]').instance(),
-  )
+  const nameField: { input: HTMLInputElement } = wrapper
+    .find('TextField.BlockDetail-nameInput')
+    .instance()
+  expect(document.activeElement).toBe(nameField.input)
 })
 
 it('calls onNameChange when the block name change', () => {
   const { wrapper, props } = setup()
   const cardTitleProps: { title: Object } = wrapper.find('CardTitle').props()
   shallow(<div>{cardTitleProps.title}</div>)
-    .find('.BlockDetail-name')
+    .find('.BlockDetail-nameInput')
     .simulate('change', {}, 'New name')
   expect(props.onNameChange).toHaveBeenCalledWith('0', 'New name')
 })

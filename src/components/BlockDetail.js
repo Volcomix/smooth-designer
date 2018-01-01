@@ -20,15 +20,21 @@ const BlockDetail = ({ id, name, x, y, onNameChange, onSizeChange }: Props) => (
     <Card zDepth={2}>
       <CardTitle
         title={
-          <TextField
-            className="BlockDetail-name"
-            hintText="Name"
-            value={name}
-            ref={(nameField: ?HTMLInputElement) =>
-              nameField && nameField.focus()
-            }
-            onChange={(event: {}, newName: string) => onNameChange(id, newName)}
-          />
+          <div className="BlockDetail-name">
+            <TextField
+              className="BlockDetail-nameInput"
+              hintText="Name"
+              value={name}
+              fullWidth={true}
+              ref={(nameField: ?HTMLInputElement) =>
+                nameField && nameField.focus()
+              }
+              onChange={(event: {}, newName: string) =>
+                onNameChange(id, newName)
+              }
+            />
+            <div className="BlockDetail-nameSize">{name}</div>
+          </div>
         }
       />
     </Card>
