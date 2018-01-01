@@ -17,7 +17,7 @@ const BlockDetail = ({ id, name, x, y, onNameChange, onSizeChange }: Props) => (
     style={{ left: x, top: y }}
     onSized={({ width, height }) => onSizeChange(id, width, height)}
   >
-    <Card zDepth={2}>
+    <Card className="BlockDetail-card">
       <CardTitle
         title={
           <TextField

@@ -1,0 +1,30 @@
+:root {
+  --primary1-color: var(--cyan-500);
+  --primary2-color: var(--cyan-700);
+  --primary3-color: var(--grey-400);
+  --accent1-color: var(--pink-a200);
+  --accent2-color: var(--grey-100);
+  --accent3-color: var(--grey-500);
+  --text-color: var(--dark-black);
+  --secondary-text-color: rgba(0, 0, 0, 0.54);
+  --alternate-text-color: white;
+  --canvas-color: white;
+  --border-color: var(--grey-300);
+  --disabled-color: rgba(0, 0, 0, 0.3);
+  --picker-header-color: var(--cyan-500);
+  --clock-circle-color: rgba(0, 0, 0, 0.07);
+  --shadow-color: var(--full-black);
+
+  --depth-1-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.12);
+  --depth-2-shadow: 0 3px 10px rgba(0, 0, 0, 0.16),
+    0 3px 10px rgba(0, 0, 0, 0.23);
+  --depth-3-shadow: 0 10px 30px rgba(0, 0, 0, 0.19),
+    0 6px 10px rgba(0, 0, 0, 0.23);
+  --depth-4-shadow: 0 14px 45px rgba(0, 0, 0, 0.25),
+    0 10px 18px rgba(0, 0, 0, 0.22);
+  --depth-5-shadow: 0 19px 60px rgba(0, 0, 0, 0.3),
+    0 15px 20px rgba(0, 0, 0, 0.22);
+
+  --ease-out-transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  --ease-in-out-transition: all 450ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 0ms;
+}

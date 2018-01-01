@@ -1,6 +1,6 @@
 .Diagram {
   flex: 1;
-  background-color: #fafafa;
+  background-color: var(--grey-50);
 }
 
 .Diagram-blocks {
@@ -15,5 +15,5 @@
   position: fixed;
   bottom: 12px;
   right: 12px;
-  z-index: 10;
+  z-index: 100;
 }

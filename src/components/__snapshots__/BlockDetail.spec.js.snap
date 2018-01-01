@@ -12,10 +12,10 @@ exports[`renders without crashing 1`] = `
   }
 >
   <Card
+    className="BlockDetail-card"
     expandable={false}
     expanded={null}
     initiallyExpanded={false}
-    zDepth={2}
   >
     <CardTitle
       title={
