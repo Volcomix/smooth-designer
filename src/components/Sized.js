@@ -1,7 +1,7 @@
 //@flow
 import React, { type Node } from 'react'
 
-type Props = {
+export type Props = {
   children?: Node,
   className?: string,
   style?: {},
@@ -9,10 +9,10 @@ type Props = {
 }
 
 class Sized extends React.Component<Props> {
-  container: HTMLDivElement
+  container: ?HTMLDivElement
 
   componentDidMount() {
-    this.props.onSized(this.container.getBoundingClientRect())
+    this.sized()
   }
 
   render() {
@@ -21,11 +21,18 @@ class Sized extends React.Component<Props> {
       <div
         className={className}
         style={style}
-        ref={container => container && (this.container = container)}
+        onBlur={this.sized}
+        ref={container => (this.container = container)}
       >
         {this.props.children}
       </div>
     )
+  }
+
+  sized = () => {
+    if (this.container) {
+      this.props.onSized(this.container.getBoundingClientRect())
+    }
   }
 }
 
