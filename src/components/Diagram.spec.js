@@ -1,10 +1,10 @@
 //@flow
 import React from 'react'
 import { shallow } from 'enzyme'
-import Diagram from './Diagram'
+import Diagram, { type Props } from './Diagram'
 
 const setup = setupProps => {
-  const defaultProps = {
+  const defaultProps: Props = {
     blocks: [],
     onAddClick: jest.fn(),
     onNameChange: jest.fn(),
@@ -37,7 +37,7 @@ describe('with blocks', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
-  it('calls onNameChange when a block name change', () => {
+  it('calls onNameChange when a block name changes', () => {
     const { wrapper, props } = setup({
       blocks: [
         { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
@@ -51,7 +51,7 @@ describe('with blocks', () => {
     expect(props.onNameChange).toHaveBeenCalledWith('0', 'New name')
   })
 
-  it('calls onSizeChange when a block size change', () => {
+  it('calls onSizeChange when a block size changes', () => {
     const { wrapper, props } = setup({
       blocks: [
         { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },

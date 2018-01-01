@@ -1,0 +1,14 @@
+.TextField {
+  position: relative;
+}
+
+.TextField-input {
+  position: absolute !important;
+}
+
+.TextField-size {
+  white-space: pre;
+  font-size: 16px;
+  min-height: 48px;
+  visibility: hidden;
+}

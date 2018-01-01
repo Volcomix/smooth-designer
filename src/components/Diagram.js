@@ -6,7 +6,7 @@ import './Diagram.css'
 import type { Block } from '../types'
 import BlockDetail from './BlockDetail'
 
-type Props = {
+export type Props = {
   blocks: Block[],
   onAddClick: () => void,
   onNameChange: (id: string, name: string) => void,
