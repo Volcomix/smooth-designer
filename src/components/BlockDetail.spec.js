@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import BlockDetail, { type Props } from './BlockDetail'
 
-const props: Props = {
+const setupProps = (): Props => ({
   id: '0',
   name: 'Block',
   x: 0,
@@ -13,17 +13,23 @@ const props: Props = {
   height: 0,
   onNameChange: jest.fn(),
   onSizeChange: jest.fn(),
+})
+
+const setup = () => {
+  const props = setupProps()
+  const wrapper = shallow(<BlockDetail {...props} />)
+  return { wrapper, props }
 }
 
 it('renders without crashing', () => {
-  const wrapper = shallow(<BlockDetail {...props} />)
+  const { wrapper } = setup()
   expect(wrapper).toMatchSnapshot()
 })
 
 it('focus name field when the block is added', () => {
   const wrapper = mount(
     <MuiThemeProvider>
-      <BlockDetail {...props} />
+      <BlockDetail {...setupProps()} />
     </MuiThemeProvider>,
   )
   expect(document.activeElement).toBe(
@@ -32,7 +38,7 @@ it('focus name field when the block is added', () => {
 })
 
 it('calls onNameChange when the block name changes', () => {
-  const wrapper = shallow(<BlockDetail {...props} />)
+  const { wrapper, props } = setup()
   const cardTitleProps: { title: Object } = wrapper.find('CardTitle').props()
   shallow(<div>{cardTitleProps.title}</div>)
     .find('TextField')
@@ -40,8 +46,14 @@ it('calls onNameChange when the block name changes', () => {
   expect(props.onNameChange).toHaveBeenCalledWith('0', 'New name')
 })
 
-it('calls onSizeChange when the block has been sized', () => {
-  const wrapper = shallow(<BlockDetail {...props} />)
+it('calls onSizeChange when the block size changes', () => {
+  const { wrapper, props } = setup()
   wrapper.simulate('sized', { width: 10, height: 20 })
   expect(props.onSizeChange).toHaveBeenCalledWith('0', 10, 20)
+})
+
+it('does not call onSizeChange if the size does not change', () => {
+  const { wrapper, props } = setup()
+  wrapper.simulate('sized', { width: 0, height: 0 })
+  expect(props.onSizeChange).not.toHaveBeenCalled()
 })

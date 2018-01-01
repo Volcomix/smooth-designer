@@ -19,12 +19,12 @@ class BlockDetail extends React.Component<Props> {
   }
 
   render() {
-    const { id, name, x, y, onNameChange, onSizeChange } = this.props
+    const { name, x, y } = this.props
     return (
       <Sized
         className="BlockDetail"
         style={{ left: x, top: y }}
-        onSized={({ width, height }) => onSizeChange(id, width, height)}
+        onSized={this.handleSized}
       >
         <Card className="BlockDetail-card">
           <CardTitle
@@ -32,9 +32,7 @@ class BlockDetail extends React.Component<Props> {
               <TextField
                 hintText="Name"
                 value={name}
-                onChange={(event: {}, newName: string) =>
-                  onNameChange(id, newName)
-                }
+                onChange={this.handleNameChange}
                 inputRef={input => (this.nameInput = input)}
               />
             }
@@ -42,6 +40,15 @@ class BlockDetail extends React.Component<Props> {
         </Card>
       </Sized>
     )
+  }
+
+  handleNameChange = (event: {}, newName: string) =>
+    this.props.onNameChange(this.props.id, newName)
+
+  handleSized = ({ width, height }: ClientRect) => {
+    if (width !== this.props.width || height !== this.props.height) {
+      this.props.onSizeChange(this.props.id, width, height)
+    }
   }
 }
 
