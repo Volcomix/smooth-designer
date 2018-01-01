@@ -7,8 +7,8 @@
   --accent3-color: var(--grey-500);
   --text-color: var(--dark-black);
   --secondary-text-color: rgba(0, 0, 0, 0.54);
-  --alternate-text-color: white;
-  --canvas-color: white;
+  --alternate-text-color: var(--white);
+  --canvas-color: var(--white);
   --border-color: var(--grey-300);
   --disabled-color: rgba(0, 0, 0, 0.3);
   --picker-header-color: var(--cyan-500);
