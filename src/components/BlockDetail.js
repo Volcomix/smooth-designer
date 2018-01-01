@@ -11,25 +11,38 @@ export type Props = Block & {
   onSizeChange: (id: string, width: number, height: number) => void,
 }
 
-const BlockDetail = ({ id, name, x, y, onNameChange, onSizeChange }: Props) => (
-  <Sized
-    className="BlockDetail"
-    style={{ left: x, top: y }}
-    onSized={({ width, height }) => onSizeChange(id, width, height)}
-  >
-    <Card className="BlockDetail-card">
-      <CardTitle
-        title={
-          <TextField
-            hintText="Name"
-            value={name}
-            onChange={(event: {}, newName: string) => onNameChange(id, newName)}
-            inputRef={input => input && input.focus()}
+class BlockDetail extends React.Component<Props> {
+  nameInput: ?HTMLInputElement
+
+  componentDidMount() {
+    this.nameInput && this.nameInput.focus()
+  }
+
+  render() {
+    const { id, name, x, y, onNameChange, onSizeChange } = this.props
+    return (
+      <Sized
+        className="BlockDetail"
+        style={{ left: x, top: y }}
+        onSized={({ width, height }) => onSizeChange(id, width, height)}
+      >
+        <Card className="BlockDetail-card">
+          <CardTitle
+            title={
+              <TextField
+                hintText="Name"
+                value={name}
+                onChange={(event: {}, newName: string) =>
+                  onNameChange(id, newName)
+                }
+                inputRef={input => (this.nameInput = input)}
+              />
+            }
           />
-        }
-      />
-    </Card>
-  </Sized>
-)
+        </Card>
+      </Sized>
+    )
+  }
+}
 
 export default BlockDetail

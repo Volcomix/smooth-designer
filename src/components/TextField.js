@@ -7,7 +7,7 @@ export type Props = {
   hintText: string,
   value: string,
   onChange: (event: {}, newValue: string) => void,
-  inputRef: (input: ?HTMLInputElement) => ?void,
+  inputRef: (input: ?HTMLInputElement) => any,
 }
 
 const TextField = ({ hintText, value, onChange, inputRef }: Props) => (
