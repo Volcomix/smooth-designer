@@ -3,7 +3,7 @@
   background-color: var(--grey-50);
 }
 
-.Diagram-blocks {
+.Diagram-content {
   width: 0;
   height: 0;
   position: absolute;

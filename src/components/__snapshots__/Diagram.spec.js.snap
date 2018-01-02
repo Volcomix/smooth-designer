@@ -3,10 +3,128 @@
 exports[`renders without crashing 1`] = `
 <div
   className="Diagram"
+  onMouseMove={[Function]}
 >
   <div
-    className="Diagram-blocks"
+    className="Diagram-content"
   />
+  <FloatingActionButton
+    className="Diagram-add"
+    disabled={false}
+    mini={false}
+    onClick={[Function]}
+    secondary={true}
+    zDepth={4}
+  >
+    <ContentAdd />
+  </FloatingActionButton>
+</div>
+`;
+
+exports[`with blocks renders a link if linking 1`] = `
+<div
+  className="Diagram"
+  onMouseMove={[Function]}
+>
+  <div
+    className="Diagram-content"
+  >
+    <BlockDetail
+      height={0}
+      id="0"
+      isLinking={true}
+      key="0"
+      name="Block"
+      onLinkStart={[Function]}
+      onNameChange={[Function]}
+      onSizeChange={[Function]}
+      width={0}
+      x={0}
+      y={0}
+    />
+  </div>
+  <FloatingActionButton
+    className="Diagram-add"
+    disabled={false}
+    mini={false}
+    onClick={[Function]}
+    secondary={true}
+    zDepth={4}
+  >
+    <ContentAdd />
+  </FloatingActionButton>
+</div>
+`;
+
+exports[`with blocks renders a link if linking 2`] = `
+<div
+  className="Diagram"
+  onMouseMove={[Function]}
+>
+  <div
+    className="Diagram-content"
+  >
+    <BlockDetail
+      height={0}
+      id="0"
+      isLinking={true}
+      key="0"
+      name="Block"
+      onLinkStart={[Function]}
+      onNameChange={[Function]}
+      onSizeChange={[Function]}
+      width={0}
+      x={0}
+      y={0}
+    />
+    <Link
+      fromX={1}
+      fromY={2}
+      toX={0}
+      toY={0}
+    />
+  </div>
+  <FloatingActionButton
+    className="Diagram-add"
+    disabled={false}
+    mini={false}
+    onClick={[Function]}
+    secondary={true}
+    zDepth={4}
+  >
+    <ContentAdd />
+  </FloatingActionButton>
+</div>
+`;
+
+exports[`with blocks renders a link if linking 3`] = `
+<div
+  className="Diagram"
+  onMouseMove={[Function]}
+>
+  <div
+    className="Diagram-content"
+  >
+    <BlockDetail
+      height={0}
+      id="0"
+      isLinking={true}
+      key="0"
+      name="Block"
+      onLinkStart={[Function]}
+      onNameChange={[Function]}
+      onSizeChange={[Function]}
+      width={0}
+      x={0}
+      y={0}
+    />
+    <Link
+      fromX={1}
+      fromY={2}
+      toX={5}
+      toY={10}
+    />
+  </div>
   <FloatingActionButton
     className="Diagram-add"
     disabled={false}
@@ -23,9 +141,10 @@ exports[`renders without crashing 1`] = `
 exports[`with blocks renders the blocks 1`] = `
 <div
   className="Diagram"
+  onMouseMove={[Function]}
 >
   <div
-    className="Diagram-blocks"
+    className="Diagram-content"
   >
     <BlockDetail
       height={0}

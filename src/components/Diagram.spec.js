@@ -6,7 +6,7 @@ import Diagram, { type Props } from './Diagram'
 const setup = setupProps => {
   const defaultProps: Props = {
     blocks: [],
-    isLinking: false,
+    linkingFromBlock: undefined,
     onAddClick: jest.fn(),
     onNameChange: jest.fn(),
     onSizeChange: jest.fn(),
@@ -36,6 +36,28 @@ describe('with blocks', () => {
         { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
       ],
     })
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('renders a link if linking', () => {
+    const { wrapper } = setup({
+      blocks: [{ id: '0', name: 'Block', x: 0, y: 0, width: 0, height: 0 }],
+      linkingFromBlock: {
+        id: '0',
+        name: 'Block',
+        x: 1,
+        y: 2,
+        width: 0,
+        height: 0,
+      },
+    })
+    wrapper.instance().container = {
+      getBoundingClientRect: () => ({ width: 20, height: 40 }),
+    }
+    expect(wrapper).toMatchSnapshot()
+    wrapper.simulate('mouseMove', { clientX: 10, clientY: 20 })
+    expect(wrapper).toMatchSnapshot()
+    wrapper.simulate('mouseMove', { clientX: 15, clientY: 30 })
     expect(wrapper).toMatchSnapshot()
   })
 
