@@ -1,6 +1,6 @@
 //@flow
-import type { BlockAction } from './blockActions'
-import type { ForceAction } from './forceActions'
-import type { DiagramAction } from './diagramActions'
+import type { BlocksAction } from './blocks'
+import type { ForceAction } from './force'
+import type { LinksAction } from './links'
 
-export type Action = BlockAction | ForceAction | DiagramAction
+export type Action = BlocksAction | ForceAction | LinksAction

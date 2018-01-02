@@ -1,5 +1,5 @@
 //@flow
-import { updateForce } from './forceActions'
+import { updateForce } from './force'
 import { UPDATE_FORCE } from '../constants/actionTypes'
 
 it('creates an action to update blocks positions', () => {

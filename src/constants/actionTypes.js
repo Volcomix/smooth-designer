@@ -3,7 +3,7 @@ export const ADD_BLOCK = 'ADD_BLOCK'
 export const UPDATE_BLOCK_NAME = 'UPDATE_BLOCK_NAME'
 export const UPDATE_BLOCK_SIZE = 'UPDATE_BLOCK_SIZE'
 
-export const UPDATE_FORCE = 'UPDATE_FORCE'
-
 export const START_LINKING = 'START_LINKING'
 export const END_LINKING = 'END_LINKING'
+
+export const UPDATE_FORCE = 'UPDATE_FORCE'

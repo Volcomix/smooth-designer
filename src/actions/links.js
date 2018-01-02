@@ -11,7 +11,7 @@ type EndLinkingAction = {
   toBlock: string,
 }
 
-export type DiagramAction = StartLinkingAction | EndLinkingAction
+export type LinksAction = StartLinkingAction | EndLinkingAction
 
 export const startLinking = (fromBlock: string): StartLinkingAction => ({
   type: START_LINKING,

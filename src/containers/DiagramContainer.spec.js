@@ -4,11 +4,7 @@ import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import DiagramContainer from './DiagramContainer'
 import type { State } from '../reducers'
-import {
-  addBlock,
-  updateBlockSize,
-  updateBlockName,
-} from '../actions/blockActions'
+import { addBlock, updateBlockSize, updateBlockName } from '../actions/blocks'
 
 const mockStore = configureStore()
 

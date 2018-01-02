@@ -1,9 +1,5 @@
 //@flow
-import {
-  addBlock,
-  updateBlockName,
-  updateBlockSize,
-} from '../actions/blockActions'
+import { addBlock, updateBlockName, updateBlockSize } from './blocks'
 import {
   ADD_BLOCK,
   UPDATE_BLOCK_NAME,

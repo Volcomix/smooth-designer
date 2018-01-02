@@ -20,7 +20,7 @@ type UpdateBlockSizeAction = {
   height: number,
 }
 
-export type BlockAction =
+export type BlocksAction =
   | AddBlockAction
   | UpdateBlockNameAction
   | UpdateBlockSizeAction

@@ -1,11 +1,7 @@
 //@flow
 import blocks, { getBlocks, cloneBlocks } from './blocks'
-import {
-  addBlock,
-  updateBlockName,
-  updateBlockSize,
-} from '../actions/blockActions'
-import { updateForce } from '../actions/forceActions'
+import { addBlock, updateBlockName, updateBlockSize } from '../actions/blocks'
+import { updateForce } from '../actions/force'
 
 describe('blocks reducer', () => {
   it('returns the initial state', () => {

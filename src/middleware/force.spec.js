@@ -2,7 +2,7 @@
 import force, { radius } from './force'
 import type { Action } from '../actions'
 import { UPDATE_BLOCK_SIZE } from '../constants/actionTypes'
-import { updateBlockSize } from '../actions/blockActions'
+import { updateBlockSize } from '../actions/blocks'
 
 const mathMock: any = Math
 mathMock.random = jest.fn(() => 0.3087575784346488)

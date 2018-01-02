@@ -1,5 +1,5 @@
 //@flow
-import { startLinking, endLinking } from './diagramActions'
+import { startLinking, endLinking } from './links'
 import { START_LINKING, END_LINKING } from '../constants/actionTypes'
 
 it('creates an action to start linking', () => {

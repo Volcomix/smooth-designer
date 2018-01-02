@@ -1,6 +1,6 @@
 //@flow
 import links from './links'
-import { startLinking, endLinking } from '../actions/diagramActions'
+import { startLinking, endLinking } from '../actions/links'
 
 it('returns the initial state', () => {
   expect(links(undefined, { type: '@@INIT' })).toEqual({ links: {} })
