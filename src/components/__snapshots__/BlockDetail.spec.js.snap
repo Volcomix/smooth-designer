@@ -32,7 +32,7 @@ exports[`renders without crashing 1`] = `
       className="BlockDetail-actions"
     >
       <IconButton
-        className="BlockDetail-action"
+        className="BlockDetail-action BlockDetail-addLink"
         disableTouchRipple={false}
         disabled={false}
         iconStyle={Object {}}

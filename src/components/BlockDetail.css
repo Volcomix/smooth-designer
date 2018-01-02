@@ -43,3 +43,7 @@
 .BlockDetail-actions svg {
   color: var(--secondary-text-color) !important;
 }
+
+.BlockDetail-addLink {
+  cursor: crosshair !important;
+}

@@ -41,7 +41,10 @@ class BlockDetail extends React.Component<Props> {
             }
           />
           <CardActions className="BlockDetail-actions">
-            <IconButton className="BlockDetail-action" tooltip="Add link">
+            <IconButton
+              className="BlockDetail-action BlockDetail-addLink"
+              tooltip="Add link"
+            >
               <AddLink />
             </IconButton>
           </CardActions>
