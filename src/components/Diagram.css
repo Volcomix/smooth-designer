@@ -13,7 +13,7 @@
 
 .Diagram-add {
   position: fixed;
-  bottom: 12px;
-  right: 12px;
+  bottom: 24px;
+  right: 24px;
   z-index: 100;
 }

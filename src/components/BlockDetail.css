@@ -14,6 +14,32 @@
   box-shadow: var(--depth-1-shadow) !important;
 }
 
-.BlockDetail-card:focus-within {
+.BlockDetail:focus-within .BlockDetail-card {
   box-shadow: var(--depth-3-shadow) !important;
+}
+
+.BlockDetail-card > div {
+  display: flex;
+}
+
+.BlockDetail-title {
+  flex: 1;
+}
+
+.BlockDetail-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.BlockDetail-action {
+  margin: 0 0 8px 0 !important;
+  opacity: 0;
+}
+
+.BlockDetail:hover .BlockDetail-action {
+  opacity: 1;
+}
+
+.BlockDetail-actions svg {
+  color: var(--secondary-text-color) !important;
 }

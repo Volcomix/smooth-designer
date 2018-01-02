@@ -1,6 +1,8 @@
 //@flow
 import React from 'react'
-import { Card, CardTitle } from 'material-ui/Card'
+import { Card, CardTitle, CardActions } from 'material-ui/Card'
+import IconButton from 'material-ui/IconButton'
+import AddLink from 'material-ui/svg-icons/action/settings-ethernet'
 import './BlockDetail.css'
 import type { Block } from '../types'
 import Sized from './Sized'
@@ -28,6 +30,7 @@ class BlockDetail extends React.Component<Props> {
       >
         <Card className="BlockDetail-card">
           <CardTitle
+            className="BlockDetail-title"
             title={
               <TextField
                 hintText="Name"
@@ -37,6 +40,11 @@ class BlockDetail extends React.Component<Props> {
               />
             }
           />
+          <CardActions className="BlockDetail-actions">
+            <IconButton className="BlockDetail-action" tooltip="Add link">
+              <AddLink />
+            </IconButton>
+          </CardActions>
         </Card>
       </Sized>
     )
