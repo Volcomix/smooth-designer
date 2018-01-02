@@ -17,7 +17,7 @@ const setup = () => {
     blocks: {
       '0': { id: '0', name: 'Block', x: 0, y: 0, width: 0, height: 0 },
     },
-    diagram: { links: {} },
+    links: { links: {} },
   }
   const store = mockStore(state)
   const wrapper = shallow(<DiagramContainer store={store} />)

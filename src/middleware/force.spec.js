@@ -36,7 +36,7 @@ it('computes a block radius', () => {
 })
 
 it('does not simulate force if not needed', () => {
-  const { store, invoke } = create({ blocks: {}, diagram: { links: {} } })
+  const { store, invoke } = create({ blocks: {}, links: { links: {} } })
   invoke({ type: 'DO_NOTHING' })
   expect(store.dispatch).not.toHaveBeenCalled()
 })
@@ -47,7 +47,7 @@ it('updates positions when a block is sized', () => {
       '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 10, height: 20 },
       '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
     },
-    diagram: { links: {} },
+    links: { links: {} },
   })
   const { dispatch, getState } = store
   invoke(updateBlockSize('5', 30, 40))
@@ -57,6 +57,6 @@ it('updates positions when a block is sized', () => {
       '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 10, height: 20 },
       '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 30, height: 40 },
     },
-    diagram: { links: {} },
+    links: { links: {} },
   })
 })

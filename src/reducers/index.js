@@ -1,13 +1,13 @@
 //@flow
 import { combineReducers } from 'redux'
 import blocks, { type BlocksState } from './blocks'
-import diagram, { type DiagramState } from './diagram'
+import links, { type LinksState } from './links'
 
 export type State = {
   +blocks: BlocksState,
-  +diagram: DiagramState,
+  +links: LinksState,
 }
 
-const reducer = combineReducers({ blocks, diagram })
+const reducer = combineReducers({ blocks, links })
 
 export default reducer

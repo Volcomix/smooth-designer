@@ -3,12 +3,12 @@ import type { Link } from '../types'
 import type { Action } from '../actions'
 import { START_LINKING, END_LINKING } from '../constants/actionTypes'
 
-export type DiagramState = {
+export type LinksState = {
   +links: { [id: string]: Link },
   +linkingFromBlock?: string,
 }
 
-const initialState: DiagramState = { links: {} }
+const initialState: LinksState = { links: {} }
 
 const startLinking = (state, { fromBlock }) => ({
   ...state,
@@ -34,10 +34,10 @@ const endLinking = ({ links, linkingFromBlock }, { toBlock }) => {
   }
 }
 
-const diagram = (
-  state: DiagramState = initialState,
+const links = (
+  state: LinksState = initialState,
   action: Action,
-): DiagramState => {
+): LinksState => {
   switch (action.type) {
     case START_LINKING:
       return startLinking(state, action)
@@ -48,4 +48,4 @@ const diagram = (
   }
 }
 
-export default diagram
+export default links
