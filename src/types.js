@@ -10,6 +10,6 @@ export type Block = {
 
 export type Link = {
   +id: string,
-  +fromBlock: string,
-  +toBlock: string,
+  +fromId: string,
+  +toId: string,
 }

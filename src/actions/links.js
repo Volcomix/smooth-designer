@@ -3,22 +3,22 @@ import { START_LINKING, END_LINKING } from '../constants/actionTypes'
 
 type StartLinkingAction = {
   type: typeof START_LINKING,
-  fromBlock: string,
+  fromId: string,
 }
 
 type EndLinkingAction = {
   type: typeof END_LINKING,
-  toBlock: string,
+  toId: string,
 }
 
 export type LinksAction = StartLinkingAction | EndLinkingAction
 
-export const startLinking = (fromBlock: string): StartLinkingAction => ({
+export const startLinking = (fromId: string): StartLinkingAction => ({
   type: START_LINKING,
-  fromBlock,
+  fromId,
 })
 
-export const endLinking = (toBlock: string): EndLinkingAction => ({
+export const endLinking = (toId: string): EndLinkingAction => ({
   type: END_LINKING,
-  toBlock,
+  toId,
 })

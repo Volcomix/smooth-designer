@@ -5,17 +5,17 @@ import { START_LINKING, END_LINKING } from '../constants/actionTypes'
 
 export type LinksState = {
   +links: { [id: string]: Link },
-  +linkingFromBlock?: string,
+  +linkingFromId?: string,
 }
 
 const initialState: LinksState = { links: {} }
 
-const startLinking = (state, { fromBlock }) => ({
+const startLinking = (state, { fromId }) => ({
   ...state,
-  linkingFromBlock: fromBlock,
+  linkingFromId: fromId,
 })
 
-const endLinking = ({ links, linkingFromBlock }, { toBlock }) => {
+const endLinking = ({ links, linkingFromId }, { toId }) => {
   const ids: number[] = Object.keys(links).map(id => parseInt(id, 10))
   let id = 0
   if (ids.length > 0) {
@@ -26,11 +26,11 @@ const endLinking = ({ links, linkingFromBlock }, { toBlock }) => {
       ...links,
       [id]: {
         id: `${id}`,
-        fromBlock: linkingFromBlock,
-        toBlock: toBlock,
+        fromId: linkingFromId,
+        toId,
       },
     },
-    linkingFromBlock: undefined,
+    linkingFromId: undefined,
   }
 }
 

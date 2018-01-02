@@ -14,7 +14,7 @@ describe('linkingFromBlock', () => {
         blocks: {
           '0': { id: '0', name: 'Block', x: 0, y: 0, width: 0, height: 0 },
         },
-        links: { links: {}, linkingFromBlock: '0' },
+        links: { links: {}, linkingFromId: '0' },
       }),
     ).toEqual({ id: '0', name: 'Block', x: 0, y: 0, width: 0, height: 0 })
   })

@@ -12,8 +12,8 @@ export type State = {
 const reducer = combineReducers({ blocks, links })
 
 export const linkingFromBlock = ({ blocks, links }: State): ?Block => {
-  if (links.linkingFromBlock !== undefined) {
-    return blocks[links.linkingFromBlock]
+  if (links.linkingFromId !== undefined) {
+    return blocks[links.linkingFromId]
   }
 }
 

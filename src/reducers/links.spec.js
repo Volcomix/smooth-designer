@@ -9,35 +9,35 @@ it('returns the initial state', () => {
 it('starts linking', () => {
   expect(links({ links: {} }, startLinking('0'))).toEqual({
     links: {},
-    linkingFromBlock: '0',
+    linkingFromId: '0',
   })
   expect(
     links(
-      { links: { '0': { id: '0', fromBlock: '0', toBlock: '1' } } },
+      { links: { '0': { id: '0', fromId: '0', toId: '1' } } },
       startLinking('2'),
     ),
   ).toEqual({
-    links: { '0': { id: '0', fromBlock: '0', toBlock: '1' } },
-    linkingFromBlock: '2',
+    links: { '0': { id: '0', fromId: '0', toId: '1' } },
+    linkingFromId: '2',
   })
 })
 
 it('adds a link when linking ends', () => {
-  expect(links({ links: {}, linkingFromBlock: '0' }, endLinking('1'))).toEqual({
-    links: { '0': { id: '0', fromBlock: '0', toBlock: '1' } },
+  expect(links({ links: {}, linkingFromId: '0' }, endLinking('1'))).toEqual({
+    links: { '0': { id: '0', fromId: '0', toId: '1' } },
   })
   expect(
     links(
       {
-        links: { '0': { id: '0', fromBlock: '0', toBlock: '1' } },
-        linkingFromBlock: '2',
+        links: { '0': { id: '0', fromId: '0', toId: '1' } },
+        linkingFromId: '2',
       },
       endLinking('3'),
     ),
   ).toEqual({
     links: {
-      '0': { id: '0', fromBlock: '0', toBlock: '1' },
-      '1': { id: '1', fromBlock: '2', toBlock: '3' },
+      '0': { id: '0', fromId: '0', toId: '1' },
+      '1': { id: '1', fromId: '2', toId: '3' },
     },
   })
 })
