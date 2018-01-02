@@ -7,3 +7,9 @@ export type Block = {
   +width: number,
   +height: number,
 }
+
+export type Link = {
+  +id: string,
+  +fromBlock: string,
+  +toBlock: string,
+}

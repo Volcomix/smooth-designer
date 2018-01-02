@@ -8,10 +8,11 @@ import {
   UPDATE_FORCE,
 } from '../constants/actionTypes'
 
-export type BlockState = { [id: string]: Block }
-const initialState: BlockState = {}
+export type BlocksState = { [id: string]: Block }
 
-const addBlock = (state, action) => {
+const initialState: BlocksState = {}
+
+const addBlock = state => {
   const ids: number[] = Object.keys(state).map(id => parseInt(id, 10))
   let id = 0
   if (ids.length > 0) {
@@ -33,19 +34,19 @@ const updateBlockSize = (state, { id, width, height }) => ({
   [id]: { ...state[id], width, height },
 })
 
-const updateBlocksPositions = (state, action) =>
-  action.blocks.reduce((nextState, { id, x, y }) => {
+const updateBlocksPositions = (state, { blocks }) =>
+  blocks.reduce((nextState, { id, x, y }) => {
     nextState[id] = { ...state[id], x, y }
     return nextState
   }, {})
 
 const blocks = (
-  state: BlockState = initialState,
+  state: BlocksState = initialState,
   action: Action,
-): BlockState => {
+): BlocksState => {
   switch (action.type) {
     case ADD_BLOCK:
-      return addBlock(state, action)
+      return addBlock(state)
     case UPDATE_BLOCK_NAME:
       return updateBlockName(state, action)
     case UPDATE_BLOCK_SIZE:
@@ -57,10 +58,10 @@ const blocks = (
   }
 }
 
-export const getBlocks = (state: BlockState): Block[] =>
+export const getBlocks = (state: BlocksState): Block[] =>
   (Object.values(state): any)
 
-export const cloneBlocks = (state: BlockState): Block[] =>
+export const cloneBlocks = (state: BlocksState): Block[] =>
   getBlocks(state).map(block => ({ ...block }))
 
 export default blocks
