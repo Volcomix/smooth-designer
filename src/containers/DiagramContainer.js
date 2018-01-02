@@ -3,12 +3,15 @@ import type { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import type { State } from '../reducers'
 import { getBlocks } from '../reducers/blocks'
+import { isLinking } from '../reducers/links'
 import type { Action } from '../actions'
 import { addBlock, updateBlockName, updateBlockSize } from '../actions/blocks'
+import { startLinking } from '../actions/links'
 import Diagram from '../components/Diagram'
 
 const mapStateToProps = (state: State) => ({
   blocks: getBlocks(state.blocks),
+  isLinking: isLinking(state.links),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
@@ -17,6 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
     dispatch(updateBlockName(id, name)),
   onSizeChange: (id: string, width: number, height: number) =>
     dispatch(updateBlockSize(id, width, height)),
+  onLinkStart: (id: string) => dispatch(startLinking(id)),
 })
 
 const DiagramContainer = connect(mapStateToProps, mapDispatchToProps)(Diagram)

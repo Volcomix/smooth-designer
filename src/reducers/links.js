@@ -48,4 +48,7 @@ const links = (
   }
 }
 
+export const isLinking = (state: LinksState): boolean =>
+  state.linkingFromBlock !== undefined
+
 export default links

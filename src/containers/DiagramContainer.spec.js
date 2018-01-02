@@ -5,6 +5,7 @@ import { shallow } from 'enzyme'
 import DiagramContainer from './DiagramContainer'
 import type { State } from '../reducers'
 import { addBlock, updateBlockSize, updateBlockName } from '../actions/blocks'
+import { startLinking } from '../actions/links'
 
 const mockStore = configureStore()
 
@@ -41,4 +42,10 @@ it('updates a block size', () => {
   const { wrapper, store } = setup()
   wrapper.find('Diagram').simulate('sizeChange', '0', 10, 20)
   expect(store.getActions()).toEqual([updateBlockSize('0', 10, 20)])
+})
+
+it('starts linking', () => {
+  const { wrapper, store } = setup()
+  wrapper.find('Diagram').simulate('linkStart', '0')
+  expect(store.getActions()).toEqual([startLinking('0')])
 })

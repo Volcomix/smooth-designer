@@ -9,8 +9,10 @@ import Sized from './Sized'
 import TextField from './TextField'
 
 export type Props = Block & {
+  isLinking: boolean,
   onNameChange: (id: string, name: string) => void,
   onSizeChange: (id: string, width: number, height: number) => void,
+  onLinkStart: (id: string) => void,
 }
 
 class BlockDetail extends React.Component<Props> {
@@ -44,6 +46,7 @@ class BlockDetail extends React.Component<Props> {
             <IconButton
               className="BlockDetail-action BlockDetail-addLink"
               tooltip="Add link"
+              onMouseDown={this.handleLinkStart}
             >
               <AddLink />
             </IconButton>
@@ -53,12 +56,22 @@ class BlockDetail extends React.Component<Props> {
     )
   }
 
-  handleNameChange = (event: {}, newName: string) =>
-    this.props.onNameChange(this.props.id, newName)
+  handleNameChange = (event: {}, newName: string) => {
+    const { id, onNameChange } = this.props
+    onNameChange(id, newName)
+  }
 
   handleSized = ({ width, height }: ClientRect) => {
+    const { id, onSizeChange } = this.props
     if (width !== this.props.width || height !== this.props.height) {
-      this.props.onSizeChange(this.props.id, width, height)
+      onSizeChange(id, width, height)
+    }
+  }
+
+  handleLinkStart = () => {
+    const { id, isLinking, onLinkStart } = this.props
+    if (!isLinking) {
+      onLinkStart(id)
     }
   }
 }

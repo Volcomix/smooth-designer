@@ -14,7 +14,9 @@ exports[`renders without crashing 1`] = `
       },
     ]
   }
+  isLinking={false}
   onAddClick={[Function]}
+  onLinkStart={[Function]}
   onNameChange={[Function]}
   onSizeChange={[Function]}
   store={

@@ -6,9 +6,11 @@ import Diagram, { type Props } from './Diagram'
 const setup = setupProps => {
   const defaultProps: Props = {
     blocks: [],
+    isLinking: false,
     onAddClick: jest.fn(),
     onNameChange: jest.fn(),
     onSizeChange: jest.fn(),
+    onLinkStart: jest.fn(),
   }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
@@ -63,5 +65,19 @@ describe('with blocks', () => {
       .first()
       .simulate('sizeChange', '0', 10, 20)
     expect(props.onSizeChange).toHaveBeenCalledWith('0', 10, 20)
+  })
+
+  it('calls onLinkStart when a linking starts', () => {
+    const { wrapper, props } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+      ],
+    })
+    wrapper
+      .find('BlockDetail')
+      .first()
+      .simulate('linkStart', '0')
+    expect(props.onLinkStart).toHaveBeenCalledWith('0')
   })
 })

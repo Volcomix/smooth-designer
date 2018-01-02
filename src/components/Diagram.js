@@ -8,20 +8,31 @@ import BlockDetail from './BlockDetail'
 
 export type Props = {
   blocks: Block[],
+  isLinking: boolean,
   onAddClick: () => void,
   onNameChange: (id: string, name: string) => void,
   onSizeChange: (id: string, width: number, height: number) => void,
+  onLinkStart: (id: string) => void,
 }
 
-const Diagram = ({ blocks, onAddClick, onNameChange, onSizeChange }: Props) => (
+const Diagram = ({
+  blocks,
+  isLinking,
+  onAddClick,
+  onNameChange,
+  onSizeChange,
+  onLinkStart,
+}: Props) => (
   <div className="Diagram">
     <div className="Diagram-blocks">
       {blocks.map(block => (
         <BlockDetail
           key={block.id}
           {...block}
+          isLinking={isLinking}
           onNameChange={onNameChange}
           onSizeChange={onSizeChange}
+          onLinkStart={onLinkStart}
         />
       ))}
     </div>

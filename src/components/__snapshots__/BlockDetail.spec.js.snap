@@ -36,6 +36,7 @@ exports[`renders without crashing 1`] = `
         disableTouchRipple={false}
         disabled={false}
         iconStyle={Object {}}
+        onMouseDown={[Function]}
         tooltip="Add link"
         tooltipPosition="bottom-center"
         touch={false}

@@ -30,8 +30,10 @@ exports[`with blocks renders the blocks 1`] = `
     <BlockDetail
       height={0}
       id="0"
+      isLinking={false}
       key="0"
       name="Block 1"
+      onLinkStart={[Function]}
       onNameChange={[Function]}
       onSizeChange={[Function]}
       width={0}
@@ -41,8 +43,10 @@ exports[`with blocks renders the blocks 1`] = `
     <BlockDetail
       height={0}
       id="1"
+      isLinking={false}
       key="1"
       name="Block 2"
+      onLinkStart={[Function]}
       onNameChange={[Function]}
       onSizeChange={[Function]}
       width={0}
