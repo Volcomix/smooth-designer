@@ -9,33 +9,25 @@ import Link from './Link'
 
 export type Props = {
   blocks: Block[],
-  linkingFromBlock: ?Block,
+  linking: ?{ fromBlock: Block, toMouse: { x: number, y: number } },
   onAddClick: () => void,
   onNameChange: (id: string, name: string) => void,
   onSizeChange: (id: string, width: number, height: number) => void,
-  onLinkStart: (id: string) => void,
+  onLinkStart: (id: string, mouseX: number, mouseY: number) => void,
+  onLinkMove: (mouseX: number, mouseY: number) => void,
 }
 
-type State = {
-  mouseX?: number,
-  mouseY?: number,
-}
-
-class Diagram extends React.Component<Props, State> {
+class Diagram extends React.Component<Props> {
   container: ?HTMLDivElement
-
-  state = {}
 
   render() {
     const {
       blocks,
-      linkingFromBlock,
+      linking,
       onAddClick,
       onNameChange,
       onSizeChange,
-      onLinkStart,
     } = this.props
-    const { mouseX, mouseY } = this.state
     return (
       <div
         className="Diagram"
@@ -47,22 +39,19 @@ class Diagram extends React.Component<Props, State> {
             <BlockDetail
               key={block.id}
               {...block}
-              isLinking={!!linkingFromBlock}
               onNameChange={onNameChange}
               onSizeChange={onSizeChange}
-              onLinkStart={onLinkStart}
+              onLinkStart={this.handleLinkStart}
             />
           ))}
-          {linkingFromBlock &&
-            mouseX !== undefined &&
-            mouseY !== undefined && (
-              <Link
-                fromX={linkingFromBlock.x}
-                fromY={linkingFromBlock.y}
-                toX={mouseX}
-                toY={mouseY}
-              />
-            )}
+          {linking && (
+            <Link
+              fromX={linking.fromBlock.x}
+              fromY={linking.fromBlock.y}
+              toX={linking.toMouse.x}
+              toY={linking.toMouse.y}
+            />
+          )}
         </div>
         <FloatingActionButton
           className="Diagram-add"
@@ -76,13 +65,17 @@ class Diagram extends React.Component<Props, State> {
     )
   }
 
-  handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
-    if (this.props.linkingFromBlock && this.container) {
+  handleLinkStart = (id: string, { clientX, clientY }: MouseEvent) => {
+    if (this.container) {
       const { width, height } = this.container.getBoundingClientRect()
-      this.setState({
-        mouseX: clientX - width / 2,
-        mouseY: clientY - height / 2,
-      })
+      this.props.onLinkStart(id, clientX - width / 2, clientY - height / 2)
+    }
+  }
+
+  handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
+    if (this.props.linking && this.container) {
+      const { width, height } = this.container.getBoundingClientRect()
+      this.props.onLinkMove(clientX - width / 2, clientY - height / 2)
     }
   }
 }

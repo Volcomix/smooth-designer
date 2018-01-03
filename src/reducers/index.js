@@ -11,10 +11,14 @@ export type State = {
 
 const reducer = combineReducers({ blocks, links })
 
-export const linkingFromBlock = ({ blocks, links }: State): ?Block => {
-  if (links.linkingFromId !== undefined) {
-    return blocks[links.linkingFromId]
-  }
-}
+export const getLinking = ({
+  blocks,
+  links,
+}: State): ?{
+  +fromId: string,
+  +fromBlock: Block,
+  +toMouse: { +x: number, +y: number },
+} =>
+  links.linking && { ...links.linking, fromBlock: blocks[links.linking.fromId] }
 
 export default reducer

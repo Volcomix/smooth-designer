@@ -6,14 +6,18 @@ import Diagram, { type Props } from './Diagram'
 const setup = setupProps => {
   const defaultProps: Props = {
     blocks: [],
-    linkingFromBlock: undefined,
+    linking: undefined,
     onAddClick: jest.fn(),
     onNameChange: jest.fn(),
     onSizeChange: jest.fn(),
     onLinkStart: jest.fn(),
+    onLinkMove: jest.fn(),
   }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
+  wrapper.instance().container = {
+    getBoundingClientRect: () => ({ width: 800, height: 600 }),
+  }
   return { wrapper, props }
 }
 
@@ -42,22 +46,18 @@ describe('with blocks', () => {
   it('renders a link if linking', () => {
     const { wrapper } = setup({
       blocks: [{ id: '0', name: 'Block', x: 0, y: 0, width: 0, height: 0 }],
-      linkingFromBlock: {
-        id: '0',
-        name: 'Block',
-        x: 1,
-        y: 2,
-        width: 0,
-        height: 0,
+      linking: {
+        fromBlock: {
+          id: '0',
+          name: 'Block',
+          x: 1,
+          y: 2,
+          width: 0,
+          height: 0,
+        },
+        toMouse: { x: 10, y: 20 },
       },
     })
-    wrapper.instance().container = {
-      getBoundingClientRect: () => ({ width: 20, height: 40 }),
-    }
-    expect(wrapper).toMatchSnapshot()
-    wrapper.simulate('mouseMove', { clientX: 10, clientY: 20 })
-    expect(wrapper).toMatchSnapshot()
-    wrapper.simulate('mouseMove', { clientX: 15, clientY: 30 })
     expect(wrapper).toMatchSnapshot()
   })
 
@@ -99,7 +99,29 @@ describe('with blocks', () => {
     wrapper
       .find('BlockDetail')
       .first()
-      .simulate('linkStart', '0')
-    expect(props.onLinkStart).toHaveBeenCalledWith('0')
+      .simulate('linkStart', '0', { clientX: 410, clientY: 320 })
+    expect(props.onLinkStart).toHaveBeenCalledWith('0', 10, 20)
+  })
+
+  it('calls onLinkMove when a linking moves', () => {
+    const { wrapper, props } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+      ],
+      linking: {
+        fromBlock: {
+          id: '0',
+          name: 'Block 1',
+          x: 0,
+          y: 0,
+          width: 0,
+          height: 0,
+        },
+        toMouse: { x: 10, y: 20 },
+      },
+    })
+    wrapper.simulate('mouseMove', { clientX: 430, clientY: 340 })
+    expect(props.onLinkMove).toHaveBeenCalledWith(30, 40)
   })
 })

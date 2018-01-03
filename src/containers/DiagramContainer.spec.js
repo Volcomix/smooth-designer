@@ -5,7 +5,7 @@ import { shallow } from 'enzyme'
 import DiagramContainer from './DiagramContainer'
 import type { State } from '../reducers'
 import { addBlock, updateBlockSize, updateBlockName } from '../actions/blocks'
-import { startLinking } from '../actions/links'
+import { startLinking, updateLinking } from '../actions/links'
 
 const mockStore = configureStore()
 
@@ -14,7 +14,7 @@ const setup = () => {
     blocks: {
       '0': { id: '0', name: 'Block', x: 0, y: 0, width: 0, height: 0 },
     },
-    links: { links: {} },
+    links: { links: {}, linking: { fromId: '0', toMouse: { x: 0, y: 0 } } },
   }
   const store = mockStore(state)
   const wrapper = shallow(<DiagramContainer store={store} />)
@@ -46,6 +46,12 @@ it('updates a block size', () => {
 
 it('starts linking', () => {
   const { wrapper, store } = setup()
-  wrapper.find('Diagram').simulate('linkStart', '0')
-  expect(store.getActions()).toEqual([startLinking('0')])
+  wrapper.find('Diagram').simulate('linkStart', '0', 10, 20)
+  expect(store.getActions()).toEqual([startLinking('0', 10, 20)])
+})
+
+it('updates linking', () => {
+  const { wrapper, store } = setup()
+  wrapper.find('Diagram').simulate('linkMove', 10, 20)
+  expect(store.getActions()).toEqual([updateLinking(10, 20)])
 })

@@ -32,42 +32,6 @@ exports[`with blocks renders a link if linking 1`] = `
     <BlockDetail
       height={0}
       id="0"
-      isLinking={true}
-      key="0"
-      name="Block"
-      onLinkStart={[Function]}
-      onNameChange={[Function]}
-      onSizeChange={[Function]}
-      width={0}
-      x={0}
-      y={0}
-    />
-  </div>
-  <FloatingActionButton
-    className="Diagram-add"
-    disabled={false}
-    mini={false}
-    onClick={[Function]}
-    secondary={true}
-    zDepth={4}
-  >
-    <ContentAdd />
-  </FloatingActionButton>
-</div>
-`;
-
-exports[`with blocks renders a link if linking 2`] = `
-<div
-  className="Diagram"
-  onMouseMove={[Function]}
->
-  <div
-    className="Diagram-content"
-  >
-    <BlockDetail
-      height={0}
-      id="0"
-      isLinking={true}
       key="0"
       name="Block"
       onLinkStart={[Function]}
@@ -80,49 +44,8 @@ exports[`with blocks renders a link if linking 2`] = `
     <Link
       fromX={1}
       fromY={2}
-      toX={0}
-      toY={0}
-    />
-  </div>
-  <FloatingActionButton
-    className="Diagram-add"
-    disabled={false}
-    mini={false}
-    onClick={[Function]}
-    secondary={true}
-    zDepth={4}
-  >
-    <ContentAdd />
-  </FloatingActionButton>
-</div>
-`;
-
-exports[`with blocks renders a link if linking 3`] = `
-<div
-  className="Diagram"
-  onMouseMove={[Function]}
->
-  <div
-    className="Diagram-content"
-  >
-    <BlockDetail
-      height={0}
-      id="0"
-      isLinking={true}
-      key="0"
-      name="Block"
-      onLinkStart={[Function]}
-      onNameChange={[Function]}
-      onSizeChange={[Function]}
-      width={0}
-      x={0}
-      y={0}
-    />
-    <Link
-      fromX={1}
-      fromY={2}
-      toX={5}
-      toY={10}
+      toX={10}
+      toY={20}
     />
   </div>
   <FloatingActionButton
@@ -149,7 +72,6 @@ exports[`with blocks renders the blocks 1`] = `
     <BlockDetail
       height={0}
       id="0"
-      isLinking={false}
       key="0"
       name="Block 1"
       onLinkStart={[Function]}
@@ -162,7 +84,6 @@ exports[`with blocks renders the blocks 1`] = `
     <BlockDetail
       height={0}
       id="1"
-      isLinking={false}
       key="1"
       name="Block 2"
       onLinkStart={[Function]}

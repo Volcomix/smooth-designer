@@ -4,21 +4,20 @@ import { shallow, mount } from 'enzyme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import BlockDetail, { type Props } from './BlockDetail'
 
-const defaultProps = (): Props => ({
+const setupProps = (): Props => ({
   id: '0',
   name: 'Block',
   x: 0,
   y: 0,
   width: 0,
   height: 0,
-  isLinking: false,
   onNameChange: jest.fn(),
   onSizeChange: jest.fn(),
   onLinkStart: jest.fn(),
 })
 
-const setup = setupProps => {
-  const props: Props = { ...defaultProps(), ...setupProps }
+const setup = () => {
+  const props = setupProps()
   const wrapper = shallow(<BlockDetail {...props} />)
   return { wrapper, props }
 }
@@ -31,7 +30,7 @@ it('renders without crashing', () => {
 it('focus name field when the block is added', () => {
   const wrapper = mount(
     <MuiThemeProvider>
-      <BlockDetail {...defaultProps()} />
+      <BlockDetail {...setupProps()} />
     </MuiThemeProvider>,
   )
   expect(document.activeElement).toBe(
@@ -62,12 +61,11 @@ it('does not call onSizeChange if the size does not change', () => {
 
 it('calls onLinkStart when the link button is used', () => {
   const { wrapper, props } = setup()
-  wrapper.find('.BlockDetail-addLink').simulate('mouseDown')
-  expect(props.onLinkStart).toHaveBeenCalledWith('0')
-})
-
-it('does not call onLinkStart if already linking', () => {
-  const { wrapper, props } = setup({ isLinking: true })
-  wrapper.find('.BlockDetail-addLink').simulate('mouseDown')
-  expect(props.onLinkStart).not.toHaveBeenCalled()
+  wrapper
+    .find('.BlockDetail-addLink')
+    .simulate('mouseDown', { clientX: 10, clientY: 20 })
+  expect(props.onLinkStart).toHaveBeenCalledWith('0', {
+    clientX: 10,
+    clientY: 20,
+  })
 })
