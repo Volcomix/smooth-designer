@@ -9,6 +9,7 @@ import Sized from './Sized'
 import TextField from './TextField'
 
 export type Props = Block & {
+  isLinking: boolean,
   onNameChange: (id: string, name: string) => void,
   onSizeChange: (id: string, width: number, height: number) => void,
   onLinkStart: (id: string, toMouseX: number, toMouseY: number) => void,
@@ -22,10 +23,10 @@ class BlockDetail extends React.Component<Props> {
   }
 
   render() {
-    const { name, x, y } = this.props
+    const { name, x, y, isLinking } = this.props
     return (
       <Sized
-        className="BlockDetail"
+        className={'BlockDetail' + (isLinking ? ' BlockDetail-linking' : '')}
         style={{ left: x, top: y }}
         onSized={this.handleSized}
       >

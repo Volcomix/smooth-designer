@@ -4,20 +4,21 @@ import { shallow, mount } from 'enzyme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import BlockDetail, { type Props } from './BlockDetail'
 
-const setupProps = (): Props => ({
+const defaultProps = (): Props => ({
   id: '0',
   name: 'Block',
   x: 10,
   y: 20,
   width: 0,
   height: 0,
+  isLinking: false,
   onNameChange: jest.fn(),
   onSizeChange: jest.fn(),
   onLinkStart: jest.fn(),
 })
 
-const setup = () => {
-  const props = setupProps()
+const setup = setupProps => {
+  const props: Props = { ...defaultProps(), ...setupProps }
   const wrapper = shallow(<BlockDetail {...props} />)
   return { wrapper, props }
 }
@@ -27,10 +28,15 @@ it('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot()
 })
 
+it('renders with a specific style if linking', () => {
+  const { wrapper } = setup({ isLinking: true })
+  expect(wrapper).toMatchSnapshot()
+})
+
 it('focus name field when the block is added', () => {
   const wrapper = mount(
     <MuiThemeProvider>
-      <BlockDetail {...setupProps()} />
+      <BlockDetail {...defaultProps()} />
     </MuiThemeProvider>,
   )
   expect(document.activeElement).toBe(

@@ -14,6 +14,10 @@
   box-shadow: var(--depth-1-shadow) !important;
 }
 
+.BlockDetail-linking:hover .BlockDetail-card {
+  box-shadow: var(--depth-2-shadow) !important;
+}
+
 .BlockDetail:focus-within .BlockDetail-card {
   box-shadow: var(--depth-3-shadow) !important;
 }

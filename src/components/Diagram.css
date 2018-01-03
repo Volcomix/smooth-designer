@@ -3,6 +3,11 @@
   background-color: var(--grey-50);
 }
 
+.Diagram-linking,
+.Diagram-linking * {
+  cursor: crosshair !important;
+}
+
 .Diagram-content {
   width: 0;
   height: 0;

@@ -26,33 +26,37 @@ const Diagram = ({
   onSizeChange,
   onLinkStart,
   onLinkMove,
-}: Props) => (
-  <MousePosition
-    className="Diagram"
-    isActive={!!linking}
-    onMouseMove={onLinkMove}
-  >
-    <div className="Diagram-content">
-      {blocks.map(block => (
-        <BlockDetail
-          key={block.id}
-          {...block}
-          onNameChange={onNameChange}
-          onSizeChange={onSizeChange}
-          onLinkStart={onLinkStart}
-        />
-      ))}
-      {linking && <Linking {...linking} />}
-    </div>
-    <FloatingActionButton
-      className="Diagram-add"
-      secondary={true}
-      zDepth={4}
-      onClick={onAddClick}
+}: Props) => {
+  const isLinking = !!linking
+  return (
+    <MousePosition
+      className={'Diagram' + (isLinking ? ' Diagram-linking' : '')}
+      isActive={isLinking}
+      onMouseMove={onLinkMove}
     >
-      <ContentAdd />
-    </FloatingActionButton>
-  </MousePosition>
-)
+      <div className="Diagram-content">
+        {blocks.map(block => (
+          <BlockDetail
+            key={block.id}
+            {...block}
+            isLinking={isLinking}
+            onNameChange={onNameChange}
+            onSizeChange={onSizeChange}
+            onLinkStart={onLinkStart}
+          />
+        ))}
+        {linking && <Linking {...linking} />}
+      </div>
+      <FloatingActionButton
+        className="Diagram-add"
+        secondary={true}
+        zDepth={4}
+        onClick={onAddClick}
+      >
+        <ContentAdd />
+      </FloatingActionButton>
+    </MousePosition>
+  )
+}
 
 export default Diagram

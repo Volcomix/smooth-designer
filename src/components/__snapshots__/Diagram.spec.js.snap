@@ -24,7 +24,7 @@ exports[`renders without crashing 1`] = `
 
 exports[`with blocks renders a link if linking 1`] = `
 <MousePosition
-  className="Diagram"
+  className="Diagram Diagram-linking"
   isActive={true}
   onMouseMove={[Function]}
 >
@@ -34,6 +34,7 @@ exports[`with blocks renders a link if linking 1`] = `
     <BlockDetail
       height={0}
       id="0"
+      isLinking={true}
       key="0"
       name="Block"
       onLinkStart={[Function]}
@@ -87,6 +88,7 @@ exports[`with blocks renders the blocks 1`] = `
     <BlockDetail
       height={0}
       id="0"
+      isLinking={false}
       key="0"
       name="Block 1"
       onLinkStart={[Function]}
@@ -99,6 +101,7 @@ exports[`with blocks renders the blocks 1`] = `
     <BlockDetail
       height={0}
       id="1"
+      isLinking={false}
       key="1"
       name="Block 2"
       onLinkStart={[Function]}

@@ -6,6 +6,7 @@
   height: 1px;
   overflow: visible;
   z-index: 15;
+  pointer-events: none;
 }
 
 .Linking-link {
