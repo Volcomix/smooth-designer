@@ -40,7 +40,7 @@
   opacity: 0;
 }
 
-.BlockDetail:hover .BlockDetail-action {
+.BlockDetail:hover:not(.BlockDetail-linking) .BlockDetail-action {
   opacity: 1;
 }
 
