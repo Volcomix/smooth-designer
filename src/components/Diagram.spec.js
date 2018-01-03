@@ -6,6 +6,7 @@ import Diagram, { type Props } from './Diagram'
 const setup = setupProps => {
   const defaultProps: Props = {
     blocks: [],
+    links: [],
     linking: undefined,
     onAddClick: jest.fn(),
     onNameChange: jest.fn(),
@@ -146,5 +147,58 @@ describe('with blocks', () => {
       .first()
       .simulate('linkEnd', '0')
     expect(props.onLinkEnd).toHaveBeenCalledWith('0')
+  })
+})
+
+describe('with links', () => {
+  it('renders the links', () => {
+    const { wrapper } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+        { id: '2', name: 'Block 3', x: 0, y: 0, width: 0, height: 0 },
+      ],
+      links: [
+        {
+          id: '0',
+          fromBlock: {
+            id: '0',
+            name: 'Block 1',
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+          },
+          toBlock: {
+            id: '1',
+            name: 'Block 2',
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+          },
+        },
+        {
+          id: '1',
+          fromBlock: {
+            id: '1',
+            name: 'Block 2',
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+          },
+          toBlock: {
+            id: '2',
+            name: 'Block 3',
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+          },
+        },
+      ],
+    })
+    expect(wrapper).toMatchSnapshot()
   })
 })

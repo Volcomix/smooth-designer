@@ -7,7 +7,15 @@ exports[`renders without crashing 1`] = `
       Object {
         "height": 0,
         "id": "0",
-        "name": "Block",
+        "name": "Block 1",
+        "width": 0,
+        "x": 0,
+        "y": 0,
+      },
+      Object {
+        "height": 0,
+        "id": "1",
+        "name": "Block 2",
         "width": 0,
         "x": 0,
         "y": 0,
@@ -19,17 +27,39 @@ exports[`renders without crashing 1`] = `
       "fromBlock": Object {
         "height": 0,
         "id": "0",
-        "name": "Block",
+        "name": "Block 1",
         "width": 0,
         "x": 0,
         "y": 0,
       },
-      "fromId": "0",
       "toMouse": Object {
         "x": 0,
         "y": 0,
       },
     }
+  }
+  links={
+    Array [
+      Object {
+        "fromBlock": Object {
+          "height": 0,
+          "id": "0",
+          "name": "Block 1",
+          "width": 0,
+          "x": 0,
+          "y": 0,
+        },
+        "id": "0",
+        "toBlock": Object {
+          "height": 0,
+          "id": "1",
+          "name": "Block 2",
+          "width": 0,
+          "x": 0,
+          "y": 0,
+        },
+      },
+    ]
   }
   onAddClick={[Function]}
   onLinkEnd={[Function]}

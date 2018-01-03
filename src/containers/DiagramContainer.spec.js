@@ -12,9 +12,13 @@ const mockStore = configureStore()
 const setup = () => {
   const state: State = {
     blocks: {
-      '0': { id: '0', name: 'Block', x: 0, y: 0, width: 0, height: 0 },
+      '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+      '1': { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
     },
-    links: { links: {}, linking: { fromId: '0', toMouse: { x: 0, y: 0 } } },
+    links: {
+      links: { '0': { id: '0', fromId: '0', toId: '1' } },
+      linking: { fromId: '0', toMouse: { x: 0, y: 0 } },
+    },
   }
   const store = mockStore(state)
   const wrapper = shallow(<DiagramContainer store={store} />)

@@ -6,10 +6,12 @@ import './Diagram.css'
 import type { Block } from '../types'
 import MousePosition from './MousePosition'
 import BlockDetail from './BlockDetail'
+import LinkDetail from './LinkDetail'
 import Linking from './Linking'
 
 export type Props = {
   blocks: Block[],
+  links: { id: string, fromBlock: Block, toBlock: Block }[],
   linking: ?{ fromBlock: Block, toMouse: { x: number, y: number } },
   onAddClick: () => void,
   onNameChange: (id: string, name: string) => void,
@@ -21,6 +23,7 @@ export type Props = {
 
 const Diagram = ({
   blocks,
+  links,
   linking,
   onAddClick,
   onNameChange,
@@ -48,6 +51,11 @@ const Diagram = ({
             onLinkEnd={onLinkEnd}
           />
         ))}
+        <svg className="Diagram-links">
+          {links.map(({ id, fromBlock, toBlock }) => (
+            <LinkDetail key={id} fromBlock={fromBlock} toBlock={toBlock} />
+          ))}
+        </svg>
         {linking && <Linking {...linking} />}
       </div>
       <FloatingActionButton
