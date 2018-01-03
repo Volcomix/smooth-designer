@@ -12,6 +12,7 @@ const setup = setupProps => {
     onSizeChange: jest.fn(),
     onLinkStart: jest.fn(),
     onLinkMove: jest.fn(),
+    onLinkEnd: jest.fn(),
   }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
@@ -120,5 +121,30 @@ describe('with blocks', () => {
     })
     wrapper.simulate('mouseMove', 30, 40)
     expect(props.onLinkMove).toHaveBeenCalledWith(30, 40)
+  })
+
+  it('calls onLinkEnd when a linking ends', () => {
+    const { wrapper, props } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+      ],
+      linking: {
+        fromBlock: {
+          id: '1',
+          name: 'Block 1',
+          x: 0,
+          y: 0,
+          width: 0,
+          height: 0,
+        },
+        toMouse: { x: 10, y: 20 },
+      },
+    })
+    wrapper
+      .find('BlockDetail')
+      .first()
+      .simulate('linkEnd', '0')
+    expect(props.onLinkEnd).toHaveBeenCalledWith('0')
   })
 })

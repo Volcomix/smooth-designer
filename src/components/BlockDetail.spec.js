@@ -15,6 +15,7 @@ const defaultProps = (): Props => ({
   onNameChange: jest.fn(),
   onSizeChange: jest.fn(),
   onLinkStart: jest.fn(),
+  onLinkEnd: jest.fn(),
 })
 
 const setup = setupProps => {
@@ -69,4 +70,16 @@ it('calls onLinkStart when the link button is used', () => {
   const { wrapper, props } = setup()
   wrapper.find('.BlockDetail-addLink').simulate('mouseDown')
   expect(props.onLinkStart).toHaveBeenCalledWith('0', 10, 20)
+})
+
+it('calls onLinkEnd if linking and mouse is up', () => {
+  const { wrapper, props } = setup({ isLinking: true })
+  wrapper.find('.BlockDetail-card').simulate('mouseUp')
+  expect(props.onLinkEnd).toHaveBeenCalledWith('0')
+})
+
+it('does not call onLinkEnd if not linking', () => {
+  const { wrapper, props } = setup()
+  wrapper.find('.BlockDetail-card').simulate('mouseUp')
+  expect(props.onLinkEnd).not.toHaveBeenCalled()
 })

@@ -8,6 +8,8 @@
     "lint": "eslint .",
     "flow": "flow",
     "test": "react-scripts test --env=jsdom",
+    "fulltest":
+      "clear && yarn lint && yarn flow --include-warnings && yarn test --verbose --coverage",
     "eject": "react-scripts eject"
   },
   "jest": {

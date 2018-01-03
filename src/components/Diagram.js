@@ -16,6 +16,7 @@ export type Props = {
   onSizeChange: (id: string, width: number, height: number) => void,
   onLinkStart: (id: string, mouseX: number, mouseY: number) => void,
   onLinkMove: (mouseX: number, mouseY: number) => void,
+  onLinkEnd: (id: string) => void,
 }
 
 const Diagram = ({
@@ -26,6 +27,7 @@ const Diagram = ({
   onSizeChange,
   onLinkStart,
   onLinkMove,
+  onLinkEnd,
 }: Props) => {
   const isLinking = !!linking
   return (
@@ -43,6 +45,7 @@ const Diagram = ({
             onNameChange={onNameChange}
             onSizeChange={onSizeChange}
             onLinkStart={onLinkStart}
+            onLinkEnd={onLinkEnd}
           />
         ))}
         {linking && <Linking {...linking} />}

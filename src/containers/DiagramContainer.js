@@ -5,7 +5,7 @@ import { type State, getLinking } from '../reducers'
 import { getBlocks } from '../reducers/blocks'
 import type { Action } from '../actions'
 import { addBlock, updateBlockName, updateBlockSize } from '../actions/blocks'
-import { startLinking, updateLinking } from '../actions/links'
+import { startLinking, updateLinking, endLinking } from '../actions/links'
 import Diagram from '../components/Diagram'
 
 const mapStateToProps = (state: State) => ({
@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
     dispatch(startLinking(id, toMouseX, toMouseY)),
   onLinkMove: (toMouseX: number, toMouseY: number) =>
     dispatch(updateLinking(toMouseX, toMouseY)),
+  onLinkEnd: (id: string) => dispatch(endLinking(id)),
 })
 
 const DiagramContainer = connect(mapStateToProps, mapDispatchToProps)(Diagram)

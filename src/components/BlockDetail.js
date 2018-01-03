@@ -13,6 +13,7 @@ export type Props = Block & {
   onNameChange: (id: string, name: string) => void,
   onSizeChange: (id: string, width: number, height: number) => void,
   onLinkStart: (id: string, toMouseX: number, toMouseY: number) => void,
+  onLinkEnd: (id: string) => void,
 }
 
 class BlockDetail extends React.Component<Props> {
@@ -30,7 +31,7 @@ class BlockDetail extends React.Component<Props> {
         style={{ left: x, top: y }}
         onSized={this.handleSized}
       >
-        <Card className="BlockDetail-card">
+        <Card className="BlockDetail-card" onMouseUp={this.handleMouseUp}>
           <CardTitle
             className="BlockDetail-title"
             title={
@@ -67,6 +68,12 @@ class BlockDetail extends React.Component<Props> {
 
   handleLinkStart = () =>
     this.props.onLinkStart(this.props.id, this.props.x, this.props.y)
+
+  handleMouseUp = () => {
+    if (this.props.isLinking) {
+      this.props.onLinkEnd(this.props.id)
+    }
+  }
 }
 
 export default BlockDetail
