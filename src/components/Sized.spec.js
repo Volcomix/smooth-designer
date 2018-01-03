@@ -15,7 +15,7 @@ const setup = () => {
 
 it('renders without crashing', () => {
   const wrapper = shallow(
-    <Sized {...setupProps()}>
+    <Sized {...setupProps()} className="Sized" style={{ color: 'red' }}>
       <div id="content" />
     </Sized>,
   )

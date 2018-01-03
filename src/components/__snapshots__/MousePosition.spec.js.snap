@@ -2,13 +2,8 @@
 
 exports[`renders without crashing 1`] = `
 <div
-  className="Sized"
-  onBlur={[Function]}
-  style={
-    Object {
-      "color": "red",
-    }
-  }
+  className="MousePosition"
+  onMouseMove={[Function]}
 >
   <div
     id="content"

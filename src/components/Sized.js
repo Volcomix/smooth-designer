@@ -16,7 +16,7 @@ class Sized extends React.Component<Props> {
   }
 
   render() {
-    const { className, style } = this.props
+    const { children, className, style } = this.props
     return (
       <div
         className={className}
@@ -24,7 +24,7 @@ class Sized extends React.Component<Props> {
         onBlur={this.sized}
         ref={container => (this.container = container)}
       >
-        {this.props.children}
+        {children}
       </div>
     )
   }
