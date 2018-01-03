@@ -99,7 +99,7 @@ describe('with blocks', () => {
     wrapper
       .find('BlockDetail')
       .first()
-      .simulate('linkStart', '0', { clientX: 410, clientY: 320 })
+      .simulate('linkStart', '0', 10, 20)
     expect(props.onLinkStart).toHaveBeenCalledWith('0', 10, 20)
   })
 

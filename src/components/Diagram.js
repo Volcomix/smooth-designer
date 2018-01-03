@@ -27,6 +27,7 @@ class Diagram extends React.Component<Props> {
       onAddClick,
       onNameChange,
       onSizeChange,
+      onLinkStart,
     } = this.props
     return (
       <div
@@ -41,7 +42,7 @@ class Diagram extends React.Component<Props> {
               {...block}
               onNameChange={onNameChange}
               onSizeChange={onSizeChange}
-              onLinkStart={this.handleLinkStart}
+              onLinkStart={onLinkStart}
             />
           ))}
           {linking && <Linking {...linking} />}
@@ -56,13 +57,6 @@ class Diagram extends React.Component<Props> {
         </FloatingActionButton>
       </div>
     )
-  }
-
-  handleLinkStart = (id: string, { clientX, clientY }: MouseEvent) => {
-    if (this.container) {
-      const { width, height } = this.container.getBoundingClientRect()
-      this.props.onLinkStart(id, clientX - width / 2, clientY - height / 2)
-    }
   }
 
   handleMouseMove = ({ clientX, clientY }: MouseEvent) => {

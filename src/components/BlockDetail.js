@@ -11,7 +11,7 @@ import TextField from './TextField'
 export type Props = Block & {
   onNameChange: (id: string, name: string) => void,
   onSizeChange: (id: string, width: number, height: number) => void,
-  onLinkStart: (id: string, mouseEvent: MouseEvent) => void,
+  onLinkStart: (id: string, toMouseX: number, toMouseY: number) => void,
 }
 
 class BlockDetail extends React.Component<Props> {
@@ -64,8 +64,8 @@ class BlockDetail extends React.Component<Props> {
     }
   }
 
-  handleLinkStart = (mouseEvent: MouseEvent) =>
-    this.props.onLinkStart(this.props.id, mouseEvent)
+  handleLinkStart = () =>
+    this.props.onLinkStart(this.props.id, this.props.x, this.props.y)
 }
 
 export default BlockDetail

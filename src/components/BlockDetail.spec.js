@@ -7,8 +7,8 @@ import BlockDetail, { type Props } from './BlockDetail'
 const setupProps = (): Props => ({
   id: '0',
   name: 'Block',
-  x: 0,
-  y: 0,
+  x: 10,
+  y: 20,
   width: 0,
   height: 0,
   onNameChange: jest.fn(),
@@ -61,11 +61,6 @@ it('does not call onSizeChange if the size does not change', () => {
 
 it('calls onLinkStart when the link button is used', () => {
   const { wrapper, props } = setup()
-  wrapper
-    .find('.BlockDetail-addLink')
-    .simulate('mouseDown', { clientX: 10, clientY: 20 })
-  expect(props.onLinkStart).toHaveBeenCalledWith('0', {
-    clientX: 10,
-    clientY: 20,
-  })
+  wrapper.find('.BlockDetail-addLink').simulate('mouseDown')
+  expect(props.onLinkStart).toHaveBeenCalledWith('0', 10, 20)
 })
