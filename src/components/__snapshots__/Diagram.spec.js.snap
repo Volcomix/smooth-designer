@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<div
+<MousePosition
   className="Diagram"
+  isActive={false}
   onMouseMove={[Function]}
 >
   <div
@@ -18,12 +19,13 @@ exports[`renders without crashing 1`] = `
   >
     <ContentAdd />
   </FloatingActionButton>
-</div>
+</MousePosition>
 `;
 
 exports[`with blocks renders a link if linking 1`] = `
-<div
+<MousePosition
   className="Diagram"
+  isActive={true}
   onMouseMove={[Function]}
 >
   <div
@@ -70,12 +72,13 @@ exports[`with blocks renders a link if linking 1`] = `
   >
     <ContentAdd />
   </FloatingActionButton>
-</div>
+</MousePosition>
 `;
 
 exports[`with blocks renders the blocks 1`] = `
-<div
+<MousePosition
   className="Diagram"
+  isActive={false}
   onMouseMove={[Function]}
 >
   <div
@@ -116,5 +119,5 @@ exports[`with blocks renders the blocks 1`] = `
   >
     <ContentAdd />
   </FloatingActionButton>
-</div>
+</MousePosition>
 `;

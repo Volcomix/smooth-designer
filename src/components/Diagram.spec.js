@@ -15,9 +15,6 @@ const setup = setupProps => {
   }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
-  wrapper.instance().container = {
-    getBoundingClientRect: () => ({ width: 800, height: 600 }),
-  }
   return { wrapper, props }
 }
 
@@ -121,7 +118,7 @@ describe('with blocks', () => {
         toMouse: { x: 10, y: 20 },
       },
     })
-    wrapper.simulate('mouseMove', { clientX: 430, clientY: 340 })
+    wrapper.simulate('mouseMove', 30, 40)
     expect(props.onLinkMove).toHaveBeenCalledWith(30, 40)
   })
 })

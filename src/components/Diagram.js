@@ -4,6 +4,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import './Diagram.css'
 import type { Block } from '../types'
+import MousePosition from './MousePosition'
 import BlockDetail from './BlockDetail'
 import Linking from './Linking'
 
@@ -17,54 +18,41 @@ export type Props = {
   onLinkMove: (mouseX: number, mouseY: number) => void,
 }
 
-class Diagram extends React.Component<Props> {
-  container: ?HTMLDivElement
-
-  render() {
-    const {
-      blocks,
-      linking,
-      onAddClick,
-      onNameChange,
-      onSizeChange,
-      onLinkStart,
-    } = this.props
-    return (
-      <div
-        className="Diagram"
-        ref={container => (this.container = container)}
-        onMouseMove={this.handleMouseMove}
-      >
-        <div className="Diagram-content">
-          {blocks.map(block => (
-            <BlockDetail
-              key={block.id}
-              {...block}
-              onNameChange={onNameChange}
-              onSizeChange={onSizeChange}
-              onLinkStart={onLinkStart}
-            />
-          ))}
-          {linking && <Linking {...linking} />}
-        </div>
-        <FloatingActionButton
-          className="Diagram-add"
-          secondary={true}
-          zDepth={4}
-          onClick={onAddClick}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
-      </div>
-    )
-  }
-
-  handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
-    if (this.props.linking && this.container) {
-      const { width, height } = this.container.getBoundingClientRect()
-      this.props.onLinkMove(clientX - width / 2, clientY - height / 2)
-    }
-  }
-}
+const Diagram = ({
+  blocks,
+  linking,
+  onAddClick,
+  onNameChange,
+  onSizeChange,
+  onLinkStart,
+  onLinkMove,
+}: Props) => (
+  <MousePosition
+    className="Diagram"
+    isActive={!!linking}
+    onMouseMove={onLinkMove}
+  >
+    <div className="Diagram-content">
+      {blocks.map(block => (
+        <BlockDetail
+          key={block.id}
+          {...block}
+          onNameChange={onNameChange}
+          onSizeChange={onSizeChange}
+          onLinkStart={onLinkStart}
+        />
+      ))}
+      {linking && <Linking {...linking} />}
+    </div>
+    <FloatingActionButton
+      className="Diagram-add"
+      secondary={true}
+      zDepth={4}
+      onClick={onAddClick}
+    >
+      <ContentAdd />
+    </FloatingActionButton>
+  </MousePosition>
+)
 
 export default Diagram
