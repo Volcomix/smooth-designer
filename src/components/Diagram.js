@@ -5,7 +5,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add'
 import './Diagram.css'
 import type { Block } from '../types'
 import BlockDetail from './BlockDetail'
-import Link from './Link'
+import Linking from './Linking'
 
 export type Props = {
   blocks: Block[],
@@ -44,14 +44,7 @@ class Diagram extends React.Component<Props> {
               onLinkStart={this.handleLinkStart}
             />
           ))}
-          {linking && (
-            <Link
-              fromX={linking.fromBlock.x}
-              fromY={linking.fromBlock.y}
-              toX={linking.toMouse.x}
-              toY={linking.toMouse.y}
-            />
-          )}
+          {linking && <Linking {...linking} />}
         </div>
         <FloatingActionButton
           className="Diagram-add"

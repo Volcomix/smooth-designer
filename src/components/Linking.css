@@ -1,4 +1,4 @@
-.Link {
+.Linking {
   position: absolute;
   top: 0;
   left: 0;
@@ -8,6 +8,6 @@
   z-index: 15;
 }
 
-.Link-line {
-  stroke: var(--text-color);
+.Linking-link {
+  stroke: var(--primary2-color);
 }
