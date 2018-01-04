@@ -1,5 +1,5 @@
 //@flow
-import links from './links'
+import links, { getLinks } from './links'
 import { startLinking, updateLinking, endLinking } from '../actions/links'
 
 it('returns the initial state', () => {
@@ -69,4 +69,16 @@ it('throws an error when ending an undefined linking', () => {
   expect(() => links({ links: {} }, endLinking('1'))).toThrow(
     'No linking defined.',
   )
+})
+
+describe('getLinks', () => {
+  it('returns an empty array', () => {
+    expect(getLinks({ links: {} })).toEqual([])
+  })
+
+  it('returns links as array', () => {
+    expect(
+      getLinks({ links: { '0': { id: '0', fromId: '0', toId: '1' } } }),
+    ).toEqual([{ id: '0', fromId: '0', toId: '1' }])
+  })
 })

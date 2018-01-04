@@ -1,8 +1,8 @@
 //@flow
 import { combineReducers } from 'redux'
 import blocks, { type BlocksState } from './blocks'
-import links, { type LinksState } from './links'
-import type { Block, Link } from '../types'
+import links, { type LinksState, getLinks } from './links'
+import type { Block } from '../types'
 
 export type State = {
   +blocks: BlocksState,
@@ -11,11 +11,11 @@ export type State = {
 
 const reducer = combineReducers({ blocks, links })
 
-export const getLinks = ({
+export const getLinkedBlocks = ({
   blocks,
   links,
 }: State): { id: string, fromBlock: Block, toBlock: Block }[] =>
-  ((Object.values(links.links): any): Link[]).map(({ id, fromId, toId }) => ({
+  getLinks(links).map(({ id, fromId, toId }) => ({
     id,
     fromBlock: blocks[fromId],
     toBlock: blocks[toId],

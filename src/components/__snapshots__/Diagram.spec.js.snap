@@ -8,11 +8,7 @@ exports[`renders without crashing 1`] = `
 >
   <div
     className="Diagram-content"
-  >
-    <svg
-      className="Diagram-links"
-    />
-  </div>
+  />
   <FloatingActionButton
     className="Diagram-add"
     disabled={false}
@@ -48,9 +44,6 @@ exports[`with blocks renders a link if linking 1`] = `
       width={0}
       x={0}
       y={0}
-    />
-    <svg
-      className="Diagram-links"
     />
     <Linking
       fromBlock={
@@ -121,9 +114,6 @@ exports[`with blocks renders the blocks 1`] = `
       x={0}
       y={0}
     />
-    <svg
-      className="Diagram-links"
-    />
   </div>
   <FloatingActionButton
     className="Diagram-add"
@@ -189,56 +179,52 @@ exports[`with links renders the links 1`] = `
       x={0}
       y={0}
     />
-    <svg
-      className="Diagram-links"
-    >
-      <LinkDetail
-        fromBlock={
-          Object {
-            "height": 0,
-            "id": "0",
-            "name": "Block 1",
-            "width": 0,
-            "x": 0,
-            "y": 0,
-          }
+    <LinkDetail
+      fromBlock={
+        Object {
+          "height": 0,
+          "id": "0",
+          "name": "Block 1",
+          "width": 0,
+          "x": 0,
+          "y": 0,
         }
-        key="0"
-        toBlock={
-          Object {
-            "height": 0,
-            "id": "1",
-            "name": "Block 2",
-            "width": 0,
-            "x": 0,
-            "y": 0,
-          }
+      }
+      key="0"
+      toBlock={
+        Object {
+          "height": 0,
+          "id": "1",
+          "name": "Block 2",
+          "width": 0,
+          "x": 0,
+          "y": 0,
         }
-      />
-      <LinkDetail
-        fromBlock={
-          Object {
-            "height": 0,
-            "id": "1",
-            "name": "Block 2",
-            "width": 0,
-            "x": 0,
-            "y": 0,
-          }
+      }
+    />
+    <LinkDetail
+      fromBlock={
+        Object {
+          "height": 0,
+          "id": "1",
+          "name": "Block 2",
+          "width": 0,
+          "x": 0,
+          "y": 0,
         }
-        key="1"
-        toBlock={
-          Object {
-            "height": 0,
-            "id": "2",
-            "name": "Block 3",
-            "width": 0,
-            "x": 0,
-            "y": 0,
-          }
+      }
+      key="1"
+      toBlock={
+        Object {
+          "height": 0,
+          "id": "2",
+          "name": "Block 3",
+          "width": 0,
+          "x": 0,
+          "y": 0,
         }
-      />
-    </svg>
+      }
+    />
   </div>
   <FloatingActionButton
     className="Diagram-add"

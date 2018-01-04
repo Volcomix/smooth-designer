@@ -1,11 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<line
+<svg
   className="LinkDetail"
-  x1={10}
-  x2={20}
-  y1={30}
-  y2={40}
-/>
+  style={
+    Object {
+      "height": 10,
+      "left": 10,
+      "top": 30,
+      "transform": "scale(1, 1)",
+      "width": 10,
+    }
+  }
+>
+  <line
+    x1={0}
+    x2="100%"
+    y1={0}
+    y2="100%"
+  />
+</svg>
+`;
+
+exports[`renders without crashing when inverted 1`] = `
+<svg
+  className="LinkDetail"
+  style={
+    Object {
+      "height": 10,
+      "left": 10,
+      "top": 30,
+      "transform": "scale(-1, -1)",
+      "width": 10,
+    }
+  }
+>
+  <line
+    x1={0}
+    x2="100%"
+    y1={0}
+    y2="100%"
+  />
+</svg>
 `;

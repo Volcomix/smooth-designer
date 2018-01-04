@@ -1,7 +1,7 @@
 //@flow
 import type { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { type State, getLinks, getLinking } from '../reducers'
+import { type State, getLinkedBlocks, getLinking } from '../reducers'
 import { getBlocks } from '../reducers/blocks'
 import type { Action } from '../actions'
 import { addBlock, updateBlockName, updateBlockSize } from '../actions/blocks'
@@ -10,7 +10,7 @@ import Diagram from '../components/Diagram'
 
 const mapStateToProps = (state: State) => ({
   blocks: getBlocks(state.blocks),
-  links: getLinks(state),
+  links: getLinkedBlocks(state),
   linking: getLinking(state),
 })
 

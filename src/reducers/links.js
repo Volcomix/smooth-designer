@@ -68,4 +68,7 @@ const links = (
   }
 }
 
+export const getLinks = ({ links }: LinksState): Link[] =>
+  (Object.values(links): any)
+
 export default links

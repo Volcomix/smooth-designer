@@ -51,11 +51,9 @@ const Diagram = ({
             onLinkEnd={onLinkEnd}
           />
         ))}
-        <svg className="Diagram-links">
-          {links.map(({ id, fromBlock, toBlock }) => (
-            <LinkDetail key={id} fromBlock={fromBlock} toBlock={toBlock} />
-          ))}
-        </svg>
+        {links.map(({ id, fromBlock, toBlock }) => (
+          <LinkDetail key={id} fromBlock={fromBlock} toBlock={toBlock} />
+        ))}
         {linking && <Linking {...linking} />}
       </div>
       <FloatingActionButton

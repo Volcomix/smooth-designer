@@ -1,3 +1,5 @@
 .LinkDetail {
+  position: absolute;
   stroke: var(--text-color);
+  transition: var(--ease-out-transition);
 }

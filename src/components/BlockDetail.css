@@ -1,6 +1,5 @@
 .BlockDetail {
   position: absolute;
-  min-width: 288px;
   transform: translate(-50%, -50%);
   transition: var(--ease-out-transition);
   z-index: 10;
@@ -11,6 +10,8 @@
 }
 
 .BlockDetail-card {
+  min-width: 288px;
+  margin: 12px;
   box-shadow: var(--depth-1-shadow) !important;
 }
 

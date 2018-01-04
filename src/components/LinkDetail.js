@@ -8,14 +8,23 @@ export type Props = {
   toBlock: Block,
 }
 
-const LinkDetail = ({ fromBlock, toBlock }: Props) => (
-  <line
-    className="LinkDetail"
-    x1={fromBlock.x}
-    y1={fromBlock.y}
-    x2={toBlock.x}
-    y2={toBlock.y}
-  />
-)
+const LinkDetail = ({ fromBlock, toBlock }: Props) => {
+  const { x: x1, y: y1 } = fromBlock
+  const { x: x2, y: y2 } = toBlock
+  return (
+    <svg
+      className="LinkDetail"
+      style={{
+        left: Math.min(x1, x2),
+        top: Math.min(y1, y2),
+        width: Math.max(Math.abs(x2 - x1), 1),
+        height: Math.max(Math.abs(y2 - y1), 1),
+        transform: `scale(${x2 > x1 ? 1 : -1}, ${y2 > y1 ? 1 : -1})`,
+      }}
+    >
+      <line x1={0} y1={0} x2="100%" y2="100%" />
+    </svg>
+  )
+}
 
 export default LinkDetail

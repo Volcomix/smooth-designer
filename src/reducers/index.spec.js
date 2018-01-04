@@ -1,18 +1,18 @@
 //@flow
-import reducer, { getLinks, getLinking } from '.'
+import reducer, { getLinkedBlocks, getLinking } from '.'
 
 it('combines all reducers', () => {
   expect(reducer(undefined, {})).toEqual({ blocks: {}, links: { links: {} } })
 })
 
-describe('getLinks', () => {
+describe('getLinkedBlocks', () => {
   it('returns an empty array', () => {
-    expect(getLinks({ blocks: {}, links: { links: {} } })).toEqual([])
+    expect(getLinkedBlocks({ blocks: {}, links: { links: {} } })).toEqual([])
   })
 
-  it('returns links as array', () => {
+  it('returns linked blocks as array', () => {
     expect(
-      getLinks({
+      getLinkedBlocks({
         blocks: {
           '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
           '1': { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
