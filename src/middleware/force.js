@@ -1,6 +1,7 @@
 //@flow
 import {
   forceSimulation,
+  forceManyBody,
   forceX,
   forceY,
   forceCollide,
@@ -20,6 +21,7 @@ export const radius = ({ width, height }: Block) =>
   Math.hypot(width, height) / 2
 
 const simulation = forceSimulation()
+  .force('charge', forceManyBody().strength(-8000))
   .force('x', forceX().strength(0.09))
   .force('y', forceY().strength(0.16))
   .force('collision', forceCollide(radius))
@@ -53,7 +55,12 @@ const force: Middleware<State, Action> = ({
     }))
     simulation
       .nodes(blocks)
-      .force('link', forceLink(links).id(({ id }: Block) => id))
+      .force(
+        'link',
+        forceLink(links)
+          .id(({ id }: Block) => id)
+          .distance(({ source, target }) => radius(source) + radius(target)),
+      )
       .alpha(1)
     computeStaticLayout()
     setTimeout(() => dispatch(updateForce(blocks)))
