@@ -31,12 +31,19 @@ const updateLinking = ({ links, linking }, { toMouse }) => ({
   linking: { ...linking, toMouse },
 })
 
+const isSameLink = (link: Link, fromId, toId) =>
+  (link.fromId === fromId && link.toId === toId) ||
+  (link.fromId === toId && link.toId === fromId)
+
 const endLinking = (state, { toId }) => {
   const { links, linking } = state
   if (!linking) {
     throw new Error('No linking defined.')
   }
   if (toId === linking.fromId) {
+    return state
+  }
+  if (getLinks(state).some(link => isSameLink(link, linking.fromId, toId))) {
     return state
   }
   const ids: number[] = Object.keys(links).map(id => parseInt(id, 10))
