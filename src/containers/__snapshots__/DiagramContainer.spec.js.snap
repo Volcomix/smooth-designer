@@ -62,6 +62,7 @@ exports[`renders without crashing 1`] = `
     ]
   }
   onAddClick={[Function]}
+  onLinkCancel={[Function]}
   onLinkEnd={[Function]}
   onLinkMove={[Function]}
   onLinkStart={[Function]}

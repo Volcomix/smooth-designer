@@ -5,6 +5,7 @@ exports[`renders without crashing 1`] = `
   className="Diagram"
   isActive={false}
   onMouseMove={[Function]}
+  onMouseUp={[Function]}
 >
   <div
     className="Diagram-content"
@@ -27,6 +28,7 @@ exports[`with blocks renders a link if linking 1`] = `
   className="Diagram Diagram-linking"
   isActive={true}
   onMouseMove={[Function]}
+  onMouseUp={[Function]}
 >
   <div
     className="Diagram-content"
@@ -82,6 +84,7 @@ exports[`with blocks renders the blocks 1`] = `
   className="Diagram"
   isActive={false}
   onMouseMove={[Function]}
+  onMouseUp={[Function]}
 >
   <div
     className="Diagram-content"
@@ -133,6 +136,7 @@ exports[`with links renders the links 1`] = `
   className="Diagram"
   isActive={false}
   onMouseMove={[Function]}
+  onMouseUp={[Function]}
 >
   <div
     className="Diagram-content"

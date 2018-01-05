@@ -5,6 +5,7 @@ import {
   START_LINKING,
   UPDATE_LINKING,
   END_LINKING,
+  CANCEL_LINKING,
 } from '../constants/actionTypes'
 
 export type LinksState = {
@@ -48,9 +49,13 @@ const endLinking = ({ links, linking }, { toId }) => {
         toId,
       },
     },
-    linking: undefined,
+    linking,
   }
 }
+
+const cancelLinking = ({ links }) => ({
+  links,
+})
 
 const links = (
   state: LinksState = initialState,
@@ -63,6 +68,8 @@ const links = (
       return updateLinking(state, action)
     case END_LINKING:
       return endLinking(state, action)
+    case CANCEL_LINKING:
+      return cancelLinking(state)
     default:
       return state
   }

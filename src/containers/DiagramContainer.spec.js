@@ -5,7 +5,12 @@ import { shallow } from 'enzyme'
 import DiagramContainer from './DiagramContainer'
 import type { State } from '../reducers'
 import { addBlock, updateBlockSize, updateBlockName } from '../actions/blocks'
-import { startLinking, updateLinking, endLinking } from '../actions/links'
+import {
+  startLinking,
+  updateLinking,
+  endLinking,
+  cancelLinking,
+} from '../actions/links'
 
 const mockStore = configureStore()
 
@@ -64,4 +69,10 @@ it('ends linking', () => {
   const { wrapper, store } = setup()
   wrapper.find('Diagram').simulate('linkEnd', '1')
   expect(store.getActions()).toEqual([endLinking('1')])
+})
+
+it('cancels linking', () => {
+  const { wrapper, store } = setup()
+  wrapper.find('Diagram').simulate('linkCancel')
+  expect(store.getActions()).toEqual([cancelLinking()])
 })

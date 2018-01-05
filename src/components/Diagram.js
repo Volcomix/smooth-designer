@@ -19,6 +19,7 @@ export type Props = {
   onLinkStart: (id: string, mouseX: number, mouseY: number) => void,
   onLinkMove: (mouseX: number, mouseY: number) => void,
   onLinkEnd: (id: string) => void,
+  onLinkCancel: () => void,
 }
 
 const Diagram = ({
@@ -31,6 +32,7 @@ const Diagram = ({
   onLinkStart,
   onLinkMove,
   onLinkEnd,
+  onLinkCancel,
 }: Props) => {
   const isLinking = !!linking
   return (
@@ -38,6 +40,7 @@ const Diagram = ({
       className={'Diagram' + (isLinking ? ' Diagram-linking' : '')}
       isActive={isLinking}
       onMouseMove={onLinkMove}
+      onMouseUp={onLinkCancel}
     >
       <div className="Diagram-content">
         {blocks.map(block => (

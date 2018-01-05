@@ -3,6 +3,7 @@ import {
   START_LINKING,
   UPDATE_LINKING,
   END_LINKING,
+  CANCEL_LINKING,
 } from '../constants/actionTypes'
 
 type StartLinkingAction = {
@@ -21,10 +22,15 @@ type EndLinkingAction = {
   toId: string,
 }
 
+type CancelLinkingAction = {
+  type: typeof CANCEL_LINKING,
+}
+
 export type LinksAction =
   | StartLinkingAction
   | UpdateLinkingAction
   | EndLinkingAction
+  | CancelLinkingAction
 
 export const startLinking = (
   fromId: string,
@@ -47,4 +53,8 @@ export const updateLinking = (
 export const endLinking = (toId: string): EndLinkingAction => ({
   type: END_LINKING,
   toId,
+})
+
+export const cancelLinking = (): CancelLinkingAction => ({
+  type: CANCEL_LINKING,
 })

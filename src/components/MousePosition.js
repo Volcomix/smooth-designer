@@ -6,6 +6,7 @@ export type Props = {
   className?: string,
   isActive: boolean,
   onMouseMove: (x: number, y: number) => void,
+  onMouseUp: () => void,
 }
 
 class MousePosition extends React.Component<Props> {
@@ -17,6 +18,7 @@ class MousePosition extends React.Component<Props> {
       <div
         className={className}
         onMouseMove={this.handleMouseMove}
+        onMouseUp={this.handleMouseUp}
         ref={container => (this.container = container)}
       >
         {children}
@@ -28,6 +30,12 @@ class MousePosition extends React.Component<Props> {
     if (this.props.isActive && this.container) {
       const { width, height } = this.container.getBoundingClientRect()
       this.props.onMouseMove(clientX - width / 2, clientY - height / 2)
+    }
+  }
+
+  handleMouseUp = () => {
+    if (this.props.isActive) {
+      this.props.onMouseUp()
     }
   }
 }

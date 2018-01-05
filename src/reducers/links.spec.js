@@ -1,6 +1,11 @@
 //@flow
 import links, { getLinks } from './links'
-import { startLinking, updateLinking, endLinking } from '../actions/links'
+import {
+  startLinking,
+  updateLinking,
+  endLinking,
+  cancelLinking,
+} from '../actions/links'
 
 it('returns the initial state', () => {
   expect(links(undefined, { type: '@@INIT' })).toEqual({ links: {} })
@@ -47,7 +52,10 @@ it('adds a link when linking ends', () => {
       endLinking('1'),
     ),
   ).toEqual({
-    links: { '0': { id: '0', fromId: '0', toId: '1' } },
+    links: {
+      '0': { id: '0', fromId: '0', toId: '1' },
+    },
+    linking: { fromId: '0', toMouse: { x: 0, y: 0 } },
   })
   expect(
     links(
@@ -62,6 +70,7 @@ it('adds a link when linking ends', () => {
       '0': { id: '0', fromId: '0', toId: '1' },
       '1': { id: '1', fromId: '2', toId: '3' },
     },
+    linking: { fromId: '2', toMouse: { x: 0, y: 0 } },
   })
 })
 
@@ -69,6 +78,15 @@ it('throws an error when ending an undefined linking', () => {
   expect(() => links({ links: {} }, endLinking('1'))).toThrow(
     'No linking defined.',
   )
+})
+
+it('cancels linking', () => {
+  expect(
+    links(
+      { links: {}, linking: { fromId: '0', toMouse: { x: 0, y: 0 } } },
+      cancelLinking(),
+    ),
+  ).toEqual({ links: {} })
 })
 
 describe('getLinks', () => {

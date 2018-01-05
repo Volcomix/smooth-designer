@@ -14,6 +14,7 @@ const setup = setupProps => {
     onLinkStart: jest.fn(),
     onLinkMove: jest.fn(),
     onLinkEnd: jest.fn(),
+    onLinkCancel: jest.fn(),
   }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
@@ -88,7 +89,7 @@ describe('with blocks', () => {
     expect(props.onSizeChange).toHaveBeenCalledWith('0', 10, 20)
   })
 
-  it('calls onLinkStart when a linking starts', () => {
+  it('calls onLinkStart when linking starts', () => {
     const { wrapper, props } = setup({
       blocks: [
         { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
@@ -102,7 +103,7 @@ describe('with blocks', () => {
     expect(props.onLinkStart).toHaveBeenCalledWith('0', 10, 20)
   })
 
-  it('calls onLinkMove when a linking moves', () => {
+  it('calls onLinkMove when linking moves', () => {
     const { wrapper, props } = setup({
       blocks: [
         { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
@@ -124,7 +125,7 @@ describe('with blocks', () => {
     expect(props.onLinkMove).toHaveBeenCalledWith(30, 40)
   })
 
-  it('calls onLinkEnd when a linking ends', () => {
+  it('calls onLinkEnd when linking ends', () => {
     const { wrapper, props } = setup({
       blocks: [
         { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
@@ -147,6 +148,28 @@ describe('with blocks', () => {
       .first()
       .simulate('linkEnd', '0')
     expect(props.onLinkEnd).toHaveBeenCalledWith('0')
+  })
+
+  it('calls onLinkCancel when the mouse is up', () => {
+    const { wrapper, props } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+      ],
+      linking: {
+        fromBlock: {
+          id: '1',
+          name: 'Block 1',
+          x: 0,
+          y: 0,
+          width: 0,
+          height: 0,
+        },
+        toMouse: { x: 10, y: 20 },
+      },
+    })
+    wrapper.simulate('mouseUp')
+    expect(props.onLinkCancel).toHaveBeenCalled()
   })
 })
 
