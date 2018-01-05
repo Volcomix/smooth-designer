@@ -74,6 +74,15 @@ it('adds a link when linking ends', () => {
   })
 })
 
+it('does not add a link if start and end is the same block', () => {
+  expect(
+    links(
+      { links: {}, linking: { fromId: '0', toMouse: { x: 0, y: 0 } } },
+      endLinking('0'),
+    ),
+  ).toEqual({ links: {}, linking: { fromId: '0', toMouse: { x: 0, y: 0 } } })
+})
+
 it('throws an error when ending an undefined linking', () => {
   expect(() => links({ links: {} }, endLinking('1'))).toThrow(
     'No linking defined.',

@@ -31,9 +31,13 @@ const updateLinking = ({ links, linking }, { toMouse }) => ({
   linking: { ...linking, toMouse },
 })
 
-const endLinking = ({ links, linking }, { toId }) => {
+const endLinking = (state, { toId }) => {
+  const { links, linking } = state
   if (!linking) {
     throw new Error('No linking defined.')
+  }
+  if (toId === linking.fromId) {
+    return state
   }
   const ids: number[] = Object.keys(links).map(id => parseInt(id, 10))
   let id = 0

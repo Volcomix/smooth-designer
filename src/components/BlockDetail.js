@@ -39,7 +39,9 @@ class BlockDetail extends React.Component<Props> {
                 hintText="Name"
                 value={name}
                 onChange={this.handleNameChange}
-                inputRef={input => (this.nameInput = input)}
+                inputRef={input => {
+                  this.nameInput = input
+                }}
               />
             }
           />
