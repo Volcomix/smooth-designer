@@ -40,7 +40,10 @@ const Diagram = ({
       className={'Diagram' + (isLinking ? ' Diagram-linking' : '')}
       isActive={isLinking}
       onMouseMove={onLinkMove}
-      onMouseUp={onLinkCancel}
+      onMouseUp={() => {
+        document.activeElement && document.activeElement.blur()
+        onLinkCancel()
+      }}
     >
       <div className="Diagram-content">
         {blocks.map(block => (

@@ -168,7 +168,9 @@ describe('with blocks', () => {
         toMouse: { x: 10, y: 20 },
       },
     })
+    const spy = jest.spyOn(document.activeElement || {}, 'blur')
     wrapper.simulate('mouseUp')
+    expect(spy).toHaveBeenCalled()
     expect(props.onLinkCancel).toHaveBeenCalled()
   })
 })
