@@ -2,9 +2,11 @@
 import React from 'react'
 import { Card, CardTitle, CardActions } from 'material-ui/Card'
 import IconMenu from 'material-ui/IconMenu'
+import PopoverAnimationDefault from 'material-ui/Popover/PopoverAnimationDefault'
 import MenuItem from 'material-ui/MenuItem'
 import IconButton from 'material-ui/IconButton'
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+import More from 'material-ui/svg-icons/navigation/more-vert'
+import Delete from 'material-ui/svg-icons/action/delete-forever'
 import AddLink from 'material-ui/svg-icons/action/settings-ethernet'
 import './BlockDetail.css'
 import type { Block } from '../types'
@@ -50,15 +52,19 @@ class BlockDetail extends React.Component<Props> {
           />
           <CardActions className="BlockDetail-actions">
             <IconMenu
+              className="BlockDetail-menu"
+              animation={props => (
+                <PopoverAnimationDefault {...props} zDepth={2} />
+              )}
               iconButtonElement={
                 <IconButton>
-                  <MoreVertIcon />
+                  <More />
                 </IconButton>
               }
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             >
-              <MenuItem primaryText="Delete" />
+              <MenuItem leftIcon={<Delete />} primaryText="Delete block" />
             </IconMenu>
             <IconButton
               className="BlockDetail-addLink"

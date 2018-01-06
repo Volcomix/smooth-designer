@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders an overflow menu with a custom elevation 1`] = `
+<PopoverAnimationDefault
+  open={false}
+  style={Object {}}
+  targetOrigin={
+    Object {
+      "horizontal": "right",
+      "vertical": "top",
+    }
+  }
+  zDepth={2}
+/>
+`;
+
 exports[`renders with a specific style if linking 1`] = `
 <Sized
   className="BlockDetail BlockDetail-linking"
@@ -40,6 +54,8 @@ exports[`renders with a specific style if linking 1`] = `
           }
         }
         animated={true}
+        animation={[Function]}
+        className="BlockDetail-menu"
         clickCloseDelay={200}
         iconButtonElement={
           <IconButton
@@ -82,7 +98,8 @@ exports[`renders with a specific style if linking 1`] = `
           disabled={false}
           focusState="none"
           insetChildren={false}
-          primaryText="Delete"
+          leftIcon={<ActionDeleteForever />}
+          primaryText="Delete block"
           targetOrigin={
             Object {
               "horizontal": "left",
@@ -148,6 +165,8 @@ exports[`renders without crashing 1`] = `
           }
         }
         animated={true}
+        animation={[Function]}
+        className="BlockDetail-menu"
         clickCloseDelay={200}
         iconButtonElement={
           <IconButton
@@ -190,7 +209,8 @@ exports[`renders without crashing 1`] = `
           disabled={false}
           focusState="none"
           insetChildren={false}
-          primaryText="Delete"
+          leftIcon={<ActionDeleteForever />}
+          primaryText="Delete block"
           targetOrigin={
             Object {
               "horizontal": "left",

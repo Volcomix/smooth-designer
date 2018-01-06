@@ -29,6 +29,17 @@ it('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot()
 })
 
+it('renders an overflow menu with a custom elevation', () => {
+  const { wrapper } = setup()
+  const { animation: Animation, open, targetOrigin } = wrapper
+    .find('.BlockDetail-menu')
+    .props()
+  const animationWrapper = shallow(
+    <Animation open={!!open} targetOrigin={targetOrigin} />,
+  )
+  expect(animationWrapper).toMatchSnapshot()
+})
+
 it('renders with a specific style if linking', () => {
   const { wrapper } = setup({ isLinking: true })
   expect(wrapper).toMatchSnapshot()
