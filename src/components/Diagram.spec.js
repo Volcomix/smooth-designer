@@ -9,6 +9,7 @@ const setup = setupProps => {
     links: [],
     linking: undefined,
     onAddClick: jest.fn(),
+    onBlockDelete: jest.fn(),
     onNameChange: jest.fn(),
     onSizeChange: jest.fn(),
     onLinkStart: jest.fn(),
@@ -59,6 +60,20 @@ describe('with blocks', () => {
       },
     })
     expect(wrapper).toMatchSnapshot()
+  })
+
+  it('calls onBlockDelete when a block is deleted', () => {
+    const { wrapper, props } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+      ],
+    })
+    wrapper
+      .find('BlockDetail')
+      .first()
+      .simulate('delete', '0')
+    expect(props.onBlockDelete).toHaveBeenCalledWith('0')
   })
 
   it('calls onNameChange when a block name changes', () => {

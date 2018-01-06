@@ -6,6 +6,7 @@ import {
   endLinking,
   cancelLinking,
 } from '../actions/links'
+import { deleteBlock } from '../actions/blocks'
 
 it('returns the initial state', () => {
   expect(links(undefined, { type: '@@INIT' })).toEqual({ links: {} })
@@ -147,4 +148,19 @@ describe('getLinks', () => {
       getLinks({ links: { '0': { id: '0', fromId: '0', toId: '1' } } }),
     ).toEqual([{ id: '0', fromId: '0', toId: '1' }])
   })
+})
+
+it('deletes a block', () => {
+  expect(
+    links(
+      {
+        links: {
+          '0': { id: '0', fromId: '0', toId: '1' },
+          '1': { id: '1', fromId: '1', toId: '2' },
+          '2': { id: '2', fromId: '2', toId: '0' },
+        },
+      },
+      deleteBlock('2'),
+    ),
+  ).toEqual({ links: { '0': { id: '0', fromId: '0', toId: '1' } } })
 })

@@ -3,6 +3,7 @@ import type { Block } from '../types'
 import type { Action } from '../actions'
 import {
   ADD_BLOCK,
+  DELETE_BLOCK,
   UPDATE_BLOCK_NAME,
   UPDATE_BLOCK_SIZE,
   UPDATE_FORCE,
@@ -23,6 +24,14 @@ const addBlock = state => {
     [id]: { id: `${id}`, name: '', x: 0, y: 0, width: 0, height: 0 },
   }
 }
+
+const deleteBlock = (state, { id }) =>
+  getBlocks(state).reduce((nextState, block) => {
+    if (block.id !== id) {
+      nextState[block.id] = block
+    }
+    return nextState
+  }, {})
 
 const updateBlockName = (state, { id, name }) => ({
   ...state,
@@ -47,6 +56,8 @@ const blocks = (
   switch (action.type) {
     case ADD_BLOCK:
       return addBlock(state)
+    case DELETE_BLOCK:
+      return deleteBlock(state, action)
     case UPDATE_BLOCK_NAME:
       return updateBlockName(state, action)
     case UPDATE_BLOCK_SIZE:

@@ -1,6 +1,11 @@
 //@flow
 import blocks, { getBlocks, cloneBlocks } from './blocks'
-import { addBlock, updateBlockName, updateBlockSize } from '../actions/blocks'
+import {
+  addBlock,
+  deleteBlock,
+  updateBlockName,
+  updateBlockSize,
+} from '../actions/blocks'
 import { updateForce } from '../actions/force'
 
 it('returns the initial state', () => {
@@ -32,6 +37,20 @@ it('adds a block', () => {
     '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
     '1': { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
     '2': { id: '2', name: '', x: 0, y: 0, width: 0, height: 0 },
+  })
+})
+
+it('deletes a block', () => {
+  expect(
+    blocks(
+      {
+        '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+      },
+      deleteBlock('5'),
+    ),
+  ).toEqual({
+    '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
   })
 })
 

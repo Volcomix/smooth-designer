@@ -4,7 +4,12 @@ import { connect } from 'react-redux'
 import { type State, getLinkedBlocks, getLinking } from '../reducers'
 import { getBlocks } from '../reducers/blocks'
 import type { Action } from '../actions'
-import { addBlock, updateBlockName, updateBlockSize } from '../actions/blocks'
+import {
+  addBlock,
+  deleteBlock,
+  updateBlockName,
+  updateBlockSize,
+} from '../actions/blocks'
 import {
   startLinking,
   updateLinking,
@@ -21,6 +26,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
   onAddClick: () => dispatch(addBlock()),
+  onBlockDelete: (id: string) => dispatch(deleteBlock(id)),
   onNameChange: (id: string, name: string) =>
     dispatch(updateBlockName(id, name)),
   onSizeChange: (id: string, width: number, height: number) =>

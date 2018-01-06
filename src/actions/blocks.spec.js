@@ -1,13 +1,23 @@
 //@flow
-import { addBlock, updateBlockName, updateBlockSize } from './blocks'
+import {
+  addBlock,
+  deleteBlock,
+  updateBlockName,
+  updateBlockSize,
+} from './blocks'
 import {
   ADD_BLOCK,
+  DELETE_BLOCK,
   UPDATE_BLOCK_NAME,
   UPDATE_BLOCK_SIZE,
 } from '../constants/actionTypes'
 
 it('creates an action to add a block', () => {
   expect(addBlock()).toEqual({ type: ADD_BLOCK })
+})
+
+it('creates an action to delete a block', () => {
+  expect(deleteBlock('0')).toEqual({ type: DELETE_BLOCK, id: '0' })
 })
 
 it('creates an action to update a block name', () => {

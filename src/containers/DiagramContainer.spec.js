@@ -4,7 +4,12 @@ import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import DiagramContainer from './DiagramContainer'
 import type { State } from '../reducers'
-import { addBlock, updateBlockSize, updateBlockName } from '../actions/blocks'
+import {
+  addBlock,
+  deleteBlock,
+  updateBlockSize,
+  updateBlockName,
+} from '../actions/blocks'
 import {
   startLinking,
   updateLinking,
@@ -39,6 +44,12 @@ it('adds a block when the Add button is clicked', () => {
   const { wrapper, store } = setup()
   wrapper.find('Diagram').simulate('addClick')
   expect(store.getActions()).toEqual([addBlock()])
+})
+
+it('deletes a block', () => {
+  const { wrapper, store } = setup()
+  wrapper.find('Diagram').simulate('blockDelete', '0')
+  expect(store.getActions()).toEqual([deleteBlock('0')])
 })
 
 it('updates a block name', () => {

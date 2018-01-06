@@ -14,6 +14,7 @@ export type Props = {
   links: { id: string, fromBlock: Block, toBlock: Block }[],
   linking: ?{ fromBlock: Block, toMouse: { x: number, y: number } },
   onAddClick: () => void,
+  onBlockDelete: (id: string) => void,
   onNameChange: (id: string, name: string) => void,
   onSizeChange: (id: string, width: number, height: number) => void,
   onLinkStart: (id: string, mouseX: number, mouseY: number) => void,
@@ -27,6 +28,7 @@ const Diagram = ({
   links,
   linking,
   onAddClick,
+  onBlockDelete,
   onNameChange,
   onSizeChange,
   onLinkStart,
@@ -51,6 +53,7 @@ const Diagram = ({
             key={block.id}
             {...block}
             isLinking={isLinking}
+            onDelete={onBlockDelete}
             onNameChange={onNameChange}
             onSizeChange={onSizeChange}
             onLinkStart={onLinkStart}

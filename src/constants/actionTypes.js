@@ -1,5 +1,6 @@
 //@flow
 export const ADD_BLOCK = 'ADD_BLOCK'
+export const DELETE_BLOCK = 'DELETE_BLOCK'
 export const UPDATE_BLOCK_NAME = 'UPDATE_BLOCK_NAME'
 export const UPDATE_BLOCK_SIZE = 'UPDATE_BLOCK_SIZE'
 

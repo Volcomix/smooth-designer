@@ -15,6 +15,7 @@ import TextField from './TextField'
 
 export type Props = Block & {
   isLinking: boolean,
+  onDelete: (id: string) => void,
   onNameChange: (id: string, name: string) => void,
   onSizeChange: (id: string, width: number, height: number) => void,
   onLinkStart: (id: string, toMouseX: number, toMouseY: number) => void,
@@ -54,7 +55,7 @@ class BlockDetail extends React.Component<Props> {
             <IconMenu
               className="BlockDetail-menu"
               useLayerForClickAway={true}
-              animation={props => (
+              animation={(props: {}) => (
                 <PopoverAnimationDefault {...props} zDepth={2} />
               )}
               iconButtonElement={
@@ -65,7 +66,12 @@ class BlockDetail extends React.Component<Props> {
               anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             >
-              <MenuItem leftIcon={<Delete />} primaryText="Delete block" />
+              <MenuItem
+                className="BlockDetail-delete"
+                leftIcon={<Delete />}
+                primaryText="Delete block"
+                onClick={this.handleDelete}
+              />
             </IconMenu>
             <IconButton
               className="BlockDetail-addLink"
@@ -79,6 +85,8 @@ class BlockDetail extends React.Component<Props> {
       </Sized>
     )
   }
+
+  handleDelete = () => this.props.onDelete(this.props.id)
 
   handleNameChange = (event: {}, newName: string) =>
     this.props.onNameChange(this.props.id, newName)

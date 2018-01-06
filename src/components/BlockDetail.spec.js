@@ -1,5 +1,5 @@
 //@flow
-import React from 'react'
+import React, { type ComponentType } from 'react'
 import { shallow, mount } from 'enzyme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import BlockDetail, { type Props } from './BlockDetail'
@@ -12,6 +12,7 @@ const defaultProps = (): Props => ({
   width: 0,
   height: 0,
   isLinking: false,
+  onDelete: jest.fn(),
   onNameChange: jest.fn(),
   onSizeChange: jest.fn(),
   onLinkStart: jest.fn(),
@@ -31,9 +32,15 @@ it('renders without crashing', () => {
 
 it('renders an overflow menu with a custom elevation', () => {
   const { wrapper } = setup()
-  const { animation: Animation, open, targetOrigin } = wrapper
-    .find('.BlockDetail-menu')
-    .props()
+  const {
+    animation: Animation,
+    open,
+    targetOrigin,
+  }: {
+    animation: ComponentType<{}>,
+    open: {},
+    targetOrigin: {},
+  } = wrapper.find('.BlockDetail-menu').props()
   const animationWrapper = shallow(
     <Animation open={!!open} targetOrigin={targetOrigin} />,
   )
@@ -54,6 +61,12 @@ it('focus name field when the block is added', () => {
   expect(document.activeElement).toBe(
     wrapper.find('TextField input').instance(),
   )
+})
+
+it('calls onDelete when the delete menu is clicked', () => {
+  const { wrapper, props } = setup()
+  wrapper.find('.BlockDetail-delete').simulate('click')
+  expect(props.onDelete).toHaveBeenCalledWith('0')
 })
 
 it('calls onNameChange when the block name changes', () => {
