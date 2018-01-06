@@ -53,6 +53,7 @@ class BlockDetail extends React.Component<Props> {
           <CardActions className="BlockDetail-actions">
             <IconMenu
               className="BlockDetail-menu"
+              useLayerForClickAway={true}
               animation={props => (
                 <PopoverAnimationDefault {...props} zDepth={2} />
               )}
@@ -61,7 +62,7 @@ class BlockDetail extends React.Component<Props> {
                   <More />
                 </IconButton>
               }
-              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             >
               <MenuItem leftIcon={<Delete />} primaryText="Delete block" />
