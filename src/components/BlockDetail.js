@@ -1,7 +1,10 @@
 //@flow
 import React from 'react'
 import { Card, CardTitle, CardActions } from 'material-ui/Card'
+import IconMenu from 'material-ui/IconMenu'
+import MenuItem from 'material-ui/MenuItem'
 import IconButton from 'material-ui/IconButton'
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import AddLink from 'material-ui/svg-icons/action/settings-ethernet'
 import './BlockDetail.css'
 import type { Block } from '../types'
@@ -46,8 +49,19 @@ class BlockDetail extends React.Component<Props> {
             }
           />
           <CardActions className="BlockDetail-actions">
+            <IconMenu
+              iconButtonElement={
+                <IconButton>
+                  <MoreVertIcon />
+                </IconButton>
+              }
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+            >
+              <MenuItem primaryText="Delete" />
+            </IconMenu>
             <IconButton
-              className="BlockDetail-action BlockDetail-addLink"
+              className="BlockDetail-addLink"
               tooltip="Add link"
               onMouseDown={this.handleLinkStart}
             >

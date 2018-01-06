@@ -6,7 +6,8 @@
   z-index: 10;
 }
 
-.BlockDetail:focus-within {
+.BlockDetail-linking:focus-within,
+.BlockDetail-linking:hover {
   z-index: 20;
 }
 
@@ -16,12 +17,13 @@
   box-shadow: var(--depth-1-shadow) !important;
 }
 
-.BlockDetail-linking:hover .BlockDetail-card {
-  box-shadow: var(--depth-2-shadow) !important;
-}
-
 .BlockDetail:focus-within .BlockDetail-card {
   box-shadow: var(--depth-3-shadow) !important;
+}
+
+.BlockDetail:focus-within.BlockDetail-linking .BlockDetail-card,
+.BlockDetail-linking:hover .BlockDetail-card {
+  box-shadow: 0 0 0 4px var(--primary1-color) !important;
 }
 
 .BlockDetail-card > div {
@@ -35,19 +37,31 @@
 .BlockDetail-actions {
   display: flex;
   flex-direction: column;
-}
-
-.BlockDetail-action {
-  margin: 0 0 8px 0 !important;
+  transition: var(--ease-out-transition);
+  padding: 0 4px 0 0 !important;
   opacity: 0;
 }
 
-.BlockDetail:hover:not(.BlockDetail-linking) .BlockDetail-action {
+.BlockDetail:hover:not(.BlockDetail-linking) .BlockDetail-actions {
   opacity: 1;
+}
+
+.BlockDetail-actions > * {
+  margin: 4px 0 !important;
+}
+
+.BlockDetail-actions button {
+  width: 34px !important;
+  height: 34px !important;
+  padding: 0 !important;
 }
 
 .BlockDetail-actions svg {
   color: var(--secondary-text-color) !important;
+}
+
+.BlockDetail-actions > :hover svg {
+  color: var(--text-color) !important;
 }
 
 .BlockDetail-addLink {
