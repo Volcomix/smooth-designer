@@ -4,6 +4,10 @@
   pointer-events: none;
 }
 
+.LinkDetail:hover {
+  z-index: 5;
+}
+
 .LinkDetail-link {
   position: absolute;
   width: 100%;
@@ -18,7 +22,12 @@
 }
 
 .LinkDetail-line {
+  transition: var(--ease-out-transition);
   stroke: var(--text-color);
+}
+
+.LinkDetail:hover .LinkDetail-line {
+  stroke: var(--primary1-color);
 }
 
 .LinkDetail-menu {
@@ -29,7 +38,6 @@
   border-radius: 50%;
   background-color: var(--canvas-color);
   box-shadow: var(--depth-1-shadow);
-  z-index: 5;
   pointer-events: auto;
   transition: var(--ease-out-transition);
   opacity: 0;
