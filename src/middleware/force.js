@@ -16,6 +16,7 @@ import {
   DELETE_BLOCK,
   UPDATE_BLOCK_SIZE,
   END_LINKING,
+  DELETE_LINK,
 } from '../constants/actionTypes'
 import { cloneBlocks } from '../reducers/blocks'
 import { getLinks } from '../reducers/links'
@@ -53,7 +54,8 @@ const force: Middleware<State, Action> = ({
   if (
     action.type === DELETE_BLOCK ||
     action.type === UPDATE_BLOCK_SIZE ||
-    action.type === END_LINKING
+    action.type === END_LINKING ||
+    action.type === DELETE_LINK
   ) {
     const state = getState()
     const blocks = cloneBlocks(state.blocks)

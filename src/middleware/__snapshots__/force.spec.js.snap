@@ -101,3 +101,37 @@ Array [
   ],
 ]
 `;
+
+exports[`updates positions when a link is deleted 1`] = `
+Array [
+  Array [
+    Object {
+      "blocks": Array [
+        Object {
+          "height": 20,
+          "id": "0",
+          "index": 0,
+          "name": "Block 1",
+          "vx": -0.000779125266471882,
+          "vy": 0.0009721992267518098,
+          "width": 10,
+          "x": -68.42539658156838,
+          "y": -9.999569147641038,
+        },
+        Object {
+          "height": 40,
+          "id": "5",
+          "index": 1,
+          "name": "Block 2",
+          "vx": 0.000779125266471882,
+          "vy": -0.0009721992267518098,
+          "width": 30,
+          "x": 68.42539658156838,
+          "y": 9.999569147641038,
+        },
+      ],
+      "type": "UPDATE_FORCE",
+    },
+  ],
+]
+`;

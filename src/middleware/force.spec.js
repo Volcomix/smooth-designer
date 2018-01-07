@@ -1,7 +1,7 @@
 //@flow
 import force, { radius } from './force'
 import { deleteBlock, updateBlockSize } from '../actions/blocks'
-import { endLinking } from '../actions/links'
+import { endLinking, deleteLink } from '../actions/links'
 
 jest.useFakeTimers()
 const mathMock: any = Math
@@ -78,6 +78,20 @@ it('updates positions when a link is added', () => {
   const { store, next, invoke } = create()
   const { dispatch, getState } = store
   const action = endLinking('5')
+  invoke(action)
+  expect(next).toHaveBeenCalledWith(action)
+  expect(dispatch).not.toHaveBeenCalled()
+  jest.runAllTimers()
+  expect(dispatch.mock.calls).toMatchSnapshot()
+  expect(getState()).toMatchObject({
+    blocks: { '0': { x: 0, y: 0 }, '5': { x: 0, y: 0 } },
+  })
+})
+
+it('updates positions when a link is deleted', () => {
+  const { store, next, invoke } = create()
+  const { dispatch, getState } = store
+  const action = deleteLink('0')
   invoke(action)
   expect(next).toHaveBeenCalledWith(action)
   expect(dispatch).not.toHaveBeenCalled()
