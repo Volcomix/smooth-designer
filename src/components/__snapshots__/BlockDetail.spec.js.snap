@@ -50,7 +50,7 @@ exports[`renders with a specific style if linking 1`] = `
         anchorOrigin={
           Object {
             "horizontal": "right",
-            "vertical": "top",
+            "vertical": "bottom",
           }
         }
         animated={true}
@@ -164,7 +164,7 @@ exports[`renders without crashing 1`] = `
         anchorOrigin={
           Object {
             "horizontal": "right",
-            "vertical": "top",
+            "vertical": "bottom",
           }
         }
         animated={true}

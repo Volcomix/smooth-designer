@@ -63,7 +63,7 @@ class BlockDetail extends React.Component<Props> {
                   <More />
                 </IconButton>
               }
-              anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             >
               <MenuItem
