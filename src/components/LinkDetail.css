@@ -1,5 +1,54 @@
 .LinkDetail {
   position: absolute;
-  stroke: var(--text-color);
   transition: var(--ease-out-transition);
+  pointer-events: none;
+}
+
+.LinkDetail-link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: var(--ease-out-transition);
+}
+
+.LinkDetail-hover {
+  stroke: transparent;
+  stroke-width: 34px;
+  pointer-events: auto;
+}
+
+.LinkDetail-line {
+  stroke: var(--text-color);
+}
+
+.LinkDetail-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: var(--canvas-color);
+  box-shadow: var(--depth-1-shadow);
+  z-index: 5;
+  pointer-events: auto;
+  transition: var(--ease-out-transition);
+  opacity: 0;
+}
+
+.LinkDetail:hover .LinkDetail-menu {
+  opacity: 1;
+}
+
+.LinkDetail-menu button {
+  width: 34px !important;
+  height: 34px !important;
+  padding: 0 !important;
+}
+
+.LinkDetail-menu svg {
+  color: var(--secondary-text-color) !important;
+}
+
+.LinkDetail-menu > :hover svg {
+  color: var(--text-color) !important;
 }

@@ -57,6 +57,7 @@ exports[`renders with a specific style if linking 1`] = `
         animation={[Function]}
         className="BlockDetail-menu"
         clickCloseDelay={200}
+        disableAutoFocus={true}
         iconButtonElement={
           <IconButton
             disableTouchRipple={false}
@@ -84,7 +85,7 @@ exports[`renders with a specific style if linking 1`] = `
             "vertical": "top",
           }
         }
-        useLayerForClickAway={true}
+        useLayerForClickAway={false}
       >
         <MenuItem
           anchorOrigin={
@@ -170,6 +171,7 @@ exports[`renders without crashing 1`] = `
         animation={[Function]}
         className="BlockDetail-menu"
         clickCloseDelay={200}
+        disableAutoFocus={true}
         iconButtonElement={
           <IconButton
             disableTouchRipple={false}
@@ -197,7 +199,7 @@ exports[`renders without crashing 1`] = `
             "vertical": "top",
           }
         }
-        useLayerForClickAway={true}
+        useLayerForClickAway={false}
       >
         <MenuItem
           anchorOrigin={

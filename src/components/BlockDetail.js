@@ -54,7 +54,7 @@ class BlockDetail extends React.Component<Props> {
           <CardActions className="BlockDetail-actions">
             <IconMenu
               className="BlockDetail-menu"
-              useLayerForClickAway={true}
+              disableAutoFocus={true}
               animation={(props: {}) => (
                 <PopoverAnimationDefault {...props} zDepth={2} />
               )}

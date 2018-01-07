@@ -4,6 +4,7 @@
   transition: var(--ease-out-transition);
   transition-property: left, top;
   z-index: 10;
+  pointer-events: none;
 }
 
 .BlockDetail-linking:focus-within,
@@ -15,6 +16,7 @@
   min-width: 288px;
   margin: 12px;
   box-shadow: var(--depth-1-shadow) !important;
+  pointer-events: auto;
 }
 
 .BlockDetail:focus-within .BlockDetail-card {
