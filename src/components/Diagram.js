@@ -68,6 +68,7 @@ const Diagram = ({
             id={id}
             fromBlock={fromBlock}
             toBlock={toBlock}
+            isLinking={isLinking}
             onDelete={onLinkDelete}
           />
         ))}

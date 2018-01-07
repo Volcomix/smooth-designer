@@ -8,6 +8,7 @@ const setup = setupProps => {
     id: '0',
     fromBlock: { id: '0', name: 'Block 1', x: 10, y: 30, width: 0, height: 0 },
     toBlock: { id: '1', name: 'Block 2', x: 20, y: 40, width: 0, height: 0 },
+    isLinking: false,
     onDelete: jest.fn(),
   }
   const props: Props = { ...defaultProps, ...setupProps }
@@ -43,6 +44,11 @@ it('renders an overflow menu with a custom elevation', () => {
     <Animation open={!!open} targetOrigin={targetOrigin} />,
   )
   expect(animationWrapper).toMatchSnapshot()
+})
+
+it('renders with a specific style if linking', () => {
+  const { wrapper } = setup({ isLinking: true })
+  expect(wrapper).toMatchSnapshot()
 })
 
 it('calls onDelete when the delete menu is clicked', () => {

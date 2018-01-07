@@ -201,6 +201,7 @@ exports[`with links renders the links 1`] = `
         }
       }
       id="0"
+      isLinking={false}
       key="0"
       onDelete={[Function]}
       toBlock={
@@ -226,6 +227,7 @@ exports[`with links renders the links 1`] = `
         }
       }
       id="1"
+      isLinking={false}
       key="1"
       onDelete={[Function]}
       toBlock={

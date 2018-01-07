@@ -13,15 +13,16 @@ export type Props = {
   id: string,
   fromBlock: Block,
   toBlock: Block,
+  isLinking: boolean,
   onDelete: (id: string) => void,
 }
 
-const LinkDetail = ({ id, fromBlock, toBlock, onDelete }: Props) => {
+const LinkDetail = ({ id, fromBlock, toBlock, isLinking, onDelete }: Props) => {
   const { x: x1, y: y1 } = fromBlock
   const { x: x2, y: y2 } = toBlock
   return (
     <div
-      className="LinkDetail"
+      className={'LinkDetail' + (isLinking ? ' LinkDetail-linking' : '')}
       style={{
         left: Math.min(x1, x2),
         top: Math.min(y1, y2),
