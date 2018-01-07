@@ -15,6 +15,7 @@ import {
   updateLinking,
   endLinking,
   cancelLinking,
+  deleteLink,
 } from '../actions/links'
 
 const mockStore = configureStore()
@@ -86,4 +87,10 @@ it('cancels linking', () => {
   const { wrapper, store } = setup()
   wrapper.find('Diagram').simulate('linkCancel')
   expect(store.getActions()).toEqual([cancelLinking()])
+})
+
+it('deletes a link', () => {
+  const { wrapper, store } = setup()
+  wrapper.find('Diagram').simulate('linkDelete', '0')
+  expect(store.getActions()).toEqual([deleteLink('0')])
 })

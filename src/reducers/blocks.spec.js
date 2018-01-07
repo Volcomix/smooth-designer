@@ -29,14 +29,14 @@ it('adds a block', () => {
     blocks(
       {
         '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
-        '1': { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+        '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
       },
       addBlock(),
     ),
   ).toEqual({
     '0': { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
-    '1': { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
-    '2': { id: '2', name: '', x: 0, y: 0, width: 0, height: 0 },
+    '5': { id: '5', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+    '6': { id: '6', name: '', x: 0, y: 0, width: 0, height: 0 },
   })
 })
 

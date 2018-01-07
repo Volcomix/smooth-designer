@@ -4,6 +4,7 @@ import {
   UPDATE_LINKING,
   END_LINKING,
   CANCEL_LINKING,
+  DELETE_LINK,
 } from '../constants/actionTypes'
 
 type StartLinkingAction = {
@@ -17,20 +18,18 @@ type UpdateLinkingAction = {
   toMouse: { x: number, y: number },
 }
 
-type EndLinkingAction = {
-  type: typeof END_LINKING,
-  toId: string,
-}
+type EndLinkingAction = { type: typeof END_LINKING, toId: string }
 
-type CancelLinkingAction = {
-  type: typeof CANCEL_LINKING,
-}
+type CancelLinkingAction = { type: typeof CANCEL_LINKING }
+
+type DeleteLinkAction = { type: typeof DELETE_LINK, id: string }
 
 export type LinksAction =
   | StartLinkingAction
   | UpdateLinkingAction
   | EndLinkingAction
   | CancelLinkingAction
+  | DeleteLinkAction
 
 export const startLinking = (
   fromId: string,
@@ -57,4 +56,9 @@ export const endLinking = (toId: string): EndLinkingAction => ({
 
 export const cancelLinking = (): CancelLinkingAction => ({
   type: CANCEL_LINKING,
+})
+
+export const deleteLink = (id: string): DeleteLinkAction => ({
+  type: DELETE_LINK,
+  id,
 })

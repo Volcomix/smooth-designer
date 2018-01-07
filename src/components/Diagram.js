@@ -21,6 +21,7 @@ export type Props = {
   onLinkMove: (mouseX: number, mouseY: number) => void,
   onLinkEnd: (id: string) => void,
   onLinkCancel: () => void,
+  onLinkDelete: (id: string) => void,
 }
 
 const Diagram = ({
@@ -35,6 +36,7 @@ const Diagram = ({
   onLinkMove,
   onLinkEnd,
   onLinkCancel,
+  onLinkDelete,
 }: Props) => {
   const isLinking = !!linking
   return (
@@ -61,7 +63,13 @@ const Diagram = ({
           />
         ))}
         {links.map(({ id, fromBlock, toBlock }) => (
-          <LinkDetail key={id} fromBlock={fromBlock} toBlock={toBlock} />
+          <LinkDetail
+            key={id}
+            id={id}
+            fromBlock={fromBlock}
+            toBlock={toBlock}
+            onDelete={onLinkDelete}
+          />
         ))}
         {linking && <Linking {...linking} />}
       </div>

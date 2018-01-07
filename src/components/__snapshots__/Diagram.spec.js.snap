@@ -200,7 +200,9 @@ exports[`with links renders the links 1`] = `
           "y": 0,
         }
       }
+      id="0"
       key="0"
+      onDelete={[Function]}
       toBlock={
         Object {
           "height": 0,
@@ -223,7 +225,9 @@ exports[`with links renders the links 1`] = `
           "y": 0,
         }
       }
+      id="1"
       key="1"
+      onDelete={[Function]}
       toBlock={
         Object {
           "height": 0,

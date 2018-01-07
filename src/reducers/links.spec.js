@@ -5,6 +5,7 @@ import {
   updateLinking,
   endLinking,
   cancelLinking,
+  deleteLink,
 } from '../actions/links'
 import { deleteBlock } from '../actions/blocks'
 
@@ -73,6 +74,25 @@ it('adds a link when linking ends', () => {
     },
     linking: { fromId: '2', toMouse: { x: 0, y: 0 } },
   })
+  expect(
+    links(
+      {
+        links: {
+          '0': { id: '0', fromId: '0', toId: '1' },
+          '5': { id: '5', fromId: '1', toId: '2' },
+        },
+        linking: { fromId: '2', toMouse: { x: 0, y: 0 } },
+      },
+      endLinking('3'),
+    ),
+  ).toEqual({
+    links: {
+      '0': { id: '0', fromId: '0', toId: '1' },
+      '5': { id: '5', fromId: '1', toId: '2' },
+      '6': { id: '6', fromId: '2', toId: '3' },
+    },
+    linking: { fromId: '2', toMouse: { x: 0, y: 0 } },
+  })
 })
 
 it('does not add a link if start and end is the same block', () => {
@@ -90,7 +110,7 @@ it('does not add a link if it already exists', () => {
       {
         links: {
           '0': { id: '0', fromId: '0', toId: '1' },
-          '1': { id: '1', fromId: '2', toId: '3' },
+          '5': { id: '5', fromId: '2', toId: '3' },
         },
         linking: { fromId: '0', toMouse: { x: 0, y: 0 } },
       },
@@ -99,7 +119,7 @@ it('does not add a link if it already exists', () => {
   ).toEqual({
     links: {
       '0': { id: '0', fromId: '0', toId: '1' },
-      '1': { id: '1', fromId: '2', toId: '3' },
+      '5': { id: '5', fromId: '2', toId: '3' },
     },
     linking: { fromId: '0', toMouse: { x: 0, y: 0 } },
   })
@@ -108,7 +128,7 @@ it('does not add a link if it already exists', () => {
       {
         links: {
           '0': { id: '0', fromId: '0', toId: '1' },
-          '1': { id: '1', fromId: '2', toId: '3' },
+          '5': { id: '5', fromId: '2', toId: '3' },
         },
         linking: { fromId: '3', toMouse: { x: 0, y: 0 } },
       },
@@ -117,7 +137,7 @@ it('does not add a link if it already exists', () => {
   ).toEqual({
     links: {
       '0': { id: '0', fromId: '0', toId: '1' },
-      '1': { id: '1', fromId: '2', toId: '3' },
+      '5': { id: '5', fromId: '2', toId: '3' },
     },
     linking: { fromId: '3', toMouse: { x: 0, y: 0 } },
   })
@@ -138,6 +158,35 @@ it('cancels linking', () => {
   ).toEqual({ links: {} })
 })
 
+it('deletes a link', () => {
+  expect(
+    links(
+      {
+        links: {
+          '0': { id: '0', fromId: '0', toId: '1' },
+          '5': { id: '5', fromId: '2', toId: '3' },
+        },
+      },
+      deleteLink('5'),
+    ),
+  ).toEqual({ links: { '0': { id: '0', fromId: '0', toId: '1' } } })
+})
+
+it('deletes a block', () => {
+  expect(
+    links(
+      {
+        links: {
+          '0': { id: '0', fromId: '0', toId: '1' },
+          '5': { id: '5', fromId: '1', toId: '2' },
+          '10': { id: '10', fromId: '2', toId: '0' },
+        },
+      },
+      deleteBlock('2'),
+    ),
+  ).toEqual({ links: { '0': { id: '0', fromId: '0', toId: '1' } } })
+})
+
 describe('getLinks', () => {
   it('returns an empty array', () => {
     expect(getLinks({ links: {} })).toEqual([])
@@ -148,19 +197,4 @@ describe('getLinks', () => {
       getLinks({ links: { '0': { id: '0', fromId: '0', toId: '1' } } }),
     ).toEqual([{ id: '0', fromId: '0', toId: '1' }])
   })
-})
-
-it('deletes a block', () => {
-  expect(
-    links(
-      {
-        links: {
-          '0': { id: '0', fromId: '0', toId: '1' },
-          '1': { id: '1', fromId: '1', toId: '2' },
-          '2': { id: '2', fromId: '2', toId: '0' },
-        },
-      },
-      deleteBlock('2'),
-    ),
-  ).toEqual({ links: { '0': { id: '0', fromId: '0', toId: '1' } } })
 })

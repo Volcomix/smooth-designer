@@ -6,6 +6,7 @@ import {
   UPDATE_LINKING,
   END_LINKING,
   CANCEL_LINKING,
+  DELETE_LINK,
   DELETE_BLOCK,
 } from '../constants/actionTypes'
 
@@ -69,6 +70,16 @@ const cancelLinking = ({ links }) => ({
   links,
 })
 
+const deleteLink = (state, { id }) => ({
+  links: getLinks(state).reduce((nextState, link) => {
+    if (link.id !== id) {
+      nextState[link.id] = link
+    }
+    return nextState
+  }, {}),
+  linking: state.linking,
+})
+
 const deleteBlock = (state, { id }) => ({
   links: getLinks(state).reduce((nextState, link) => {
     if (link.fromId !== id && link.toId !== id) {
@@ -92,6 +103,8 @@ const links = (
       return endLinking(state, action)
     case CANCEL_LINKING:
       return cancelLinking(state)
+    case DELETE_LINK:
+      return deleteLink(state, action)
     case DELETE_BLOCK:
       return deleteBlock(state, action)
     default:

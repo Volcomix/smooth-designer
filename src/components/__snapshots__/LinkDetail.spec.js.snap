@@ -104,6 +104,7 @@ exports[`renders without crashing 1`] = `
       focusState="none"
       insetChildren={false}
       leftIcon={<ActionDeleteForever />}
+      onClick={[Function]}
       primaryText="Delete link"
       targetOrigin={
         Object {
@@ -206,6 +207,7 @@ exports[`renders without crashing when inverted 1`] = `
       focusState="none"
       insetChildren={false}
       leftIcon={<ActionDeleteForever />}
+      onClick={[Function]}
       primaryText="Delete link"
       targetOrigin={
         Object {

@@ -10,11 +10,13 @@ import './LinkDetail.css'
 import type { Block } from '../types'
 
 export type Props = {
+  id: string,
   fromBlock: Block,
   toBlock: Block,
+  onDelete: (id: string) => void,
 }
 
-const LinkDetail = ({ fromBlock, toBlock }: Props) => {
+const LinkDetail = ({ id, fromBlock, toBlock, onDelete }: Props) => {
   const { x: x1, y: y1 } = fromBlock
   const { x: x2, y: y2 } = toBlock
   return (
@@ -52,6 +54,7 @@ const LinkDetail = ({ fromBlock, toBlock }: Props) => {
           className="LinkDetail-delete"
           leftIcon={<Delete />}
           primaryText="Delete link"
+          onClick={() => onDelete(id)}
         />
       </IconMenu>
     </div>

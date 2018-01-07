@@ -15,6 +15,7 @@ import {
   updateLinking,
   endLinking,
   cancelLinking,
+  deleteLink,
 } from '../actions/links'
 import Diagram from '../components/Diagram'
 
@@ -37,6 +38,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
     dispatch(updateLinking(toMouseX, toMouseY)),
   onLinkEnd: (id: string) => dispatch(endLinking(id)),
   onLinkCancel: () => dispatch(cancelLinking()),
+  onLinkDelete: (id: string) => dispatch(deleteLink(id)),
 })
 
 const DiagramContainer = connect(mapStateToProps, mapDispatchToProps)(Diagram)

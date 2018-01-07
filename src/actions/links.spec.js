@@ -1,10 +1,17 @@
 //@flow
-import { startLinking, updateLinking, endLinking, cancelLinking } from './links'
+import {
+  startLinking,
+  updateLinking,
+  endLinking,
+  cancelLinking,
+  deleteLink,
+} from './links'
 import {
   START_LINKING,
   UPDATE_LINKING,
   END_LINKING,
   CANCEL_LINKING,
+  DELETE_LINK,
 } from '../constants/actionTypes'
 
 it('creates an action to start linking', () => {
@@ -28,4 +35,8 @@ it('creates an action to end linking', () => {
 
 it('creates an action to cancel linking', () => {
   expect(cancelLinking()).toEqual({ type: CANCEL_LINKING })
+})
+
+it('creates an action to delete a link', () => {
+  expect(deleteLink('0')).toEqual({ type: DELETE_LINK, id: '0' })
 })

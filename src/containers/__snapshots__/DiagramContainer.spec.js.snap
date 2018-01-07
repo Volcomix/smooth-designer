@@ -64,6 +64,7 @@ exports[`renders without crashing 1`] = `
   onAddClick={[Function]}
   onBlockDelete={[Function]}
   onLinkCancel={[Function]}
+  onLinkDelete={[Function]}
   onLinkEnd={[Function]}
   onLinkMove={[Function]}
   onLinkStart={[Function]}

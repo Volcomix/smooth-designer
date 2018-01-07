@@ -16,6 +16,7 @@ const setup = setupProps => {
     onLinkMove: jest.fn(),
     onLinkEnd: jest.fn(),
     onLinkCancel: jest.fn(),
+    onLinkDelete: jest.fn(),
   }
   const props = { ...defaultProps, ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
@@ -240,5 +241,60 @@ describe('with links', () => {
       ],
     })
     expect(wrapper).toMatchSnapshot()
+  })
+
+  it('calls onLinkDelete when a link is deleted', () => {
+    const { wrapper, props } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+        { id: '2', name: 'Block 3', x: 0, y: 0, width: 0, height: 0 },
+      ],
+      links: [
+        {
+          id: '0',
+          fromBlock: {
+            id: '0',
+            name: 'Block 1',
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+          },
+          toBlock: {
+            id: '1',
+            name: 'Block 2',
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+          },
+        },
+        {
+          id: '1',
+          fromBlock: {
+            id: '1',
+            name: 'Block 2',
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+          },
+          toBlock: {
+            id: '2',
+            name: 'Block 3',
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+          },
+        },
+      ],
+    })
+    wrapper
+      .find('LinkDetail')
+      .first()
+      .simulate('delete', '0')
+    expect(props.onLinkDelete).toHaveBeenCalledWith('0')
   })
 })

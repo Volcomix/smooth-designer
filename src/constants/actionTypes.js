@@ -8,5 +8,6 @@ export const START_LINKING = 'START_LINKING'
 export const UPDATE_LINKING = 'UPDATE_LINKING'
 export const END_LINKING = 'END_LINKING'
 export const CANCEL_LINKING = 'CANCEL_LINKING'
+export const DELETE_LINK = 'DELETE_LINK'
 
 export const UPDATE_FORCE = 'UPDATE_FORCE'
