@@ -38,8 +38,8 @@ describe('with blocks', () => {
   it('renders the blocks', () => {
     const { wrapper } = setup({
       blocks: [
-        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
-        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 10, height: 20 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 30, height: 40 },
       ],
     })
     expect(wrapper).toMatchSnapshot()
@@ -47,7 +47,7 @@ describe('with blocks', () => {
 
   it('renders a link if linking', () => {
     const { wrapper } = setup({
-      blocks: [{ id: '0', name: 'Block', x: 0, y: 0, width: 0, height: 0 }],
+      blocks: [{ id: '0', name: 'Block', x: 0, y: 0, width: 10, height: 20 }],
       linking: {
         fromBlock: {
           id: '0',
@@ -195,9 +195,9 @@ describe('with links', () => {
   it('renders the links', () => {
     const { wrapper } = setup({
       blocks: [
-        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
-        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
-        { id: '2', name: 'Block 3', x: 0, y: 0, width: 0, height: 0 },
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 10, height: 20 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 30, height: 40 },
+        { id: '2', name: 'Block 3', x: 0, y: 0, width: 50, height: 60 },
       ],
       links: [
         {
@@ -207,16 +207,16 @@ describe('with links', () => {
             name: 'Block 1',
             x: 0,
             y: 0,
-            width: 0,
-            height: 0,
+            width: 10,
+            height: 20,
           },
           toBlock: {
             id: '1',
             name: 'Block 2',
             x: 0,
             y: 0,
-            width: 0,
-            height: 0,
+            width: 30,
+            height: 40,
           },
         },
         {
@@ -226,16 +226,16 @@ describe('with links', () => {
             name: 'Block 2',
             x: 0,
             y: 0,
-            width: 0,
-            height: 0,
+            width: 30,
+            height: 40,
           },
           toBlock: {
             id: '2',
             name: 'Block 3',
             x: 0,
             y: 0,
-            width: 0,
-            height: 0,
+            width: 50,
+            height: 60,
           },
         },
       ],

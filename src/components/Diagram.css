@@ -1,6 +1,5 @@
 .Diagram {
   flex: 1;
-  background-color: var(--grey-50);
 }
 
 .Diagram-linking,
@@ -9,11 +8,10 @@
 }
 
 .Diagram-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
+  min-width: 50%;
+  min-height: 50%;
+  transform: translate(100%, 100%);
+  transition: var(--ease-out-transition);
 }
 
 .Diagram-add {

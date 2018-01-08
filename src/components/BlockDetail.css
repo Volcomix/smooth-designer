@@ -1,6 +1,5 @@
 .BlockDetail {
   position: absolute;
-  transform: translate(-50%, -50%);
   transition: var(--ease-out-transition);
   transition-property: left, top;
   z-index: 10;

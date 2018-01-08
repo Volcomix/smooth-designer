@@ -30,11 +30,11 @@ class BlockDetail extends React.Component<Props> {
   }
 
   render() {
-    const { name, x, y, isLinking } = this.props
+    const { name, x, y, width, height, isLinking } = this.props
     return (
       <Sized
         className={'BlockDetail' + (isLinking ? ' BlockDetail-linking' : '')}
-        style={{ left: x, top: y }}
+        style={{ left: x - width / 2, top: y - height / 2 }}
         onSized={this.handleSized}
       >
         <Card className="BlockDetail-card" onMouseUp={this.handleMouseUp}>

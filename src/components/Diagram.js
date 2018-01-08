@@ -39,6 +39,13 @@ const Diagram = ({
   onLinkDelete,
 }: Props) => {
   const isLinking = !!linking
+  const { width, height } = blocks.reduce(
+    ({ width, height }, block) => ({
+      width: Math.max(width, Math.abs(block.x) + block.width / 2),
+      height: Math.max(height, Math.abs(block.y) + block.height / 2),
+    }),
+    { width: 0, height: 0 },
+  )
   return (
     <MousePosition
       className={'Diagram' + (isLinking ? ' Diagram-linking' : '')}
@@ -49,7 +56,7 @@ const Diagram = ({
         onLinkCancel()
       }}
     >
-      <div className="Diagram-content">
+      <div className="Diagram-content" style={{ width, height }}>
         {blocks.map(block => (
           <BlockDetail
             key={block.id}
