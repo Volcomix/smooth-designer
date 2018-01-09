@@ -1,38 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<MousePosition
-  className="Diagram"
-  isActive={false}
-  onMouseMove={[Function]}
-  onMouseUp={[Function]}
+<Diagram
+  blocks={Array []}
+  links={Array []}
+  onAddClick={[Function]}
+  onBlockDelete={[Function]}
+  onLinkCancel={[Function]}
+  onLinkDelete={[Function]}
+  onLinkEnd={[Function]}
+  onLinkMove={[Function]}
+  onLinkStart={[Function]}
+  onNameChange={[Function]}
+  onSizeChange={[Function]}
 >
   <div
-    className="Diagram-content"
-    style={
-      Object {
-        "height": 0,
-        "width": 0,
-      }
-    }
-  />
-  <FloatingActionButton
-    className="Diagram-add"
-    disabled={false}
-    mini={false}
-    onClick={[Function]}
-    secondary={true}
-    zDepth={4}
+    className="Diagram"
+    onMouseMove={[Function]}
+    onMouseUp={[Function]}
   >
-    <ContentAdd />
-  </FloatingActionButton>
-</MousePosition>
+    <div
+      className="Diagram-content"
+      style={
+        Object {
+          "height": 0,
+          "width": 0,
+        }
+      }
+    />
+    <FloatingActionButton
+      className="Diagram-add"
+      disabled={false}
+      mini={false}
+      onClick={[Function]}
+      secondary={true}
+      zDepth={4}
+    />
+  </div>
+</Diagram>
 `;
 
 exports[`with blocks renders a link if linking 1`] = `
-<MousePosition
+<div
   className="Diagram Diagram-linking"
-  isActive={true}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
 >
@@ -89,13 +99,12 @@ exports[`with blocks renders a link if linking 1`] = `
   >
     <ContentAdd />
   </FloatingActionButton>
-</MousePosition>
+</div>
 `;
 
 exports[`with blocks renders the blocks 1`] = `
-<MousePosition
+<div
   className="Diagram"
-  isActive={false}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
 >
@@ -149,13 +158,12 @@ exports[`with blocks renders the blocks 1`] = `
   >
     <ContentAdd />
   </FloatingActionButton>
-</MousePosition>
+</div>
 `;
 
 exports[`with links renders the links 1`] = `
-<MousePosition
+<div
   className="Diagram"
-  isActive={false}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
 >
@@ -276,5 +284,5 @@ exports[`with links renders the links 1`] = `
   >
     <ContentAdd />
   </FloatingActionButton>
-</MousePosition>
+</div>
 `;

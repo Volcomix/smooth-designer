@@ -1,30 +1,36 @@
 //@flow
 import React from 'react'
-import { shallow } from 'enzyme'
-import Diagram, { type Props } from './Diagram'
+import { shallow, mount } from 'enzyme'
+import type { Props } from './Diagram'
+jest.mock('material-ui/FloatingActionButton')
+const Diagram = require('./Diagram').default
+
+const defaultProps = (): Props => ({
+  blocks: [],
+  links: [],
+  linking: undefined,
+  onAddClick: jest.fn(),
+  onBlockDelete: jest.fn(),
+  onNameChange: jest.fn(),
+  onSizeChange: jest.fn(),
+  onLinkStart: jest.fn(),
+  onLinkMove: jest.fn(),
+  onLinkEnd: jest.fn(),
+  onLinkCancel: jest.fn(),
+  onLinkDelete: jest.fn(),
+})
 
 const setup = setupProps => {
-  const defaultProps: Props = {
-    blocks: [],
-    links: [],
-    linking: undefined,
-    onAddClick: jest.fn(),
-    onBlockDelete: jest.fn(),
-    onNameChange: jest.fn(),
-    onSizeChange: jest.fn(),
-    onLinkStart: jest.fn(),
-    onLinkMove: jest.fn(),
-    onLinkEnd: jest.fn(),
-    onLinkCancel: jest.fn(),
-    onLinkDelete: jest.fn(),
-  }
-  const props = { ...defaultProps, ...setupProps }
+  const props = { ...defaultProps(), ...setupProps }
   const wrapper = shallow(<Diagram {...props} />)
+  wrapper.instance().content = {
+    getBoundingClientRect: jest.fn(() => ({ left: 0, top: 0 })),
+  }
   return { wrapper, props }
 }
 
 it('renders without crashing', () => {
-  const { wrapper } = setup()
+  const wrapper = mount(<Diagram {...defaultProps()} />)
   expect(wrapper).toMatchSnapshot()
 })
 
@@ -105,6 +111,30 @@ describe('with blocks', () => {
     expect(props.onSizeChange).toHaveBeenCalledWith('0', 10, 20)
   })
 
+  it('does not call onLinkMove when the mouse moves', () => {
+    const { wrapper, props } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+      ],
+    })
+    wrapper.simulate('mouseMove', { clientX: 30, clientY: 40 })
+    expect(props.onLinkMove).not.toHaveBeenCalled()
+  })
+
+  it('does not call onLinkCancel when the mouse is up', () => {
+    const { wrapper, props } = setup({
+      blocks: [
+        { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
+        { id: '1', name: 'Block 2', x: 0, y: 0, width: 0, height: 0 },
+      ],
+    })
+    const spy = jest.spyOn(document.activeElement || {}, 'blur')
+    wrapper.simulate('mouseUp')
+    expect(spy).not.toHaveBeenCalled()
+    expect(props.onLinkCancel).not.toHaveBeenCalled()
+  })
+
   it('calls onLinkStart when linking starts', () => {
     const { wrapper, props } = setup({
       blocks: [
@@ -118,8 +148,10 @@ describe('with blocks', () => {
       .simulate('linkStart', '0', 10, 20)
     expect(props.onLinkStart).toHaveBeenCalledWith('0', 10, 20)
   })
+})
 
-  it('calls onLinkMove when linking moves', () => {
+describe('when linking', () => {
+  it('calls onLinkMove when the mouse moves', () => {
     const { wrapper, props } = setup({
       blocks: [
         { id: '0', name: 'Block 1', x: 0, y: 0, width: 0, height: 0 },
@@ -137,7 +169,7 @@ describe('with blocks', () => {
         toMouse: { x: 10, y: 20 },
       },
     })
-    wrapper.simulate('mouseMove', 30, 40)
+    wrapper.simulate('mouseMove', { clientX: 30, clientY: 40 })
     expect(props.onLinkMove).toHaveBeenCalledWith(30, 40)
   })
 
