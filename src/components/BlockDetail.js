@@ -58,7 +58,7 @@ class BlockDetail extends React.Component<Props> {
               className="BlockDetail-menu"
               disableAutoFocus={true}
               animation={(props: {}) => (
-                <PopoverAnimationDefault {...props} zDepth={2} />
+                <PopoverAnimationDefault {...props} zDepth={5} />
               )}
               iconButtonElement={
                 <IconButton>

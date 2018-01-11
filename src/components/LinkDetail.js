@@ -41,7 +41,7 @@ const LinkDetail = ({ id, fromBlock, toBlock, isLinking, onDelete }: Props) => {
         className="LinkDetail-menu"
         disableAutoFocus={true}
         animation={(props: {}) => (
-          <PopoverAnimationDefault {...props} zDepth={2} />
+          <PopoverAnimationDefault {...props} zDepth={5} />
         )}
         iconButtonElement={
           <IconButton>

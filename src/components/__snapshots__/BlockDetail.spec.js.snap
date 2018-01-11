@@ -10,7 +10,7 @@ exports[`renders an overflow menu with a custom elevation 1`] = `
       "vertical": "top",
     }
   }
-  zDepth={2}
+  zDepth={5}
 />
 `;
 
