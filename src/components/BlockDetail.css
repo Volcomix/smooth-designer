@@ -6,6 +6,10 @@
   pointer-events: none;
 }
 
+.BlockDetail:focus-within {
+  z-index: 12;
+}
+
 .BlockDetail-linking:focus-within,
 .BlockDetail-linking:hover {
   z-index: 20;
