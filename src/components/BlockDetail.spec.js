@@ -22,6 +22,9 @@ const defaultProps = (): Props => ({
 const setup = setupProps => {
   const props: Props = { ...defaultProps(), ...setupProps }
   const wrapper = shallow(<BlockDetail {...props} />)
+  wrapper.instance().container = {
+    getBoundingClientRect: jest.fn(() => ({ width: 30, height: 40 })),
+  }
   return { wrapper, props }
 }
 
@@ -63,10 +66,32 @@ it('focus name field when the block is added', () => {
   )
 })
 
-it('calls onDelete when the delete menu is clicked', () => {
+it('calls onSizeChange when mounted', () => {
+  jest
+    .spyOn(Element.prototype, 'getBoundingClientRect')
+    .mockImplementation(() => ({
+      width: 30,
+      height: 40,
+    }))
+  const props = defaultProps()
+  mount(
+    <MuiThemeProvider>
+      <BlockDetail {...props} />
+    </MuiThemeProvider>,
+  )
+  expect(props.onSizeChange).toHaveBeenCalledWith('0', 30, 40)
+})
+
+it('calls onSizeChange when the focus is lost', () => {
   const { wrapper, props } = setup()
-  wrapper.find('.BlockDetail-delete').simulate('click')
-  expect(props.onDelete).toHaveBeenCalledWith('0')
+  wrapper.simulate('blur')
+  expect(props.onSizeChange).toHaveBeenCalledWith('0', 30, 40)
+})
+
+it('does not call onSizeChange if the size does not change', () => {
+  const { wrapper, props } = setup({ width: 30, height: 40 })
+  wrapper.simulate('blur')
+  expect(props.onSizeChange).not.toHaveBeenCalled()
 })
 
 it('calls onNameChange when the block name changes', () => {
@@ -78,16 +103,10 @@ it('calls onNameChange when the block name changes', () => {
   expect(props.onNameChange).toHaveBeenCalledWith('0', 'New name')
 })
 
-it('calls onSizeChange when the block size changes', () => {
+it('calls onDelete when the delete menu is clicked', () => {
   const { wrapper, props } = setup()
-  wrapper.simulate('sized', { width: 10, height: 20 })
-  expect(props.onSizeChange).toHaveBeenCalledWith('0', 10, 20)
-})
-
-it('does not call onSizeChange if the size does not change', () => {
-  const { wrapper, props } = setup()
-  wrapper.simulate('sized', { width: 0, height: 0 })
-  expect(props.onSizeChange).not.toHaveBeenCalled()
+  wrapper.find('.BlockDetail-delete').simulate('click')
+  expect(props.onDelete).toHaveBeenCalledWith('0')
 })
 
 it('calls onLinkStart when the link button is used', () => {

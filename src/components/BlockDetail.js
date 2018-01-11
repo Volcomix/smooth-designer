@@ -10,7 +10,6 @@ import Delete from 'material-ui/svg-icons/action/delete-forever'
 import AddLink from 'material-ui/svg-icons/action/settings-ethernet'
 import './BlockDetail.css'
 import type { Block } from '../types'
-import Sized from './Sized'
 import TextField from './TextField'
 
 export type Props = Block & {
@@ -23,19 +22,22 @@ export type Props = Block & {
 }
 
 class BlockDetail extends React.Component<Props> {
+  container: ?HTMLDivElement
   nameInput: ?HTMLInputElement
 
   componentDidMount() {
+    this.handleSizeChange()
     this.nameInput && this.nameInput.focus()
   }
 
   render() {
     const { name, x, y, width, height, isLinking } = this.props
     return (
-      <Sized
+      <div
         className={'BlockDetail' + (isLinking ? ' BlockDetail-linking' : '')}
         style={{ left: x - width / 2, top: y - height / 2 }}
-        onSized={this.handleSized}
+        onBlur={this.handleSizeChange}
+        ref={container => (this.container = container)}
       >
         <Card className="BlockDetail-card" onMouseUp={this.handleMouseUp}>
           <CardTitle
@@ -82,20 +84,24 @@ class BlockDetail extends React.Component<Props> {
             </IconButton>
           </CardActions>
         </Card>
-      </Sized>
+      </div>
     )
   }
 
-  handleDelete = () => this.props.onDelete(this.props.id)
-
-  handleNameChange = (event: {}, newName: string) =>
-    this.props.onNameChange(this.props.id, newName)
-
-  handleSized = ({ width, height }: ClientRect) => {
+  handleSizeChange = () => {
+    if (!this.container) {
+      return
+    }
+    const { width, height } = this.container.getBoundingClientRect()
     if (width !== this.props.width || height !== this.props.height) {
       this.props.onSizeChange(this.props.id, width, height)
     }
   }
+
+  handleNameChange = (event: {}, newName: string) =>
+    this.props.onNameChange(this.props.id, newName)
+
+  handleDelete = () => this.props.onDelete(this.props.id)
 
   handleLinkStart = () =>
     this.props.onLinkStart(this.props.id, this.props.x, this.props.y)
