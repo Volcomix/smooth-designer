@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem'
 import IconButton from 'material-ui/IconButton'
 import More from 'material-ui/svg-icons/navigation/more-vert'
 import Delete from 'material-ui/svg-icons/action/delete-forever'
+import classNames from 'classnames'
 import './LinkDetail.css'
 import type { Block } from '../types'
 
@@ -22,7 +23,7 @@ const LinkDetail = ({ id, fromBlock, toBlock, isLinking, onDelete }: Props) => {
   const { x: x2, y: y2 } = toBlock
   return (
     <div
-      className={'LinkDetail' + (isLinking ? ' LinkDetail-linking' : '')}
+      className={classNames('LinkDetail', { 'LinkDetail-linking': isLinking })}
       style={{
         left: Math.min(x1, x2),
         top: Math.min(y1, y2),

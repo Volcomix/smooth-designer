@@ -8,6 +8,7 @@ import IconButton from 'material-ui/IconButton'
 import More from 'material-ui/svg-icons/navigation/more-vert'
 import Delete from 'material-ui/svg-icons/action/delete-forever'
 import AddLink from 'material-ui/svg-icons/action/settings-ethernet'
+import classNames from 'classnames'
 import './BlockDetail.css'
 import type { Block } from '../types'
 import TextField from './TextField'
@@ -34,7 +35,9 @@ class BlockDetail extends React.Component<Props> {
     const { name, x, y, width, height, isLinking } = this.props
     return (
       <div
-        className={'BlockDetail' + (isLinking ? ' BlockDetail-linking' : '')}
+        className={classNames('BlockDetail', {
+          'BlockDetail-linking': isLinking,
+        })}
         style={{ left: x - width / 2, top: y - height / 2 }}
         onBlur={this.handleSizeChange}
         ref={container => (this.container = container)}

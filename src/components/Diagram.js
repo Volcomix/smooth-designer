@@ -2,6 +2,7 @@
 import React from 'react'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
+import classNames from 'classnames'
 import './Diagram.css'
 import type { Block } from '../types'
 import BlockDetail from './BlockDetail'
@@ -49,7 +50,7 @@ class Diagram extends React.Component<Props> {
     )
     return (
       <div
-        className={'Diagram' + (isLinking ? ' Diagram-linking' : '')}
+        className={classNames('Diagram', { 'Diagram-linking': isLinking })}
         onMouseMove={this.handleMouseMove}
         onMouseUp={this.handleMouseUp}
       >

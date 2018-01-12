@@ -8,8 +8,7 @@
     "lint": "eslint .",
     "flow": "flow",
     "test": "react-scripts test --env=jsdom",
-    "fulltest":
-      "clear && yarn lint && yarn flow --include-warnings && yarn test --verbose --coverage",
+    "fulltest": "clear && yarn lint && yarn flow --include-warnings && yarn test --verbose --coverage",
     "eject": "react-scripts eject"
   },
   "jest": {
@@ -18,7 +17,11 @@
       "!src/index.js",
       "!src/registerServiceWorker.js"
     ],
-    "coverageReporters": ["html", "text", "cobertura"],
+    "coverageReporters": [
+      "html",
+      "text",
+      "cobertura"
+    ],
     "coverageThreshold": {
       "global": {
         "statements": 90,
@@ -27,9 +30,12 @@
         "lines": 90
       }
     },
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "d3-force": "^1.1.0",
     "material-ui": "^0.20.0",
     "react": "^16.2.0",
